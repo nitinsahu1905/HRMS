@@ -20,3 +20,21 @@
     text-wrap: balance;
   }
 }
+body{
+  background-color: #f7f7f7;
+  /* font-family: 'Poppins'; */
+  font-family: "Poppins", sans-serif;
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: #04AA6D;
+  margin-left: 10px;
+}
+
+tr:nth-child(even){background-color: #f9f9f9}
+
+th {
+  /* background-color: #0683c6; */
+  color: #121f47;
+}

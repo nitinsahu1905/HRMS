@@ -12,6 +12,7 @@ import { MdManageAccounts } from "react-icons/md";
 import { GrDocumentTime } from "react-icons/gr";
 import { IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
+import Link from "next/link";
 export default function Sidebar() {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -32,19 +33,19 @@ export default function Sidebar() {
         <div class="h-full px-3 py-4 overflow-y-auto bg-[#121f47] dark:bg-[#121f47]-700">
            <ul class="space-y-2 font-medium flex flex-col gap-1">
               <li>
-                 <a href="#" class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  < AiFillHome className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]"/>
-                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">Dashboard</span>
-                 </a>
+                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]"><Link href="/dashboard">Dashboard</Link></span>
+                 </div>
               </li>
               <li>
-                 <a href="#" class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  < CgMail className="flex-shrink-0 text-[#cdc3c3] h-6 w-6 group-hover:text-[#121f47]"/>
                     <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">Inbox</span>
-                 </a>
+                 </div>
               </li>
               <li>
-                 <a href="#" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <div class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  < GrDocumentTime className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]"/>
                     <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">Time and Attend</span>
                     <div className="pl-3">
@@ -58,25 +59,26 @@ export default function Sidebar() {
             >
             {isTimeDropdownOpen?<IoIosArrowUp className="flex-shrink-0 text-[#cdc3c3] h-4 w-4 group-hover:text-[#525768] "/>:<RiArrowDropDownLine className="flex-shrink-0 text-[#cdc3c3] h-7 w-7 group-hover:text-[#525768] "/>}
             </button></div>
-            </a>
+            </div>
             <ul id="timedropdown-example" className={`py-2 space-y-2 ${isTimeDropdownOpen ? '' : 'hidden'}`}>
                 <li>
-                    <a href="#" className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Timesheet</a>
+                    <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Timesheet</div>
                 </li>
                 <li>
-                    <a href="#" className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Attendance</a>
+                    <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Attendance</div>
                 </li>
                 <li>
-                    <a href="#" className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Leaves</a>
+                    <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Leaves</div>
                 </li>
             </ul>
 
               </li>
               <li>
-                 <a href="#" class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  < RiTeamFill className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]"/>
-                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">My Team</span>
-                 </a>
+                 
+                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]"><Link href="/myteam">My Team</Link></span>
+                 </div>
               </li>
               <li>
                  <a href="#" class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

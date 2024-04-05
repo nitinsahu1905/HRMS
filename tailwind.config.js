@@ -1,4 +1,8 @@
-/** @type {import('tailwindcss').Config} */
+
+/**
+@type
+{import('tailwindcss').Config}
+*/
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,6 +11,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors:{
+        "sky-color":"#f7f7f7",
+        "primary-blue":"#0b91cf",
+        "secondary-blue":"#0684C7",
+        "dark-blue":"#121F48",
+        "grey-color":"#808080"
+      },
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -14,5 +28,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+   
+  ],
 };
+ 
