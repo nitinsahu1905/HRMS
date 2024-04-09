@@ -3,7 +3,7 @@ import { TeamData } from '../Constants/TeamData';
 
 const page = () => {
   return (
-    <div className='p-[20px]'>
+    <div className=''>
     <div>
         <h1 className="text-dark-blue text-[24px] font-bold">My Teams</h1>
         <p className="text-primary-blue">Dashboard / Teams</p>
