@@ -28,9 +28,9 @@ export default function Sidebar() {
     };
     
     return (
-        <div>
-        <aside className="fixed top-0 left-0  w-auto h-screen transition-transform -translate-x-full sm:translate-x-0">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-[#121f47] dark:bg-[#121f47]-700">
+        <div className="  ">
+        <aside className="fixed top-0 left-0  h-screen transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide ">
+        {/* <div class="h-full px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide "> */}
            <ul class="space-y-2 font-medium flex flex-col gap-1">
               <li>
                  <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -117,7 +117,9 @@ export default function Sidebar() {
                     <a href="#" className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Organization Feedback</a>
                 </li>
                 <li>
-                    <a href="#" className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Organization Policies</a>
+                  <Link href='/organization-policies'>
+                    <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Organization Policies</div>
+                  </Link>
                 </li>
             </ul>
 
@@ -144,7 +146,7 @@ export default function Sidebar() {
               </li>
            
            </ul>
-        </div>
+        {/* </div> */}
      </aside>
      </div>
     )

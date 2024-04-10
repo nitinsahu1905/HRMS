@@ -15,7 +15,7 @@ export const TeamData = [
   {
     id: 3,
     image: "https://randomuser.me/api/portraits/men/17.jpg",
-    name: "Farhan Sheikh",
+    name: "Mohommad Farhan Sheikh",
     designation: "Web developer",
   },
   {

@@ -15,9 +15,17 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+}
+@layer components {
+  .custom-btn{
+    @apply cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[20px] py-[10px];
   }
 }
 body{
