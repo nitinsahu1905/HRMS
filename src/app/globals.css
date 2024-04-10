@@ -23,7 +23,7 @@
     @apply text-xl;
   }
 }
-@layer components {
+@layer utilities {
   .custom-btn{
     @apply cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[20px] py-[10px];
   }
