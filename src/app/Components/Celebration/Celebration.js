@@ -3,7 +3,7 @@ import React from 'react'
 
 const Celebration = (props) => {
     const {name,date,occasion,img}=props;
-    console.log(name,date,occasion,img);
+    // console.log(name,date,occasion,img);
     // console.log("hello")
   return (
     <div>
