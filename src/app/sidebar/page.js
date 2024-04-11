@@ -33,10 +33,12 @@ export default function Sidebar() {
         {/* <div class="h-full px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide "> */}
            <ul class="space-y-2 font-medium flex flex-col gap-1">
               <li>
+              <Link href="/dashboard">
                  <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  < AiFillHome className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]"/>
-                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]"><Link href="/dashboard">Dashboard</Link></span>
+                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">Dashboard</span>
                  </div>
+                 </Link>
               </li>
               <li>
                  <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

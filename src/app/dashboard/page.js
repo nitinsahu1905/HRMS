@@ -4,10 +4,12 @@ import { CelebrationData } from "../Constants/CelebrationData";
 import Celebration from "../Components/Celebration/Celebration";
 import { ResourceForecastData } from "../Constants/ResourceForecastData";
 import ChartComponent from "../Components/TimesheetGraph/TimesheetGraph";
+import { useState } from "react";
 
 
 
 export default function dashboard(){
+    const [announcement, setAnnouncement] = useState('');
     // console.log(CelebrationData);
     return(
         <div className="flex flex-col gap-[10px]">
@@ -57,9 +59,12 @@ export default function dashboard(){
                 <div className="top-2 mt-3 left-1 text-dark-blue font-medium text-2xl px-3">Announcement</div>
                
                 <div className="flex justify-between bg-white border-[#0684C7] border-[1px] rounded-lg w-auto h-auto mx-4 p-2 mb-2 mt-2">
-                    <div className="p-2 w-full h-full">
-                    <input type="text" placeholder="Enter Message Here" className="outline-none w-full" maxLength={100}/></div>
-                    <span className="end-0 right-0 pt-40"><RiSendPlaneFill className="transform rotate-45 h-6 w-6 text-primary-blue"/></span>
+                    <div className="p-2 w-full ">
+                    <textarea type="text" id="announcement" placeholder="Enter Message Here" className="outline-none w-full h-full overflow-hidden resize-none " wrap="soft" maxLength={300} onChange={(e)=>setAnnouncement(e.target.value)} ></textarea></div>
+                    <span className="end-0 right-0 pt-40"><RiSendPlaneFill onClick={()=>{
+                        document.querySelector('#announcement').value="";
+                        setAnnouncement('')
+                        }} className="transform rotate-45 h-6 w-6 text-primary-blue cursor-pointer"/></span>
                 </div>
                 
         
