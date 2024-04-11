@@ -29,7 +29,7 @@ export default function Sidebar() {
     
     return (
         <div className="  ">
-        <aside className="fixed top-0 left-0  h-screen transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide ">
+        <aside className="absolute top-0 left-0  h-screen transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide ">
         {/* <div class="h-full px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide "> */}
            <ul class="space-y-2 font-medium flex flex-col gap-1">
               <li>
