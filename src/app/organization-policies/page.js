@@ -71,7 +71,7 @@ const OrganizationPolicies = () => {
   };
 
   return (
-    <div className="flex flex-col gap-[20px] ">
+    <div className="flex flex-col gap-[20px] p-[20px]">
       <div>
         <h1 className="text-dark-blue text-[24px] font-bold m-0 mt-0 ">
           Organization Policies

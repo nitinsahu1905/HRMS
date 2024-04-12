@@ -13,7 +13,7 @@ const page = () => {
     setTeam(newTeam)
   }
   return (
-    <div className=''>
+    <div className='p-[20px]'>
     <div>
         <h1 className="text-dark-blue text-[24px] font-bold">My Teams</h1>
         <p className="text-primary-blue">Dashboard / Teams</p>
