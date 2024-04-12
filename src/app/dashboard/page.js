@@ -8,7 +8,7 @@ import { useState } from "react";
 
 
 
-export default function dashboard(){
+export default function Dashboard(){
     const [announcement, setAnnouncement] = useState('');
     // console.log(CelebrationData);
     return(

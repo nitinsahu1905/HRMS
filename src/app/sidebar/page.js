@@ -27,13 +27,14 @@ export default function Sidebar() {
   };
 
   return (
+    // whole side bard box
     <div className="w-1/5">
       <aside className=" w-[20%] h-screen fixed top-0 left-0 transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide ">
-        {/* <div class="h-full px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide "> */}
         <ul class="space-y-2 font-medium flex flex-col gap-1">
+          {/* dashboard section */}
           <li>
-            <Link href="/dashboard">
-              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <Link href="/">
+              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100    group">
                 <AiFillHome className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
                 <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                   Dashboard
@@ -41,25 +42,34 @@ export default function Sidebar() {
               </div>
             </Link>
           </li>
+
+          {/* inbox section */}
           <li>
-            <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-              <CgMail className="flex-shrink-0 text-[#cdc3c3] h-6 w-6 group-hover:text-[#121f47]" />
-              <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
-                Inbox
-              </span>
-            </div>
+            <Link href="/inbox">
+              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+                <CgMail className="flex-shrink-0 text-[#cdc3c3] h-6 w-6 group-hover:text-[#121f47]" />
+                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                  Inbox
+                </span>
+              </div>
+            </Link>
           </li>
+
+          {/* time % attend section dropdown */}
           <li>
-            <div class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <div
+              onClick={toggleTimeDropdown}
+              class="flex items-center cursor-pointer p-2 rounded-lg dark:text-white hover:bg-gray-100  group"
+            >
               <GrDocumentTime className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
               <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                 Time and Attend
               </span>
+
               <div className="pl-3">
                 <button
                   type="button"
-                  onClick={toggleTimeDropdown}
-                  className=" flex items-center px-2 text-base text-gray-900 transition duration-75  group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  className=" flex items-center px-2 text-base text-white transition duration-75  group hover:bg-gray-100 dark:text-white "
                   aria-controls="timedropdown-example"
                   data-collapse-toggle="timedropdown-example"
                 >
@@ -71,72 +81,92 @@ export default function Sidebar() {
                 </button>
               </div>
             </div>
+
             <ul
               id="timedropdown-example"
               className={`py-2 space-y-2 ${isTimeDropdownOpen ? "" : "hidden"}`}
             >
+              {/* timesheet section */}
               <li>
-                <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">
-                  Timesheet
-                </div>
+                <Link href="/timesheet">
+                  {" "}
+                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
+                    Timesheet
+                  </div>
+                </Link>
               </li>
+
+              {/* attendance section */}
               <li>
-                <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">
-                  Attendance
-                </div>
+                <Link href="/attendance">
+                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
+                    Attendance
+                  </div>
+                </Link>
               </li>
+
+              {/* leaves section */}
               <li>
-                <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">
-                  Leaves
-                </div>
+                <Link href="/leaves">
+                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
+                    Leaves
+                  </div>
+                </Link>
               </li>
             </ul>
           </li>
-          <li>
-            <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-              <RiTeamFill className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
 
-              <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
-                <Link href="/myteam">My Team</Link>
-              </span>
-            </div>
-          </li>
+          {/* my team section */}
           <li>
-            <a
-              href="#"
-              class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-            >
-              <MdManageAccounts className="flex-shrink-0 text-[#cdc3c3] h-7 w-6 group-hover:text-[#121f47]" />
-              <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
-                Manage Employees
-              </span>
-            </a>
+            <Link href="my-team">
+              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+                <RiTeamFill className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
+
+                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                  My Team
+                </span>
+              </div>
+            </Link>
           </li>
+
+          {/* manage employees section */}
           <li>
-            <a
-              href="#"
-              class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-            >
+            <Link href="/employee-management">
+              {" "}
+              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+                <MdManageAccounts className="flex-shrink-0 text-[#cdc3c3] h-7 w-6 group-hover:text-[#121f47]" />
+                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                  Manage Employees
+                </span>
+              </div>
+            </Link>
+          </li>
+
+          {/* efficiency section */}
+          <li>
+            <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
               <BsGraphUpArrow className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
               <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                 Efficiency
               </span>
-            </a>
+            </div>
           </li>
+
+          {/* myorganization dropdown menu */}
           <li>
-            <a
-              href="#"
-              class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            <div
+              onClick={toggleDropdown}
+              class=" cursor-pointer flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100  group"
             >
               <GrOrganization className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
               <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                 My Organization
               </span>
+
               <div className="pl-3">
                 <button
                   type="button"
-                  onClick={toggleDropdown}
-                  className=" flex items-center px-2 text-base text-gray-900 transition duration-75  group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  className=" flex items-center px-2 text-base text-gray-900 transition duration-75  group hover:bg-gray-100 dark:text-white "
                   aria-controls="dropdown-example"
                   data-collapse-toggle="dropdown-example"
                 >
@@ -147,72 +177,77 @@ export default function Sidebar() {
                   )}
                 </button>
               </div>
-            </a>
+            </div>
+
+            {/* organization chart section */}
             <ul
               id="dropdown-example"
               className={`py-2 space-y-2 ${isDropdownOpen ? "" : "hidden"}`}
             >
               <li>
-                <a
-                  href="#"
-                  className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]"
-                >
-                  Organization Chart
-                </a>
+                <Link href="/organization-chart">
+                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
+                    Organization Chart
+                  </div>
+                </Link>
               </li>
+
+              {/* organation feedback section */}
               <li>
-                <a
-                  href="#"
-                  className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]"
-                >
-                  Organization Feedback
-                </a>
+                <Link href="/organization-feedback">
+                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
+                    Organization Feedback
+                  </div>
+                </Link>
               </li>
+
+              {/* organization-policies section */}
               <li>
                 <Link href="/organization-policies">
-                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">
+                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
                     Organization Policies
                   </div>
                 </Link>
               </li>
             </ul>
           </li>
+
+          {/* finance section */}
           <li>
-            <a
-              href="#"
-              class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-            >
-              <FaMoneyCheckDollar className="flex-shrink-0 text-[#cdc3c3] h-7 w-5 group-hover:text-[#121f47]" />
-              <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
-                My Finance
-              </span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-            >
-              <MdAttachMoney className="flex-shrink-0 text-[#cdc3c3] h-6 w-6 group-hover:text-[#121f47]" />
-              <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
-                Payroll
-              </span>
-            </a>
+            <Link href="/my-finance">
+              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+                <FaMoneyCheckDollar className="flex-shrink-0 text-[#cdc3c3] h-7 w-5 group-hover:text-[#121f47]" />
+                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                  My Finance
+                </span>
+              </div>
+            </Link>
           </li>
 
+          {/* profile section */}
           <li>
-            <div
-              href="#"
-              class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-            >
-              <FaUser className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
-              <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
-                <Link href="/my-profile/profile">My Profile</Link>
-              </span>
-            </div>
+            <Link href="/payroll">
+              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+                <MdAttachMoney className="flex-shrink-0 text-[#cdc3c3] h-6 w-6 group-hover:text-[#121f47]" />
+                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                  Payroll
+                </span>
+              </div>
+            </Link>
+          </li>
+
+          {/* myprofile section */}
+          <li>
+            <Link href="/my-profile/profile">
+              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+                <FaUser className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
+                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                  My Profile
+                </span>
+              </div>
+            </Link>
           </li>
         </ul>
-        {/* </div> */}
       </aside>
     </div>
   );

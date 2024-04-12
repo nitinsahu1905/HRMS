@@ -66,7 +66,7 @@ const OrganizationPolicies = () => {
     // window.open(path); // To open on another tab
     window.location.href=path;
   };
-  const handleDownload = (path,name) => {
+  const handboleDownload = (path,name) => {
     saveAs(path, `${name}`);
   };
 
