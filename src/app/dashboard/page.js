@@ -3,7 +3,7 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import { CelebrationData } from "../Constants/CelebrationData";
 import Celebration from "../Components/Celebration/Celebration";
 import { ResourceForecastData } from "../Constants/ResourceForecastData";
-import ChartComponent from "../Components/TimesheetGraph/TimesheetGraph";
+import ChartComponent from "../Components/timesheet-graph/TimesheetGraph";
 import { useState } from "react";
 
 
