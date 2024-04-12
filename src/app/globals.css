@@ -24,22 +24,25 @@
   }
 }
 @layer utilities {
-  .custom-btn{
+  .custom-btn {
     @apply cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[20px] py-[10px];
   }
 }
-body{
+body {
   background-color: #f7f7f7;
   font-family: "Poppins", sans-serif;
 }
-th, td {
+th,
+td {
   text-align: left;
   padding: 8px;
-  border-bottom: #04AA6D;
+  border-bottom: #04aa6d;
   margin-left: 10px;
 }
 
-tr:nth-child(even){background-color: #f9f9f9}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
 
 th {
   /* background-color: #0683c6; */

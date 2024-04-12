@@ -12,6 +12,7 @@ import Modal from "../Components/Modal";
 const OrganizationPolicies = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFileModalOpen, setIsFileModalOpen] = useState(false);
+  
   const [idNo, setIdNo] = useState(7);
   const [policyName, setPolicyName] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
@@ -27,32 +28,6 @@ const OrganizationPolicies = () => {
     setIsModalOpen(false);
   };
 
-  const openFileModal = () => {
-    setIsFileModalOpen(true);
-  };
-
-  const closeFileModal = () => {
-    setIsFileModalOpen(false);
-  };
-
-//   Open modal for image preview
-  const openImagePreviewModal = () => {
-    setIsImagePreviewModalOpen(true);
-  };
-
-  const closeImagePreviewModal = () => {
-    setIsImagePreviewModalOpen(false);
-  };
-
-  //   Open modal for pdf preview
-  const openPdfPreviewModal = () => {
-    setIsPdfPreviewModalOpen(true);
-  };
-
-  const closePdfPreviewModal = () => {
-    setIsPdfPreviewModalOpen(false);
-  };
-
   const handleCreate = () => {
 
     if (policyName === "" || selectedFile === null) {
@@ -62,10 +37,10 @@ const OrganizationPolicies = () => {
         PoliciesData.push({ id: idNo, name: policyName, path: selectedFile });
         console.log(selectedFile);
 
+        // Reset inputs
         setIdNo(idNo + 1);
     }
     
-    //Reset Inputs
     setPolicyName('');
     setSelectedFile(null);
     
@@ -94,35 +69,24 @@ const OrganizationPolicies = () => {
 
   const handlePreview = (path) => {
     // window.open(path); // To open on another tab
-    // window.location.href=path;
-
-    openFileModal();
-
-    if (path.endsWith(".pdf")) {
-        openPdfPreviewModal();
-      } else if (path.match(/\.(jpeg|jpg|gif|png)$/)) {
-        openImagePreviewModal();
-      } else{
-        window.location.href=path;
-      }
-
+    window.location.href=path;
   };
-  const handleDownload = (path,name) => {
+  const handboleDownload = (path,name) => {
     saveAs(path, `${name}`);
   };
 
   return (
-    <div className="flex flex-col gap-[20px] ">
-      <div>
-        <h1 className="text-dark-blue text-[24px] font-bold m-0 mt-0 ">
+    <div className="flex flex-col gap-[20px] p-[20px]">
+      {/* <div>
+         <h1 className="text-dark-blue text-[24px] font-bold m-0 mt-0 ">
           Organization Policies
-        </h1>
-        {/* <p className="text-primary-blue">Dashboard / Organization Policies</p> */}
-      </div>
+        </h1> 
+         <p className="text-primary-blue">Dashboard / Organization Policies</p> 
+      </div> */}
       <Card>
         <div className="w-full flex flex-row justify-between items-center ">
           <div className="text-primary-blue text-[20px] font-medium ">
-            Documents
+            Organizational Policies
           </div>
           <div className="flex gap-[10px]  ">
             
@@ -169,6 +133,7 @@ const OrganizationPolicies = () => {
                     />
                     <input
                     type="file"
+                    accept=".jpeg, .png, .jpg, .pdf, .doc, .txt "
                     className="mb-5  "
                     onChange={(e) => setSelectedFile(e.target.files[0])}
                     required

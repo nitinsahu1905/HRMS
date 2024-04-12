@@ -1,4 +1,3 @@
-
 export const TeamData = [
   {
     id: 1,
@@ -48,5 +47,11 @@ export const TeamData = [
     name: "Akshat Lakhara",
     designation: "Salesforce Trainee",
   },
+  {
+    id: 9,
+    image:
+      "https://imgs.search.brave.com/0SeuV0Fu7bx8yqgroc8W4bqqeFXOStuHsfQil7DgPSo/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2VkLzM1/L2EyL2VkMzVhMmMx/YmRjN2NmNDQwZTI5/NWFhOWM2MDZmMGNm/LmpwZw",
+    name: "Vishal Sharma",
+    designation: "Management",
+  },
 ];
- 
