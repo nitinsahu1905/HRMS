@@ -22,10 +22,10 @@ export default function RootLayout({ children }) {
       </head>
       <body className='font-poppins'>
         <div className="flex flex-row gap-0 relative">
-          <div className="w-1/5 relative overflow-hidden bg-red-500">
+          <div className="w-1/5 relative overflow-hidden h-screen bg-red-500">
             <Sidebar />
           </div>
-          <div className="w-full p-[20px] relative ">{children} </div>
+          <div className="w-full p-[20px] relative h-screen ">{children} </div>
         </div>
       </body>
     </html>

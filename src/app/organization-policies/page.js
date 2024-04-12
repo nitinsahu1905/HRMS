@@ -11,9 +11,13 @@ import Modal from "../Components/Modal";
 
 const OrganizationPolicies = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFileModalOpen, setIsFileModalOpen] = useState(false);
   const [idNo, setIdNo] = useState(7);
   const [policyName, setPolicyName] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
+
+  const [isImagePreviewModalOpen, setIsImagePreviewModalOpen] = useState(false);
+  const [isPdfPreviewModalOpen, setIsPdfPreviewModalOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -21,6 +25,32 @@ const OrganizationPolicies = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const openFileModal = () => {
+    setIsFileModalOpen(true);
+  };
+
+  const closeFileModal = () => {
+    setIsFileModalOpen(false);
+  };
+
+//   Open modal for image preview
+  const openImagePreviewModal = () => {
+    setIsImagePreviewModalOpen(true);
+  };
+
+  const closeImagePreviewModal = () => {
+    setIsImagePreviewModalOpen(false);
+  };
+
+  //   Open modal for pdf preview
+  const openPdfPreviewModal = () => {
+    setIsPdfPreviewModalOpen(true);
+  };
+
+  const closePdfPreviewModal = () => {
+    setIsPdfPreviewModalOpen(false);
   };
 
   const handleCreate = () => {
@@ -32,10 +62,10 @@ const OrganizationPolicies = () => {
         PoliciesData.push({ id: idNo, name: policyName, path: selectedFile });
         console.log(selectedFile);
 
-        // Reset inputs
         setIdNo(idNo + 1);
     }
     
+    //Reset Inputs
     setPolicyName('');
     setSelectedFile(null);
     
@@ -64,7 +94,18 @@ const OrganizationPolicies = () => {
 
   const handlePreview = (path) => {
     // window.open(path); // To open on another tab
-    window.location.href=path;
+    // window.location.href=path;
+
+    openFileModal();
+
+    if (path.endsWith(".pdf")) {
+        openPdfPreviewModal();
+      } else if (path.match(/\.(jpeg|jpg|gif|png)$/)) {
+        openImagePreviewModal();
+      } else{
+        window.location.href=path;
+      }
+
   };
   const handleDownload = (path,name) => {
     saveAs(path, `${name}`);
