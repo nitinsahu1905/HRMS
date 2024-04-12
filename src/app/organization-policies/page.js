@@ -6,7 +6,7 @@ import Link from "next/link";
 import { saveAs } from "file-saver";
 import { PoliciesData } from "../Constants/PoliciesData";
 
-import ExitPolicy from "../../../public/Exit_Policy.pdf";
+// import ExitPolicy from "../../../public/Exit_Policy.pdf";2
 
 const OrganizationPolicies = () => {
   const hiddenFileInput = useRef(null);

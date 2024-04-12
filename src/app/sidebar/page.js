@@ -29,7 +29,7 @@ export default function Sidebar() {
     
     return (
         <div className="  ">
-        <aside className="fixed top-0 left-0  h-screen transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide ">
+        <aside className="absolute w-auto top-0 left-0  h-full transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide ">
         {/* <div class="h-full px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide "> */}
            <ul class="space-y-2 font-medium flex flex-col gap-1">
               <li>
@@ -81,10 +81,10 @@ export default function Sidebar() {
                  </div>
               </li>
               <li>
-                 <a href="#" class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  <  MdManageAccounts className="flex-shrink-0 text-[#cdc3c3] h-7 w-6 group-hover:text-[#121f47]"/>
-                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">Manage Employees</span>
-                 </a>
+                   <Link href="./employee-management"><span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">Manage Employees</span></Link> 
+                 </div>
               </li>
               <li>
                  <a href="#" class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
