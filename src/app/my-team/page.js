@@ -2,9 +2,13 @@
 import React, { useState } from "react";
 import { TeamData } from "../Constants/TeamData";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useRouter } from 'next/navigation';
+import Link from "next/link";
 
 const page = () => {
-  const [team, setTeam] = useState(TeamData);
+  const router = useRouter();
+
+  const [team, setTeam] = useState(TeamData)
   const deleteHandler = (id) => {
     console.log("delete");
 
@@ -15,7 +19,7 @@ const page = () => {
     <div className="p-[20px]">
       <div>
         <h1 className="text-dark-blue text-[24px] font-bold">My Teams</h1>
-        <p className="text-primary-blue">Dashboard / Teams</p>
+        <p className="text-primary-blue"><Link href={'/'} >Dashboard</Link> / Teams</p>
       </div>
       <div className="">
         <div className=" w-[100%] mt-8 grid grid-cols-6 md:grid-cols-6  gap-y-3 items-center justify-center  ">
