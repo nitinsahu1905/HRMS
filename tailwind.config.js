@@ -15,6 +15,7 @@ module.exports = {
         "sky-color":"#f7f7f7",
         "primary-blue":"#0b91cf",
         "secondary-blue":"#0684C7",
+        "button-blue-color":"#0684C7",
         "dark-blue":"#121F48",
         "grey-color":"#808080"
       },

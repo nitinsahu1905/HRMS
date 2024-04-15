@@ -28,15 +28,17 @@ export default function Sidebar() {
     };
     
     return (
-        <div>
-        <aside className="fixed top-0 left-0  w-auto h-screen transition-transform -translate-x-full sm:translate-x-0">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-[#121f47] dark:bg-[#121f47]-700">
+        <div className="w-1/5">
+        <div className="fixed w-[18%] top-0 left-0  h-screen transition-transform -translate-x-full sm:translate-x-0">
+        <div class="h-full w-auto pl-1 py-4 overflow-y-auto bg-[#121f47] dark:bg-[#121f47]-700">
            <ul class="space-y-2 font-medium flex flex-col gap-1">
               <li>
-                 <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                 < AiFillHome className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]"/>
-                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]"><Link href="/dashboard">Dashboard</Link></span>
+              <Link href="/dashboard">
+                 <div class="flex items-center p-2 rounded-lg  hover:bg-[#f7f7f7]  group">
+                 < AiFillHome className="text-[#cdc3c3] h-5 w-5 group-hover:text-dark-blue"/>
+                    <span class="ms-3 text-[#cdc3c3] group-hover:text-dark-blue">Dashboard</span>
                  </div>
+                 </Link>
               </li>
               <li>
                  <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -74,26 +76,30 @@ export default function Sidebar() {
 
               </li>
               <li>
+              <Link href="/myteam">
                  <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  < RiTeamFill className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]"/>
                  
-                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]"><Link href="/myteam">My Team</Link></span>
+                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">My Team</span>
+                 </div>
+                 </Link>
+              </li>
+              <li>
+               <Link href="/employee-management">
+                 <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <  MdManageAccounts className="flex-shrink-0 text-[#cdc3c3] h-7 w-6 group-hover:text-[#121f47]"/>
+                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">Manage Employees</span>
+                 </div>
+                 </Link>
+              </li>
+              <li>
+                 <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <  BsGraphUpArrow className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]"/>
+                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">Efficiency</span>
                  </div>
               </li>
               <li>
-                 <a href="#" class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                 <  MdManageAccounts className="flex-shrink-0 text-[#cdc3c3] h-7 w-6 group-hover:text-[#121f47]"/>
-                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">Manage Employees</span>
-                 </a>
-              </li>
-              <li>
-                 <a href="#" class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                 <  BsGraphUpArrow className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]"/>
-                    <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">Efficiency</span>
-                 </a>
-              </li>
-              <li>
-                 <a href="#" class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <div class="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  < GrOrganization className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]"/>
                     <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">My Organization</span>
                      <div className="pl-3">
@@ -108,16 +114,16 @@ export default function Sidebar() {
                 {isDropdownOpen?<IoIosArrowUp className="flex-shrink-0 text-[#cdc3c3] h-4 w-4 group-hover:text-[#525768] "/>:<RiArrowDropDownLine className="flex-shrink-0 text-[#cdc3c3] h-7 w-7 group-hover:text-[#525768] "/>}
             </button>
             </div>
-            </a>
+            </div>
             <ul id="dropdown-example" className={`py-2 space-y-2 ${isDropdownOpen ? '' : 'hidden'}`}>
                 <li>
-                    <a href="#" className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Organization Chart</a>
+                    <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Organization Chart</div>
                 </li>
                 <li>
-                    <a href="#" className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Organization Feedback</a>
+                    <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Organization Feedback</div>
                 </li>
                 <li>
-                    <a href="#" className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Organization Policies</a>
+                    <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:text-[#121f47] dark:hover:bg-[#121f47]">Organization Policies</div>
                 </li>
             </ul>
 
@@ -125,27 +131,27 @@ export default function Sidebar() {
                 
               </li>
               <li>
-                 <a href="#" class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <div class="flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  < FaMoneyCheckDollar className="flex-shrink-0 text-[#cdc3c3] h-7 w-5 group-hover:text-[#121f47]"/>
                     <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">My Finance</span>
-                 </a>
+                 </div>
               </li>
               <li>
-                 <a href="#" class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  < MdAttachMoney className="flex-shrink-0 text-[#cdc3c3] h-6 w-6 group-hover:text-[#121f47]"/>
                     <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">Payroll</span>
-                 </a>
+                 </div>
               </li>
               <li>
-                 <a href="#" class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                  < FaUser className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]"/>
                     <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">My Profile</span>
-                 </a>
+                 </div>
               </li>
            
            </ul>
         </div>
-     </aside>
+     </div>
      </div>
     )
 }

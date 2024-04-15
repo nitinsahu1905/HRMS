@@ -1,4 +1,4 @@
-import Punchbox from "./@punchbox/page";
+import punchbox from "./@punchbox/page";
 
 export default function Layout({ children, punchbox }) {
   return (
