@@ -5,6 +5,7 @@ import Celebration from "../Components/Celebration/Celebration";
 import { ResourceForecastData } from "../Constants/ResourceForecastData";
 import ChartComponent from "../Components/TimesheetGraph/TimesheetGraph";
 import { useState } from "react";
+import Card from "../Components/Card";
 
 
 
@@ -13,6 +14,12 @@ export default function Dashboard(){
     // console.log(CelebrationData);
     return(
         <div className="flex flex-col gap-[10px]">
+
+        {/* <div className="flex flex-row">
+            <Card>
+                
+            </Card>
+        </div> */}
             
         <div className="flex flex-row gap-[10px]">
             <div className="w-3/5 bg-white rounded-lg h-auto flex flex-col">

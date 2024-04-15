@@ -85,7 +85,7 @@ export default function Login(props) {
                     </label>
                   </div>
                 </div>
-                <Link className="text-sm font-medium text-secondary-blue hover:underline">
+                <Link href='/' className="text-sm font-medium text-secondary-blue hover:underline">
                   Forgot password?
                 </Link>
               </div>
