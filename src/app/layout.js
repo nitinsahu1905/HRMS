@@ -2,7 +2,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./sidebar/page";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./login/page";
 // import { ToastProvider } from "react-hot-toast";
 
@@ -16,6 +16,14 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    if(sessionStorage.getItem('admin')){
+      setIsLoggedIn(true)
+    }
+  
+    
+  }, [])
+  
   return (
     // <ToastProvider>
       <html lang="en">

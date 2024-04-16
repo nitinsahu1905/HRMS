@@ -5,16 +5,19 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { checkValidData } from "@/app/utils/validate";
 import { authTable, firestoreDB } from "../utils/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
+// import { Router } from "next/router";
+// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Login(props) {
   // states
   const [error, setError] = useState("");
-
+   const Router = useRouter();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   // reference for the admin table
-  const adminTable = collection(firestoreDB, "admin");
+  const adminTable = collection(firestoreDB, 'admin');
 
   const loginHandler = async (event) => {
     event.preventDefault();
@@ -34,15 +37,23 @@ export default function Login(props) {
     // checking for admin proof
     try {
       const data = await signInWithEmailAndPassword(authTable, email, password);
-      console.log(data);
-      const adminDocs = await getDocs(adminTable)
-      let adminList = [];
-      adminDocs.forEach(doc=>{
-        const adminData = doc.data();
-        adminList.push(adminData)
-      })
-     
-    } catch (error) {}
+      console.log(data.user.uid)
+      const q = query(adminTable, where("userId", "==", data.user.uid));
+      const querySnapshot = await getDocs(q);
+      console.log(querySnapshot)
+      if(querySnapshot.empty){
+        setError("You are not an admin");
+        return;
+      }
+      // redirecting to the admin page
+      // Router.push("/dashboard");
+        props.set(true);
+        sessionStorage.setItem('admin',true)
+         Router.push('/dashboard')
+
+    } catch (error) {
+      console.error('Error fetching data from Firestore:', error);
+    }
   };
 
   return (
