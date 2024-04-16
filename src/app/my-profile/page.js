@@ -1,6 +1,6 @@
-import Profile from "./profile/page";
+import Personal from "./personal/page";
 
 // exporting default page on the my-profile
 export default function MyTeams() {
-  return <Profile />;
+  return <Personal/>;
 }

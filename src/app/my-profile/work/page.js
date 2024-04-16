@@ -1,14 +1,10 @@
 export default function Work() {
   return (
     <div className="flex font-poppins">
-      {/* box for the left side */}
-      <div className="w-1/4  mt-16 ml-8 flex flex-col ">
-        <span className="font-semibold">Gourav Goyal</span>
-        <span className="text-xs pl-1">CEO at Metadologie</span>
-      </div>
+      
 
       {/* box for the right side */}
-      <div className="w-3/4 gap-28">
+      <div className="w-full gap-28">
         {/* first row for the data */}
         <div className="text-sm flex items-center gap-32 p-8 py-6 h-14 border-b border-dashed border-gray-400">
           <span className="w-14">MANAGER:</span>

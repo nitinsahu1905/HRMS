@@ -12,6 +12,8 @@ import Modal from "../Components/Modal";
 const OrganizationPolicies = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFileModalOpen, setIsFileModalOpen] = useState(false);
+
+  const [currentFilePath, setCurrentFilePath] = useState(false);
   
   const [idNo, setIdNo] = useState(7);
   const [policyName, setPolicyName] = useState('');
@@ -26,6 +28,9 @@ const OrganizationPolicies = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsFileModalOpen(false);
+    setCurrentFilePath(null)
+    
   };
 
   const handleCreate = () => {
@@ -69,7 +74,9 @@ const OrganizationPolicies = () => {
 
   const handlePreview = (path) => {
     // window.open(path); // To open on another tab
-    window.location.href=path;
+    // window.location.href=path;
+    setIsFileModalOpen(true);
+    setCurrentFilePath(path);
   };
   const handboleDownload = (path,name) => {
     saveAs(path, `${name}`);
@@ -174,6 +181,17 @@ const OrganizationPolicies = () => {
           </div>
         ))}
       </div>
+
+      { isFileModalOpen?
+      <Modal isOpen={isFileModalOpen} onClose={closeModal} >
+        {/* <embed src={currentFilePath} type="application/pdf"  width="100%" height="500px" /> */}
+        <iframe src={`${currentFilePath}#toolbar=0&navpanes=0&view=FitH`} width={800} tyle={{ border: 'none', overflow: 'hidden', width:'100%' }}  height={650} ></iframe>
+      </Modal>
+      :
+      null
+
+      }
+
     </div>
   );
 };
