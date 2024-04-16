@@ -31,12 +31,15 @@ export default function Sidebar() {
     <div className="w-full ">
       <aside className=" w-auto h-screen fixed z-50 top-0 left-0 transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide ">
         <ul className="space-y-2 font-medium flex flex-col gap-1">
+      <aside className=" w-auto h-screen fixed top-0 left-0 transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide ">
+        <ul className="space-y-2 font-medium flex flex-col gap-1">
           {/* dashboard section */}
           <li>
             <Link href="/">
               <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100    group">
+              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100    group">
                 <AiFillHome className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
-                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                   Dashboard
                 </span>
               </div>
@@ -46,9 +49,9 @@ export default function Sidebar() {
           {/* inbox section */}
           <li>
             <Link href="/inbox">
-              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <CgMail className="flex-shrink-0 text-[#cdc3c3] h-6 w-6 group-hover:text-[#121f47]" />
-                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                   Inbox
                 </span>
               </div>
@@ -59,10 +62,10 @@ export default function Sidebar() {
           <li>
             <div
               onClick={toggleTimeDropdown}
-              class="flex items-center cursor-pointer p-2 rounded-lg dark:text-white hover:bg-gray-100  group"
+              className="flex items-center cursor-pointer p-2 rounded-lg dark:text-white hover:bg-gray-100  group"
             >
               <GrDocumentTime className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
-              <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+              <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                 Time and Attend
               </span>
 
@@ -120,9 +123,11 @@ export default function Sidebar() {
           <li>
             <Link href="my-team">
               <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+            <Link href="/my-team">
+              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <RiTeamFill className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
 
-                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                   My Team
                 </span>
               </div>
@@ -133,9 +138,9 @@ export default function Sidebar() {
           <li>
             <Link href="/employee-management">
               {" "}
-              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <MdManageAccounts className="flex-shrink-0 text-[#cdc3c3] h-7 w-6 group-hover:text-[#121f47]" />
-                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                   Manage Employees
                 </span>
               </div>
@@ -144,9 +149,9 @@ export default function Sidebar() {
 
           {/* efficiency section */}
           <li>
-            <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+            <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
               <BsGraphUpArrow className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
-              <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+              <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                 Efficiency
               </span>
             </div>
@@ -156,10 +161,10 @@ export default function Sidebar() {
           <li>
             <div
               onClick={toggleDropdown}
-              class=" cursor-pointer flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100  group"
+              className=" cursor-pointer flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100  group"
             >
               <GrOrganization className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
-              <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+              <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                 My Organization
               </span>
 
@@ -215,9 +220,9 @@ export default function Sidebar() {
           {/* finance section */}
           <li>
             <Link href="/my-finance">
-              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <FaMoneyCheckDollar className="flex-shrink-0 text-[#cdc3c3] h-7 w-5 group-hover:text-[#121f47]" />
-                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                   My Finance
                 </span>
               </div>
@@ -227,9 +232,9 @@ export default function Sidebar() {
           {/* profile section */}
           <li>
             <Link href="/payroll">
-              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <MdAttachMoney className="flex-shrink-0 text-[#cdc3c3] h-6 w-6 group-hover:text-[#121f47]" />
-                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                   Payroll
                 </span>
               </div>
@@ -239,9 +244,9 @@ export default function Sidebar() {
           {/* myprofile section */}
           <li>
             <Link href="/my-profile/profile">
-              <div class="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <FaUser className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
-                <span class="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                   My Profile
                 </span>
               </div>
