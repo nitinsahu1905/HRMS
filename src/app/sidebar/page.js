@@ -1,3 +1,4 @@
+
 "use client";
 import { AiFillHome } from "react-icons/ai";
 import { RiTeamFill } from "react-icons/ri";
@@ -15,28 +16,25 @@ import { useState } from "react";
 import Link from "next/link";
 export default function Sidebar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+ 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
   };
-
+ 
   const [isTimeDropdownOpen, setIsTimeDropdownOpen] = useState(false);
-
+ 
   const toggleTimeDropdown = () => {
     setIsTimeDropdownOpen((prevState) => !prevState);
   };
-
+ 
   return (
     // whole side bard box
     <div className="w-full ">
-      <aside className=" w-auto h-screen fixed z-50 top-0 left-0 transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide ">
-        <ul className="space-y-2 font-medium flex flex-col gap-1">
       <aside className=" w-auto h-screen fixed top-0 left-0 transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll scrollbar-hide ">
         <ul className="space-y-2 font-medium flex flex-col gap-1">
           {/* dashboard section */}
           <li>
             <Link href="/">
-              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100    group">
               <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100    group">
                 <AiFillHome className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
                 <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
@@ -45,7 +43,7 @@ export default function Sidebar() {
               </div>
             </Link>
           </li>
-
+ 
           {/* inbox section */}
           <li>
             <Link href="/inbox">
@@ -57,7 +55,7 @@ export default function Sidebar() {
               </div>
             </Link>
           </li>
-
+ 
           {/* time % attend section dropdown */}
           <li>
             <div
@@ -68,7 +66,7 @@ export default function Sidebar() {
               <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                 Time and Attend
               </span>
-
+ 
               <div className="pl-3">
                 <button
                   type="button"
@@ -84,7 +82,7 @@ export default function Sidebar() {
                 </button>
               </div>
             </div>
-
+ 
             <ul
               id="timedropdown-example"
               className={`py-2 space-y-2 ${isTimeDropdownOpen ? "" : "hidden"}`}
@@ -98,7 +96,7 @@ export default function Sidebar() {
                   </div>
                 </Link>
               </li>
-
+ 
               {/* attendance section */}
               <li>
                 <Link href="/attendance">
@@ -107,7 +105,7 @@ export default function Sidebar() {
                   </div>
                 </Link>
               </li>
-
+ 
               {/* leaves section */}
               <li>
                 <Link href="/leaves">
@@ -118,22 +116,20 @@ export default function Sidebar() {
               </li>
             </ul>
           </li>
-
+ 
           {/* my team section */}
           <li>
-            <Link href="my-team">
-              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
             <Link href="/my-team">
               <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <RiTeamFill className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
-
+ 
                 <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                   My Team
                 </span>
               </div>
             </Link>
           </li>
-
+ 
           {/* manage employees section */}
           <li>
             <Link href="/employee-management">
@@ -146,7 +142,7 @@ export default function Sidebar() {
               </div>
             </Link>
           </li>
-
+ 
           {/* efficiency section */}
           <li>
             <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
@@ -156,7 +152,7 @@ export default function Sidebar() {
               </span>
             </div>
           </li>
-
+ 
           {/* myorganization dropdown menu */}
           <li>
             <div
@@ -167,7 +163,7 @@ export default function Sidebar() {
               <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
                 My Organization
               </span>
-
+ 
               <div className="pl-3">
                 <button
                   type="button"
@@ -183,7 +179,7 @@ export default function Sidebar() {
                 </button>
               </div>
             </div>
-
+ 
             {/* organization chart section */}
             <ul
               id="dropdown-example"
@@ -196,7 +192,7 @@ export default function Sidebar() {
                   </div>
                 </Link>
               </li>
-
+ 
               {/* organation feedback section */}
               <li>
                 <Link href="/organization-feedback">
@@ -205,7 +201,7 @@ export default function Sidebar() {
                   </div>
                 </Link>
               </li>
-
+ 
               {/* organization-policies section */}
               <li>
                 <Link href="/organization-policies">
@@ -216,7 +212,7 @@ export default function Sidebar() {
               </li>
             </ul>
           </li>
-
+ 
           {/* finance section */}
           <li>
             <Link href="/my-finance">
@@ -228,7 +224,7 @@ export default function Sidebar() {
               </div>
             </Link>
           </li>
-
+ 
           {/* profile section */}
           <li>
             <Link href="/payroll">
@@ -240,7 +236,7 @@ export default function Sidebar() {
               </div>
             </Link>
           </li>
-
+ 
           {/* myprofile section */}
           <li>
             <Link href="/my-profile/profile">
@@ -257,3 +253,4 @@ export default function Sidebar() {
     </div>
   );
 }
+ 
