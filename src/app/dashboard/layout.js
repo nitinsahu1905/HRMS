@@ -9,7 +9,7 @@ export default function DashboardLayout({ children, punchbox }) {
         {/* <p className="text-primary-blue">Dashboard</p> */}
       </div>
       <div>
-        <Punchbox />
+        {/* <Punchbox /> */}
       </div>
       {/* <div> {punchbox}</div> */}
       <div>
