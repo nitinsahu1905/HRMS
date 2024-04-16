@@ -47,10 +47,9 @@ export default function Login(props) {
       }
       // redirecting to the admin page
       // Router.push("/dashboard");
-        props.set(true);
-        sessionStorage.setItem('admin',true)
-         Router.push('/dashboard')
-
+      props.set(true);
+      sessionStorage.setItem("admin", true);
+      // Router.push("/dashboard");
     } catch (error) {
       console.error('Error fetching data from Firestore:', error);
     }

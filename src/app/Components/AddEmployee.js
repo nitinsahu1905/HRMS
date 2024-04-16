@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Modal from "../Components/Modal";
-import Card from "./Card";
+// import Card from "./Card";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -70,16 +70,16 @@ const AddEmployee = () => {
       return;
     }
     
-    console.log("Adding employee:", {
-      FirstName,
-      MiddleName,
-      LastName,
-      ReportingManager,
-      Designation,
-      Department,
-      PersonalEmailId,
-      OfficialEmailId,
-    });
+    // console.log("Adding employee:", {
+    //   FirstName,
+    //   MiddleName,
+    //   LastName,
+    //   ReportingManager,
+    //   Designation,
+    //   Department,
+    //   PersonalEmailId,
+    //   OfficialEmailId,
+    // });
 
     // Close the modal
 
