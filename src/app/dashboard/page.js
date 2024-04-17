@@ -26,6 +26,33 @@ export default function Dashboard(){
             return newState;
         });
     }
+
+    const calculateTotalHours = (forecast) => {
+      let totalHours = 0;
+      forecast.forEach((dayForecast) => {
+        Object.values(dayForecast.hours).forEach((hoursObj) => {
+          Object.values(hoursObj).forEach((value) => {
+            totalHours += parseInt(value, 10);
+          });
+        });
+      });
+      return totalHours;
+    };
+
+    const getStatus = (totalHours) => {
+      if (totalHours >= 40) {
+        return "Full Occupied";
+      } else if (totalHours >= 35 && totalHours < 40) {
+        return "Busy";
+      } else if (totalHours >= 30 && totalHours < 35) {
+        return "Partial Busy";
+      } else if (totalHours >= 20 && totalHours < 30) {
+        return "Partial Free";
+      } else {
+        return "Free";
+      }
+    };
+    
     return(
         <div className="flex flex-col gap-[10px]">
 
@@ -79,8 +106,8 @@ export default function Dashboard(){
                                 <tr className="text-center p-10">
                                     <td>{data.id}</td>
                                     <td>{data.name}</td>
-                                    <td>{data.hours}</td>
-                                    <td>{data.status}</td>
+                                    <td>{calculateTotalHours(data.forecast)}</td>
+                                    <td>{getStatus(calculateTotalHours(data.forecast))}</td>
                                     <td>
                                         <button onClick={() => toggleShowField(index)}>
                                             {showFieldStates[index] ? <IoIosArrowUp /> : <IoIosArrowDown />}

@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MdCloudUpload } from "react-icons/md";
 import * as XLSX from 'xlsx';
 import Table from '../Components/Table';
+import Link from 'next/link';
  
 const ImportEmployee = () => {
     const tableHeading = ["Designation", "Age", "Gender", "BloodGroup", "City", "DOJ"];
@@ -51,7 +52,7 @@ const ImportEmployee = () => {
         <div className='p-3 pl-2 bg-[#f7f7f7]'>
             <div className='p-3'>
         <h1 className="text-dark-blue text-[24px] font-bold">Import Employees</h1>
-        <p className="text-primary-blue"> Manage Employees / ImportEmployees</p>
+        <p className="text-primary-blue"> <Link href="./employee-management">Manage Employees</Link> / <Link href="./import-employees">ImportEmployees</Link></p>
       </div>
             <div className='bg-white py-12 px-8 rounded-[20px] shadow-lg shadow-white bg-opacity-50'>
            

@@ -88,7 +88,7 @@ const EmployeeManagement = () => {
         <div className='flex flex-row justify-between  items-center p-4   rounded-[10px]'>
            <div className='p-3'>
         <h1 className="text-dark-blue text-[24px] font-bold">Manage Employees</h1>
-        <p className="text-primary-blue">Dashboard / Manage Employees</p>
+        <p className="text-primary-blue"> <Link href="./dashboard">Dashboard</Link> / Manage Employees</p>
            </div>
 
            <div className='flex flex-row gap-2'>
