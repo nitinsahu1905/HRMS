@@ -113,26 +113,20 @@ const EmployeeManagement = ({data}) => {
   };
 
   return (
-    <div>
-      <div className="flex flex-col gap-3 pr-4">
-        <div className="flex flex-row justify-between  items-center p-4   rounded-[10px]">
-          <div className="p-3">
-            <h1 className="text-dark-blue text-[24px] font-bold">
-              Manage Employees
-            </h1>
-            <p className="text-primary-blue">Dashboard / Manage Employees</p>
+   <div>
+     <div className="flex flex-col gap-3 pr-4">
+   
+        <div className='flex flex-row justify-between  items-center p-4   rounded-[10px]'>
+           <div className='p-3'>
+        <h1 className="text-dark-blue text-[24px] font-bold">Manage Employees</h1>
+        <p className="text-primary-blue"> <Link href="./dashboard">Dashboard</Link> / Manage Employees</p>
+           </div>
+
+           <div className='flex flex-row gap-2'>
+                  <button className='cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[16px] py-[8px] h-full '>+ Add Employee</button>
+                  <Link href="./import-employees"><button className='bg-[#f7f7f7] rounded-[10px] px-[16px] py-[8px] border-2 border-primary-blue text-primary-blue'>Import Employees</button></Link>
           </div>
 
-          <div className="flex flex-row gap-2">
-            <button className="cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[16px] py-[8px] h-full ">
-              + Add Employee
-            </button>
-            <Link href="./import-employees">
-              <button className="bg-[#f7f7f7] rounded-[10px] px-[16px] py-[8px] border-2 border-primary-blue text-primary-blue">
-                Import Employees
-              </button>
-            </Link>
-          </div>
         </div>
         <div className="flex justify-between items-center  bg-white rounded-[10px] space-x-4 p-4">
           <div className="flex flex-row gap-2 items-center">

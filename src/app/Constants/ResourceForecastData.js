@@ -8,8 +8,8 @@ export const ResourceForecastData = [
            day:"Monday",
            hours:[{
             HRMS:"2"},{
-           Marketing:"3"},{
-           TicketBooking:"3"}
+           Marketing:"1"},{
+           TicketBooking:"2"}
             ]
            
        },
@@ -17,8 +17,8 @@ export const ResourceForecastData = [
          day:"Tuesday",
          hours:[{
           HRMS:"2"},{
-         Marketing:"2"},{
-         TicketBooking:"4"}
+         Marketing:"1"},{
+         TicketBooking:"3"}
           ]
          
      },
@@ -36,7 +36,7 @@ export const ResourceForecastData = [
    hours:[{
      HRMS:"2"},{
     Marketing:"2"},{
-    TicketBooking:"4"}
+    TicketBooking:"1"}
      ]
 },
 {
@@ -52,54 +52,56 @@ export const ResourceForecastData = [
    
     },
     {
-        id:2,
-        name:"Nitin",
-        status:"occupied",
-        hours:5,
-        forecast:[{
-         day:"Monday",
-         hours:[{
-          HRMS:"2"},{
-         Marketing:"3"},{
-         TicketBooking:"3"}
-          ]
-         
-     },
-     {
-       day:"Tuesday",
-       hours:{
-        HRMS:"2",
-       Marketing:"4",
-       TicketBooking:"2"
-        }
-       
-   },
-   {
-    day:"Wednesday",
+     id:2,
+     name:"Nitin",
+     status:"busy",
+     hours:9,
+     forecast:[{
+      day:"Monday",
+      hours:[{
+       HRMS:"2"},{
+      Marketing:"3"},{
+      TicketBooking:"3"}
+       ]
+      
+  },
+  {
+    day:"Tuesday",
     hours:[{
-     HRMS:"2"},{
-    Marketing:"3"},{
-    TicketBooking:"3"}
-     ]
+       HRMS:"4"},{
+      Marketing:"2"},{
+      TicketBooking:"2"}
+       ]
+    
 },
 {
- day:"Thursday",
+ day:"Wednesday",
  hours:[{
-     HRMS:"2"},{
-    Marketing:"3"},{
-    TicketBooking:"3"}
-     ]
-},
-{
- day:"Friday",
- hours:[{
-     HRMS:"2"},{
-    Marketing:"3"},{
-    TicketBooking:"3"}
-     ]
+  HRMS:"5"},{
+ Marketing:"1"},{
+ TicketBooking:"2"}
+  ]
  
+},
+{
+day:"Thursday",
+hours:[{
+  HRMS:"4"},{
+ Marketing:"1"},{
+ TicketBooking:"1"}
+  ]
+
+},
+{
+day:"Friday",
+hours:[{
+  HRMS:"2"},{
+ Marketing:"4"},{
+ TicketBooking:"2"}
+  ]
 },]
-     
+  
+  
      },
      {
         id:3,
@@ -110,7 +112,7 @@ export const ResourceForecastData = [
          day:"Monday",
          hours:[{
           HRMS:"2"},{
-         Marketing:"3"},{
+         Marketing:"2"},{
          TicketBooking:"3"}
           ]
          
@@ -118,8 +120,8 @@ export const ResourceForecastData = [
      {
        day:"Tuesday",
        hours:[{
-          HRMS:"2"},{
-         Marketing:"3"},{
+          HRMS:"1"},{
+         Marketing:"4"},{
          TicketBooking:"3"}
           ]
        
@@ -129,7 +131,7 @@ export const ResourceForecastData = [
     hours:[{
      HRMS:"2"},{
     Marketing:"3"},{
-    TicketBooking:"3"}
+    TicketBooking:"2"}
      ]
     
 },
@@ -137,7 +139,7 @@ export const ResourceForecastData = [
  day:"Thursday",
  hours:[{
      HRMS:"2"},{
-    Marketing:"3"},{
+    Marketing:"1"},{
     TicketBooking:"3"}
      ]
  
@@ -177,17 +179,17 @@ export const ResourceForecastData = [
    {
     day:"Wednesday",
     hours:[{
-     HRMS:"2"},{
-    Marketing:"3"},{
-    TicketBooking:"3"}
+     HRMS:"1"},{
+    Marketing:"1"},{
+    TicketBooking:"2"}
      ]
 },
 {
  day:"Thursday",
  hours:[{
      HRMS:"2"},{
-    Marketing:"3"},{
-    TicketBooking:"3"}
+    Marketing:"1"},{
+    TicketBooking:"1"}
      ]
  
 },
@@ -195,8 +197,8 @@ export const ResourceForecastData = [
  day:"Friday",
  hours:[{
      HRMS:"2"},{
-    Marketing:"3"},{
-    TicketBooking:"3"}
+    Marketing:"1"},{
+    TicketBooking:"1"}
      ]
  
 },]
