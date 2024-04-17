@@ -1,10 +1,9 @@
-import React from 'react';
 // import { EmployeeManagementData } from '../Constants/EmployeeManagementData';
-
+ 
 const Table = ({employeeData,headings}) => {
     // const tableHeadings=["Id","Name","hours","Status"];
     // console.log(headings)
-
+ 
   return (
     <div>
        <table className="w-full border-collapse mt-4">
@@ -15,7 +14,7 @@ const Table = ({employeeData,headings}) => {
                                 {headings.map((th)=>
                                 <th>{th}</th>
                             )}
-                                
+                               
                             </tr>
                             {employeeData.map((data)=>
                             <tr  className="text-center p-10" key={data.id}>
@@ -32,11 +31,12 @@ const Table = ({employeeData,headings}) => {
                                 <td>{data.DOJ}</td> */}
                             </tr>
                             )}
-                            
+                           
                         </tbody>
                     </table>
     </div>
   )
 }
-
+ 
 export default Table;
+ 

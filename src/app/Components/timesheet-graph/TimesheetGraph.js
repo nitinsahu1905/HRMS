@@ -10,29 +10,30 @@ const ChartComponent = () => {
       datasets: [{
         label: 'Draft',
         data: [9, 3, 13, 1, 5, 2],
-        backgroundColor: '#17BECF',
-        borderColor: '#17BECF',
+        backgroundColor: '#7FC2E7',
+        borderColor: '#7FC2E7',
         borderWidth: 1
       },
       {
         label: 'Submitted',
-        data: [14, 18, 30, 4, 5],
-        backgroundColor: '#15ABBA',
-        borderColor: '#15ABBA',
+        data: [14, 18, 30, 7, 7],
+        backgroundColor: '#0683c6',
+        borderColor: '#0683c6',
         borderWidth: 1
       },
       {
         label: 'Approved',
-        data: [2, 9, 13, 3, 6],
-        backgroundColor: '#1298A6',
-        borderColor: '#1298A6',
+        data: [2, 9, 13, 3, 9],
+        backgroundColor: '#02A6FF',
+        borderColor: '#02A6FF',
         borderWidth: 1
       },
+
       {
         label: 'Rejected',
-        data: [7, 1, 2, 9, 5],
-        backgroundColor: '#108591',
-        borderColor: '#108591',
+        data: [7, 1, 2, 15, 12],
+        backgroundColor: '#05496E',
+        borderColor: '#05496E',
         borderWidth: 1
       }]
     };
@@ -42,9 +43,24 @@ const ChartComponent = () => {
       data,
       options: {
         scales: {
-          y: {
-            beginAtZero: true
-          }
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Start Date ' // Label for X axis
+            }
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Number of timesheet' // Label for Y axis
+            },
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+          // y: {
+          //   beginAtZero: true
+          // }
         }
       }
     };

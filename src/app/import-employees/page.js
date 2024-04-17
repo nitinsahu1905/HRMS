@@ -3,19 +3,19 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MdCloudUpload } from "react-icons/md";
 import * as XLSX from 'xlsx';
 import Table from '../Components/Table';
-
+ 
 const ImportEmployee = () => {
     const tableHeading = ["Designation", "Age", "Gender", "BloodGroup", "City", "DOJ"];
     const [selectedFile, setSelectedFile] = useState(null);
     const [excelData, setExcelData] = useState(null);
     const [importData, setImportData] = useState("");
     const fileInputRef = useRef(null);
-
+ 
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
         setSelectedFile(file);
     };
-
+ 
     const handleUploadButtonClick = () => {
         if (selectedFile) {
             const reader = new FileReader();
@@ -30,11 +30,11 @@ const ImportEmployee = () => {
             reader.readAsArrayBuffer(selectedFile);
         }
     };
-
+ 
     useEffect(() => {
         if (excelData) {
             const keys = excelData[0]; // Extract keys from the first array
-
+ 
             const result = excelData.slice(1).map(values => {
                 const obj = {};
                 keys.forEach((key, index) => {
@@ -42,11 +42,11 @@ const ImportEmployee = () => {
                 });
                 return obj;
             });
-
+ 
             setImportData(result);
         }
     }, [excelData]);
-
+ 
     return (
         <div className='p-3 pl-2 bg-[#f7f7f7]'>
             <div className='p-3'>
@@ -54,11 +54,11 @@ const ImportEmployee = () => {
         <p className="text-primary-blue"> Manage Employees / ImportEmployees</p>
       </div>
             <div className='bg-white py-12 px-8 rounded-[20px] shadow-lg shadow-white bg-opacity-50'>
-            
+           
                 {importData ? (
                     <div><Table employeeData={importData} headings={tableHeading} /></div>
                 ) : (
-                    
+                   
                     <div className=' flex flex-col rounded-[20px] shadow-lg shadow-grey-color bg-opacity-50 bg-[#f7f7f7]'>
                         <div className='flex flex-row p-12 justify-center gap-6'>
                             <div><MdCloudUpload className=' text-black rounded-[50%] border-black bg-white text-4xl' /></div>
@@ -95,5 +95,6 @@ const ImportEmployee = () => {
         </div>
     );
 }
-
+ 
 export default ImportEmployee;
+ 
