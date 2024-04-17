@@ -34,22 +34,33 @@ export default function Dashboard(){
                 
             </Card>
         </div> */}
-            
-        <div className="flex flex-row gap-[10px]">
-            <div className="w-3/5 bg-white rounded-lg h-auto flex flex-col">
-                <div className="top-2 left-1 mt-3 text-dark-blue font-medium text-2xl px-3">Timesheet Status</div>
-                <div><ChartComponent/></div>
-            </div>
-            <div className="w-2/5 bg-white rounded-lg h-auto  flex flex-col pb-2">
-                <div className="top-2 left-1 mt-3 text-dark-blue font-medium text-2xl px-3">Celebrations</div>
-                <div className="flex flex-col mt-2 gap-1">
-                    {CelebrationData.map((data)=>
-                       <Celebration name={data.name} occasion={data.occasion} date={data.date} img={data.img}/>
-                    )}
-                 </div>
-            </div>
-        </div>
 
+      <div className="flex flex-row gap-[10px]">
+        <div className="w-3/5 bg-white rounded-lg h-auto flex flex-col">
+          <div className="top-2 left-1 mt-3 text-dark-blue font-medium text-2xl px-3">
+            Timesheet Status
+          </div>
+          <div>
+            <ChartComponent />
+          </div>
+        </div>
+        <div className="w-2/5 bg-white rounded-lg h-auto  flex flex-col pb-2">
+          <div className="top-2 left-1 mt-3 text-dark-blue font-medium text-2xl px-3">
+            Celebrations
+          </div>
+          <div className="flex flex-col mt-2 gap-1">
+            {CelebrationData.map((data) => (
+              <Celebration
+                key={data.id}
+                name={data.name}
+                occasion={data.occasion}
+                date={data.date}
+                img={data.img}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
 
         {/* <div className="flex flex-row gap-[10px]"> */}
             <div className="w-full bg-white rounded-lg h-auto flex flex-col">
@@ -106,6 +117,6 @@ export default function Dashboard(){
             </div> */}
         </div>
  
-     
+        </div>
     )
 }

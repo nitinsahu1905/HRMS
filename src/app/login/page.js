@@ -1,39 +1,73 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { checkValidData } from "@/app/utils/validate";
+import { authTable, firestoreDB } from "../utils/firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
+// import { Router } from "next/router";
+// import { useRouter } from "next/router";
 import { useRouter } from "next/navigation";
 
 export default function Login(props) {
-  const router = useRouter();
+  // states
+  const [error, setError] = useState("");
+   const Router = useRouter();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const loginHandler = (event) => {
+  // reference for the admin table
+  const adminTable = collection(firestoreDB, 'admin');
+
+  const loginHandler = async (event) => {
     event.preventDefault();
-    if (email === "" || password === "")
-      return alert("Please fill all the fields");
+    // checking for null fields
+    if (!email || !password) {
+      setError("Kindly fill the required details");
+      return;
+    }
 
-    if (checkValidData(email, password) !== null)
-      return alert("please enter valid email and password");
+    // checking validations for entries
+    const validity = checkValidData(email, password);
+    if (validity) {
+      setError(validity);
+      return;
+    }
 
-    if (email === "admin@gmail.com" && password === "Admin@123") {
-      alert("Login Success");
+    // checking for admin proof
+    try {
+      const data = await signInWithEmailAndPassword(authTable, email, password);
+      console.log(data.user.uid)
+      const q = query(adminTable, where("userId", "==", data.user.uid));
+      const querySnapshot = await getDocs(q);
+      console.log(querySnapshot)
+      if(querySnapshot.empty){
+        setError("You are not an admin");
+        return;
+      }
+      // redirecting to the admin page
+      // Router.push("/dashboard");
       props.set(true);
-      router.push("/");
-    } else {
-      alert("Login Failed");
+      sessionStorage.setItem("admin", true);
+      // Router.push("/dashboard");
+    } catch (error) {
+      console.error('Error fetching data from Firestore:', error);
     }
   };
+
   return (
     <section className="bg-gray-50">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            {/* heading of the page */}
             <h1 className="text-xl font-bold leading-tight tracking-tight text-secondary-blue md:text-2xl">
               Sign in to your account
             </h1>
+
+            {/* form for the login */}
             <form className="space-y-4 md:space-y-6">
+              {/* email section */}
               <div>
                 <label
                   htmlFor="email"
@@ -51,6 +85,8 @@ export default function Login(props) {
                   required=""
                 />
               </div>
+
+              {/* section for the password */}
               <div>
                 <label
                   htmlFor="password"
@@ -68,23 +104,17 @@ export default function Login(props) {
                   required=""
                 />
               </div>
+
+              {/* forgot & error */}
               <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50"
-                      required=""
-                    />
+                {/* conditionally rendering error section */}
+                {error && (
+                  <div className="flex items-start">
+                    <div className="ml-3 text-sm text-red-700">{`*${error}`}</div>
                   </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="remember" className="text-gray-500">
-                      Remember me
-                    </label>
-                  </div>
-                </div>
+                )}
+
+                {/* forgot-password section  */}
                 <Link
                   href="#"
                   className="text-sm font-medium text-secondary-blue hover:underline"
@@ -92,21 +122,14 @@ export default function Login(props) {
                   Forgot password?
                 </Link>
               </div>
+
+              {/* sign in button */}
               <button
                 onClick={loginHandler}
                 className="w-full text-white bg-secondary-blue hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Sign in
               </button>
-              <p className="text-sm font-light text-gray-500">
-                Don’t have an account yet?{" "}
-                <a
-                  href="#"
-                  className="font-medium text-secondary-blue hover:underline"
-                >
-                  Sign up
-                </a>
-              </p>
             </form>
           </div>
         </div>

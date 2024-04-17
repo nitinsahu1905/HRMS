@@ -20,7 +20,7 @@ const EmployeeManagement = () => {
   const [selectedListValue, setSelectedListValue] = useState("");
   const [selectedFilterValue, setSelectedFilterValue] = useState([]);
   const [selectedSortValue, setSelectedSortValue] = useState("");
- 
+
   const handleListDropdownChange = (selectedOption) => {
     setSelectedListValue(selectedOption);
     // if(selectedListValue==="Active Employees"){
@@ -89,13 +89,12 @@ const EmployeeManagement = () => {
  
     
   };
- 
+
   // if(!selectedFilterValue) {
   //   setSelectedFilterValue([])
   //   console.log(selectedFilterValue)
   // }
- 
- 
+
   const handleSortDropdownChange = (selectedOption) => {
     setSelectedSortValue(selectedOption);
     if(selectedSortValue){
@@ -183,7 +182,7 @@ const EmployeeManagement = () => {
 // console.log(selectedListValue,selectedFilterValue,selectedSortValue)
 
   return (
-    <div className='flex flex-col gap-3 pr-4'>
+    <div className="flex flex-col gap-3 pr-4">
       {/* <div className='flex flex-row gap-2 p-2'>
           <h1 className="text-dark-blue font-bold">Dashboard</h1>
           <span>/</span>
@@ -222,14 +221,23 @@ const EmployeeManagement = () => {
         </div>
         {/* <div><button className='cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[27px] py-[12px] h-full ' onClick={searchFilterHandler}>Search</button></div> */}
         </div>
-        <div className='bg-white p-2 m-2'>
-          <Table employeeData={filteredEmployeeData} headings={filterTableHeading}/>
+        <div>
+          <button
+            className="cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[27px] py-[12px] h-full "
+            onClick={searchFilterHandler}
+          >
+            Search
+          </button>
         </div>
+      </div>
+      <div className="bg-white p-2 m-2">
+        <Table
+          employeeData={filteredEmployeeData}
+          headings={filterTableHeading}
+        />
+      </div>
     </div>
-  )
-}
- 
+  );
+};
+
 export default EmployeeManagement;
- 
- 
- 

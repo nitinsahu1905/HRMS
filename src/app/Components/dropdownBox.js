@@ -36,7 +36,7 @@ const DropdownBox = ({ mainText, Data, onSelect }) => {
         }`}
       >
         {Data.map((field) => (
-          <li>
+          <li key={field}>
             <div
               className="w-full cursor-pointer p-3 text-black transition duration-75 rounded-lg  group hover:bg-[#f9f9f9] group hover:text-[#121f47]  dark:hover:bg-primary-blue"
               onClick={() => handleSelect(field)}
