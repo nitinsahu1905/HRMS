@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaPowerOff, FaLinkedin } from "react-icons/fa";
 import { MdModeEditOutline, MdOutlineMail } from "react-icons/md";
 import Card from "../Components/Card";
@@ -10,15 +10,22 @@ import { IoSchool } from "react-icons/io5";
 import { FaLocationDot } from "react-icons/fa6";
 import { LuSave } from "react-icons/lu";
 import { CiEdit } from "react-icons/ci";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { authTable, firestoreDB } from "@/app/utils/firebase";
+import { doc, updateDoc } from "firebase/firestore";
+const adminTable = collection(firestoreDB, "admin");
+
 export default function ProfileLayout({ children }) {
   // getting pathname from the current url
   const routes = usePathname();
   const [editing, setEditing] = useState(false);
+  const [data, setData] = useState([{}]);
   const [name, setName] = useState("Gourav Goyal");
  
   // State for the Image edit
   const [editImage, setEditImage] = useState(false);
   const [updatedImage, setUpdatedImage] = useState("/profileImg.jpeg");
+  
  
   const hiddenFileInput = useRef(null);
  
@@ -36,10 +43,43 @@ export default function ProfileLayout({ children }) {
       }
     }
   };
+  const updateName=async ()=>{
+    setEditing(false)
+    // const userQuery = query(collection(firestoreDB, "admin"), where("userId", "==", "PB27BveZJXhQul4D1dcqekXIlez2"));
+    // const querySnapshot = await getDocs(userQuery);
+    // querySnapshot.forEach((doc) => {
+    //   console.log(doc.id, " => ", doc.data());
+    // });
+    // await updateDoc(doc(adminTable, "PB27BveZJXhQul4D1dcqekXIlez2"), {
+    //   name: name
+    // });
+   
+
+
+
+  }
  
   const handleImageUpdate = (event) => {
     hiddenFileInput.current.click();
   };
+  // useEffect(()={
+  //   const userQuery = query(collection(firestoreDB, "admin"), where("userId", "==", "PB27BveZJXhQul4D1dcqekXIlez2"));
+  // },[])
+  useEffect(() => {
+    
+    const userQuery = query(collection(firestoreDB, "admin"), where("userId", "==", "PB27BveZJXhQul4D1dcqekXIlez2"));
+    let data;
+    getDocs(userQuery).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        data = doc.data();
+        setData(data);
+        console.log(doc.id, " => ", doc.data());
+      });
+    });
+    console.log(data);
+   
+  }, [])
+  
  
   return (
     <div className="flex flex-col h-full">
@@ -125,7 +165,7 @@ export default function ProfileLayout({ children }) {
                 onChange={(e) => setName(e.target.value)}
                 className="text-dark-blue text-[22px] font-semibold bg-gray-200 p-1 rounded-[5px] border-bg-primary-blue border-2 w-52 border-solid"
               />
-              <button className="text-gray-600" onClick={()=>{setEditing(false)}}><LuSave /></button>
+              <button className="text-gray-600" onClick={updateName}><LuSave /></button>
               </div>
  
              )  :(
