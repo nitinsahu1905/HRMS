@@ -9,7 +9,7 @@ export default async function Work() {
   const querySnapshot = await getDocs(q);
   // console.log(querySnapshot)
   let data = querySnapshot.docs.map((doc) => doc.data());
-  console.log(data);
+  // console.log(data);
   return (
     <div className="flex font-poppins">
       {/* box for the right side */}
