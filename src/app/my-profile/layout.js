@@ -8,17 +8,20 @@ import Card from "../Components/Card";
 import { BsFillHandbagFill } from "react-icons/bs";
 import { IoSchool } from "react-icons/io5";
 import { FaLocationDot } from "react-icons/fa6";
-
+import { LuSave } from "react-icons/lu";
+import { CiEdit } from "react-icons/ci";
 export default function ProfileLayout({ children }) {
   // getting pathname from the current url
   const routes = usePathname();
-
+  const [editing, setEditing] = useState(false);
+  const [name, setName] = useState("Gourav Goyal");
+ 
   // State for the Image edit
   const [editImage, setEditImage] = useState(false);
   const [updatedImage, setUpdatedImage] = useState("/profileImg.jpeg");
-
+ 
   const hiddenFileInput = useRef(null);
-
+ 
   const handleChange = (event) => {
     if (event.target.files) {
       console.log(event.target.files[0]);
@@ -33,18 +36,18 @@ export default function ProfileLayout({ children }) {
       }
     }
   };
-
+ 
   const handleImageUpdate = (event) => {
     hiddenFileInput.current.click();
   };
-
+ 
   return (
     <div className="flex flex-col h-full">
       {/* box for the bg image */}
       <div className="relative">
         <img src="https://metadologie-operations-dev-ed.my.site.com/empcommunity/s/sfsites/c/img/community/cpt/cpt-profile-banner.png" />
       </div>
-
+ 
       {/* box for the content */}
       <div className="">
         {/* box for the navigaiton & image */}
@@ -56,8 +59,9 @@ export default function ProfileLayout({ children }) {
             onMouseLeave={() => setEditImage(false)}
           >
             <img className="rounded-full " src={updatedImage} />
-
+ 
             {/* Edit Icon for image */}
+            {}
             {editImage ? (
               <div className="rounded-full bg-black/40 flex justify-center items-center absolute inset-0 cursor-pointer text-white border-[4px] text-[25px] border-white transition-all duration-500 ease-in-out ">
                 <input
@@ -73,10 +77,10 @@ export default function ProfileLayout({ children }) {
               </div>
             ) : null}
           </div>
-
+ 
           {/* navigation tabs */}
           <div className="flex h-full ">
-
+ 
             {/* link to personal section */}
             <span
               className={`${
@@ -87,7 +91,7 @@ export default function ProfileLayout({ children }) {
             >
               <Link href="/my-profile/personal">PERSONAL</Link>
             </span>
-
+ 
             {/* link to work section */}
             <span
               className={`${
@@ -99,7 +103,7 @@ export default function ProfileLayout({ children }) {
               <Link href="/my-profile/work">WORK</Link>
             </span>
           </div>
-
+ 
           {/* log-off icon */}
           <span className="flex items-center justify-center text-white">
             <Link href="/">
@@ -107,14 +111,32 @@ export default function ProfileLayout({ children }) {
             </Link>
           </span>
         </div>
-
+ 
         {/* passing childer component here */}
         <div className="flex flex-row w-full mt-10">
           <div className="w-1/4 flex flex-col gap-3 p-5 ">
             <div className="flex flex-col px-3 ">
-              <div className="font-semibold text-[22px] text-dark-blue ">
-                Gourav Goyal
+            {/* Name */}
+            {editing ? (
+              <div className="flex gap-2">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="text-dark-blue text-[22px] font-semibold bg-gray-200 p-1 rounded-[5px] border-bg-primary-blue border-2 w-52 border-solid"
+              />
+              <button className="text-gray-600" onClick={()=>{setEditing(false)}}><LuSave /></button>
               </div>
+ 
+             )  :(
+              <div className="flex  gap-2">
+              <div className="font-semibold text-[22px] text-dark-blue ">
+                {name}
+              </div>
+              <button onClick={()=>{setEditing(true)}}><CiEdit /></button>
+              </div>
+             )}
+             
               {/* <div className=" text-[16px] font-normal ">CEO at Metadologie</div> */}
             </div>
             <div className="shadow-md rounded-[10px] ">
@@ -170,3 +192,4 @@ export default function ProfileLayout({ children }) {
     </div>
   );
 }
+ 
