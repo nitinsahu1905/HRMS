@@ -1,9 +1,13 @@
 // import { EmployeeManagementData } from '../Constants/EmployeeManagementData';
-
-const Table = ({ employeeData, headings }) => {
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { authTable, firestoreDB } from "@/app/utils/firebase";
+const Table =  ({ employeeData, headings }) => {
   // const tableHeadings=["Id","Name","hours","Status"];
   // console.log(headings)
-
+  console.log("tableeee",employeeData)
+   if (employeeData.length ===0) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       <table className="w-full border-collapse mt-4">
@@ -17,8 +21,8 @@ const Table = ({ employeeData, headings }) => {
           </tr>
           {employeeData.map((data, index) => (
             <tr className="text-center p-10" key={data.id}>
-              <td>{data.id}</td>
-              <td>{data.name}</td>
+              <td>{index+1}</td>
+              <td>{data.fullname}</td>
               {headings.map((heading, index) => (
                 <td key={index}>{data[heading.toLowerCase()]}</td>
               ))}

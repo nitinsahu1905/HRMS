@@ -1,11 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import DropdownBox from "../Components/dropdownBox";
-import DropdownCheckBox from "../Components/dropDownCheckbox";
+import DropdownCheckBox from "../Components/dropdownCheckbox";
+import FetchData from "./fetchData";
+
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { authTable, firestoreDB } from "@/app/utils/firebase";
 import Table from "../Components/Table";
 import { EmployeeManagementData } from "../Constants/EmployeeManagementData";
 import Link from "next/link";
-const EmployeeManagement = () => {
+const EmployeeManagement = ({data}) => {
   const EmployeeData = ["All Employees", "Active Employees", "Past Employees"];
   const filterByData = ["Gender", "Age", "BloodGroup", "City"];
   const sortByData = ["name"];
@@ -17,12 +21,24 @@ const EmployeeManagement = () => {
     "City",
     "DOJ",
   ];
+  const [fetchedData, setFetchedData] = useState([]);
+      
+  useEffect(() => {
+    async function fetchData() {
+        // Call the FetchData function to fetch data
+        const data = await FetchData();
+        console.log("yesssss",data)
+        setFetchedData(data);
+        setFilteredEmployeeData(data);
 
+        // Set the fetched data in state
+        // setFetchedData(data);
+    }
+    fetchData();
+}, []);
   // all states for the data management
-  const [employeeData, setEmployeeData] = useState(EmployeeManagementData);
-  const [filteredEmployeeData, setFilteredEmployeeData] = useState(
-    EmployeeManagementData
-  );
+  const [employeeData, setEmployeeData] = useState(fetchedData);
+  const [filteredEmployeeData, setFilteredEmployeeData] = useState(employeeData);
   const [tableHeadingList, setTableHeadingList] = useState(tableHeading);
   const [filterTableHeading, setFilterTableHeading] =
     useState(tableHeadingList);

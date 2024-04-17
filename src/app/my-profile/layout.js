@@ -13,14 +13,27 @@ import { CiEdit } from "react-icons/ci";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { authTable, firestoreDB } from "@/app/utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
+import {useRouter} from 'next/navigation'
 const adminTable = collection(firestoreDB, "admin");
 
 export default function ProfileLayout({ children }) {
   // getting pathname from the current url
   const routes = usePathname();
+  const router = useRouter();
+
   const [editing, setEditing] = useState(false);
   const [data, setData] = useState([{}]);
   const [name, setName] = useState("Gourav Goyal");
+
+
+  const logoutHandler = () => {
+    sessionStorage.removeItem("admin");
+    window.location.reload();
+    router.push("/");
+
+  };
+  
+
  
   // State for the Image edit
   const [editImage, setEditImage] = useState(false);
@@ -145,7 +158,8 @@ export default function ProfileLayout({ children }) {
           </div>
  
           {/* log-off icon */}
-          <span className="flex items-center justify-center text-white">
+          <span onClick={()=>{logoutHandler()}} className="flex items-center justify-center cursor-pointer text-white">
+            
             <Link href="/">
               <FaPowerOff />
             </Link>
