@@ -2,9 +2,6 @@
 import React from "react";
 import Image from "next/image";
 
-// Inside your component:
-<Image src={img} alt="Emp-img" width={24} height={24} objectFit="cover" />;
-
 const Celebration = (props) => {
   const { name, date, occasion, img } = props;
   // console.log(name,date,occasion,img);
@@ -14,13 +11,12 @@ const Celebration = (props) => {
       <div className="flex flex-row justify-between bg-[#f7f7f7] border-[#0684C7] border-[1px] rounded-lg w-auto h-auto mx-4 p-2">
         <div className="flex flex-row">
           <div className="overflow-hidden h-16 w-16 rounded-full border-none ">
-            {/* <img src={img} width={24} height={24} alt="Emp-img" class=" object-cover w-full h-full"/> */}
-            <Image
+            <img
               src={img}
-              alt="Emp-img"
               width={24}
               height={24}
-              objectFit="cover"
+              alt="Emp-img"
+              class=" object-cover w-full h-full"
             />
           </div>
           <div className="flex flex-col mx-2">
