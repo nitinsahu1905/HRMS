@@ -14,6 +14,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { authTable, firestoreDB } from "@/app/utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import {useRouter} from 'next/navigation'
+import EditProfile from "../Components/EditProfile";
 const adminTable = collection(firestoreDB, "admin");
 
 export default function ProfileLayout({ children }) {
@@ -24,6 +25,8 @@ export default function ProfileLayout({ children }) {
   const [editing, setEditing] = useState(false);
   const [data, setData] = useState([{}]);
   const [name, setName] = useState("Gourav Goyal");
+
+  const [editProfile, setEditProfile] = useState(false);
 
 
   const logoutHandler = () => {
@@ -114,7 +117,7 @@ export default function ProfileLayout({ children }) {
             <img className="rounded-full " src={updatedImage} />
  
             {/* Edit Icon for image */}
-            {}
+            
             {editImage ? (
               <div className="rounded-full bg-black/40 flex justify-center items-center absolute inset-0 cursor-pointer text-white border-[4px] text-[25px] border-white transition-all duration-500 ease-in-out ">
                 <input
@@ -164,10 +167,35 @@ export default function ProfileLayout({ children }) {
               <FaPowerOff />
             </Link>
           </span>
+          
         </div>
- 
+
+        {/* Opening Popup for Editing Profile */}
+        <div className="absolute top-0 left-0 ">
+
+        {editProfile?
+          <>
+          <EditProfile editprofileModal={editProfile} setEditprofileModal={setEditProfile} />
+          </>
+          :
+          null
+        }
+        </div>
+        
+        {/* Edit button here */}
+        <div className="w-full flex items-center justify-end pr-10 mt-2">
+        <button onClick={()=>{setEditProfile(true);
+          
+          }          
+          } className="flex items-center justify-center cursor-pointer text-white bg-button-blue-color px-[10px] py-[5px] rounded-[5px] ">
+            
+             Edit
+          
+          </button>
+        </div>
+
         {/* passing childer component here */}
-        <div className="flex flex-row w-full mt-10">
+        <div className="flex flex-row w-full mt-0">
           <div className="w-1/4 flex flex-col gap-3 p-5 ">
             <div className="flex flex-col px-3 ">
             {/* Name */}
