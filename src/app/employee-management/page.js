@@ -1,19 +1,18 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import DropdownBox from "../Components/dropdownBox";
-import DropdownCheckBox from "../Components/dropdownCheckbox";
+import DropdownCheckBox from "../Components/dropDownCheckbox";
 import FetchData from "./fetchData";
-
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { authTable, firestoreDB } from "@/app/utils/firebase";
 import Table from "../Components/Table";
-import { EmployeeManagementData } from "../Constants/EmployeeManagementData";
 import Link from "next/link";
-const EmployeeManagement = ({data}) => {
+
+export default function EmployeeManagement() {
+  // initial constants
   const EmployeeData = ["All Employees", "Active Employees", "Past Employees"];
   const filterByData = ["Gender", "Age", "BloodGroup", "City"];
   const sortByData = ["name"];
-  const tableHeading = [
+  const defaultTableHeading = [
     "Designation",
     "Age",
     "Gender",
@@ -21,156 +20,158 @@ const EmployeeManagement = ({data}) => {
     "City",
     "DOJ",
   ];
-  const [fetchedData, setFetchedData] = useState([]);
-      
-  useEffect(() => {
-    async function fetchData() {
-        // Call the FetchData function to fetch data
-        const data = await FetchData();
-        console.log("yesssss",data)
-        setFetchedData(data);
-        setFilteredEmployeeData(data);
 
-        // Set the fetched data in state
-        // setFetchedData(data);
-    }
-    fetchData();
-}, []);
-  // all states for the data management
-  const [employeeData, setEmployeeData] = useState(fetchedData);
-  const [filteredEmployeeData, setFilteredEmployeeData] = useState(employeeData);
-  const [tableHeadingList, setTableHeadingList] = useState(tableHeading);
+  // state variables for managing data and selections
+  const [fetchedData, setFetchedData] = useState([]);
+  const [filteredEmployeeData, setFilteredEmployeeData] = useState([]);
   const [filterTableHeading, setFilterTableHeading] =
-    useState(tableHeadingList);
+    useState(defaultTableHeading);
   const [searchEmployeeName, setSearchEmployeeName] = useState("");
-  const [selectedListValue, setSelectedListValue] = useState("");
+  const [selectedListValue, setSelectedListValue] = useState("All Employees");
   const [selectedFilterValue, setSelectedFilterValue] = useState([]);
   const [selectedSortValue, setSelectedSortValue] = useState("");
 
-  const handleListDropdownChange = (selectedOption) => {
-    setSelectedListValue(selectedOption);
-
-    if (selectedListValue === "Active Employees") {
-      const filterListData = employeeData.filter(
-        (data) => data.status === "Active"
-      );
-      setFilteredEmployeeData(filterListData);
-    }
-    if (selectedListValue === "Past Employees") {
-      const filterListData = employeeData.filter(
-        (data) => data.status === "Past"
-      );
-      setFilteredEmployeeData(filterListData);
-    }
-    if (selectedListValue === "All Employees") {
-      setFilteredEmployeeData(employeeData);
-    }
-  };
-  
-  const handleFilterDropdownChange = (selectedOption) => {
-    console.log(selectedOption);
-    setSelectedFilterValue(selectedOption);
-    if (selectedFilterValue) {
-      // Update filterTableHeading based on selected options
-      if (selectedFilterValue.length == 0) {
-        // let count=0;
-        setFilterTableHeading(tableHeadingList);
-        console.log("selected option emprty");
-        return; // Set to default headings if no options selected
+  // fetch data from the firebase
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await FetchData();
+        setFetchedData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-      console.log("first time filter");
-      setFilterTableHeading(selectedFilterValue);
-      return;
     }
-  };
+    fetchData();
+  }, []);
 
-  const handleSortDropdownChange = (selectedOption) => {
-    setSelectedSortValue(selectedOption);
-    if (selectedSortValue) {
-      // setEmployeeData(EmployeeManagementData);
-      const filter = filteredEmployeeData.sort((a, b) => b.id - a.id);
-      console.log(filter);
-      setFilteredEmployeeData(filter);
-    }
-  };
+  // Handle dropdown change for employee list filter
   useEffect(() => {
-    handleListDropdownChange();
-  }, [selectedListValue]);
+    const filterData = (listValue) => {
+      let filteredData = fetchedData;
+      if (listValue === "Active Employees") {
+        filteredData = fetchedData.filter((data) => data.status === "Active");
+      } else if (listValue === "Past Employees") {
+        filteredData = fetchedData.filter((data) => data.status === "Past");
+      }
+      setFilteredEmployeeData(filteredData);
+    };
+
+    filterData(selectedListValue);
+  }, [selectedListValue, fetchedData]);
+
+  // Handle dropdown change for filtering table headings
   useEffect(() => {
-    handleFilterDropdownChange();
+    setFilterTableHeading(
+      selectedFilterValue.length > 0 ? selectedFilterValue : defaultTableHeading
+    );
   }, [selectedFilterValue]);
+
+  // Handle dropdown change for sorting employee data
   useEffect(() => {
-    handleSortDropdownChange();
+    const sortData = () => {
+      if (selectedFilterValue) {
+        const sortedData = [...filteredEmployeeData].sort((a, b) => {
+          const nameA = a.fullname.toLowerCase();
+          const nameB = b.fullname.toLowerCase();
+          return nameA.localeCompare(nameB);
+        });
+        setFilteredEmployeeData(sortedData);
+      }
+    };
+
+    sortData();
   }, [selectedSortValue]);
 
+  // handle search input change
+  const handleSearchInputChange = (event) => {
+    setSearchEmployeeName(event.target.value);
+  };
+
+  // function for handling searching functionality
   const searchHandler = () => {
-    //  console.log(searchEmployeeName);
-    const filterName = employeeData.filter((data) =>
-      data.name.toLowerCase().includes(searchEmployeeName)
+    if (!fetchedData) {
+      return;
+    }
+    const filteredByName = fetchedData.filter((data) =>
+      data.fullname.toLowerCase().includes(searchEmployeeName.toLowerCase())
     );
-    // console.log(filterName)
-    setFilteredEmployeeData(filterName);
+    setFilteredEmployeeData(filteredByName);
   };
 
   return (
-   <div>
-     <div className="flex flex-col gap-3 pr-4">
-   
-        <div className='flex flex-row justify-between  items-center p-4   rounded-[10px]'>
-           <div className='p-3'>
-        <h1 className="text-dark-blue text-[24px] font-bold">Manage Employees</h1>
-        <p className="text-primary-blue"> <Link href="./dashboard">Dashboard</Link> / Manage Employees</p>
-           </div>
+    <div>
+      <div className="flex flex-col gap-3 pr-4">
+        <div className="flex flex-row justify-between items-center p-4 rounded-[10px]">
+          {/* heading */}
+          <div className="p-3">
+            {/* title */}
+            <h1 className="text-dark-blue text-[24px] font-bold">
+              Manage Employees
+            </h1>
 
-           <div className='flex flex-row gap-2'>
-                  <button className='cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[16px] py-[8px] h-full '>+ Add Employee</button>
-                  <Link href="./import-employees"><button className='bg-[#f7f7f7] rounded-[10px] px-[16px] py-[8px] border-2 border-primary-blue text-primary-blue'>Import Employees</button></Link>
+            {/* sub-title */}
+            <p className="text-primary-blue">
+              <Link href="./dashboard">Dashboard</Link> / Manage Employees
+            </p>
           </div>
 
+          {/* employees management section */}
+          <div className="flex flex-row gap-2">
+            {/* add epmployee button */}
+            <button className="cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[16px] py-[8px] h-full">
+              + Add Employee
+            </button>
+
+            {/* import employees reference */}
+            <Link href="./import-employees">
+              <button className="bg-[#f7f7f7] rounded-[10px] px-[16px] py-[8px] border-2 border-primary-blue text-primary-blue">
+                Import Employees
+              </button>
+            </Link>
+          </div>
         </div>
-        <div className="flex justify-between items-center  bg-white rounded-[10px] space-x-4 p-4">
+
+        {/* Filter and Search Section */}
+        <div className="flex justify-between items-center bg-white rounded-[10px] space-x-4 p-4">
           <div className="flex flex-row gap-2 items-center">
-            <div>
-              <input
-                type="text"
-                placeholder="Enter Employee Name"
-                maxLength={25}
-                className="bg-[#f7f7f7] rounded-[10px] px-[16px] py-[8px] border-2 border-primary-blue outline-none "
-                onChange={(e) => setSearchEmployeeName(e.target.value)}
-              />
-            </div>
+            <input
+              type="text"
+              placeholder="Enter Employee Name"
+              maxLength={25}
+              className="bg-[#f7f7f7] rounded-[10px] px-[16px] py-[8px] border-2 border-primary-blue outline-none"
+              onChange={handleSearchInputChange}
+            />
+
+            {/* search button for the employeees */}
             <button
-              className="cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[16px] py-[8px]  h-full "
+              className="cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[16px] py-[8px] h-full"
               onClick={searchHandler}
             >
               Search
             </button>
           </div>
-          <div>
-            <DropdownBox
-              mainText="Employee List"
-              Data={EmployeeData}
-              onSelect={handleListDropdownChange}
-            />
-          </div>
-          <div className="pl-1">
-            <DropdownCheckBox
-              mainText="Filter By"
-              Data={filterByData}
-              onSelect={handleFilterDropdownChange}
-            />
-          </div>
-          <div className="pl-1">
-            <DropdownBox
-              mainText=" Sort By"
-              Data={sortByData}
-              onSelect={handleSortDropdownChange}
-            />
-          </div>
-          {/* <div><button className='cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[27px] py-[12px] h-full ' onClick={searchFilterHandler}>Search</button></div> */}
+
+          <DropdownBox
+            mainText="Employee List"
+            Data={EmployeeData}
+            onSelect={setSelectedListValue}
+          />
+
+          <DropdownCheckBox
+            mainText="Filter By"
+            Data={filterByData}
+            onSelect={setSelectedFilterValue}
+          />
+
+          <DropdownBox
+            mainText="Sort By"
+            Data={sortByData}
+            onSelect={setSelectedSortValue}
+          />
         </div>
       </div>
 
+      {/* employee Table Section */}
       <div className="bg-white p-2 m-2">
         <Table
           employeeData={filteredEmployeeData}
@@ -179,6 +180,4 @@ const EmployeeManagement = ({data}) => {
       </div>
     </div>
   );
-};
-
-export default EmployeeManagement;
+}
