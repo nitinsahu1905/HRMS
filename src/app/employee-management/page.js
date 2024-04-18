@@ -6,6 +6,7 @@ import DropdownCheckBox from "../Components/dropDownCheckbox";
 import FetchData from "./fetchData";
 import Table from "../Components/Table";
 import Link from "next/link";
+import AddEmployee from "../Components/AddEmployee";
 
 export default function EmployeeManagement() {
   // initial constants
@@ -30,6 +31,12 @@ export default function EmployeeManagement() {
   const [selectedListValue, setSelectedListValue] = useState("All Employees");
   const [selectedFilterValue, setSelectedFilterValue] = useState([]);
   const [selectedSortValue, setSelectedSortValue] = useState("");
+  const [addEmp, setAddEmp] = useState(false);
+
+  // handler function for showing addEmp. page
+  const handleAddEmp = () => {
+    setAddEmp((prev) => !prev);
+  };
 
   // fetch data from the firebase
   useEffect(() => {
@@ -101,6 +108,7 @@ export default function EmployeeManagement() {
     setFilteredEmployeeData(filteredByName);
   };
 
+  if (addEmp) return <AddEmployee />;
   return (
     <div>
       <div className="flex flex-col gap-3 pr-4">
@@ -121,7 +129,12 @@ export default function EmployeeManagement() {
           {/* employees management section */}
           <div className="flex flex-row gap-2">
             {/* add epmployee button */}
-            <button className="cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[16px] py-[8px] h-full">
+            <button
+              onClick={() => {
+                handleAddEmp();
+              }}
+              className="cursor-pointer bg-button-blue-color rounded-[10px] text-white px-[16px] py-[8px] h-full"
+            >
               + Add Employee
             </button>
 

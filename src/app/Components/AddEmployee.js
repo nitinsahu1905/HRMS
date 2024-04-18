@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AddEmployee = () => {
   // State variables for managing form inputs and modal visibility
-  const [isModalOpen, setIsModalOpen] = useState(false); // State variable to control modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(true); // State variable to control modal visibility
   const [FirstName, setFirstName] = useState(""); // State variable for First Name input
   const [MiddleName, setMiddleName] = useState(""); // State variable for Middle Name input
   const [LastName, setLastName] = useState(""); // State variable for Last Name input
@@ -62,24 +62,13 @@ const AddEmployee = () => {
       return;
     }
     if (!emailRegex.test(OfficialEmailId)) {
-        toast.error("Please enter a valid official email address.");
-        return;
-      }
+      toast.error("Please enter a valid official email address.");
+      return;
+    }
     if (!emailRegex.test(PersonalEmailId)) {
       toast.error("Please enter a valid personal email address.");
       return;
     }
-    
-    // console.log("Adding employee:", {
-    //   FirstName,
-    //   MiddleName,
-    //   LastName,
-    //   ReportingManager,
-    //   Designation,
-    //   Department,
-    //   PersonalEmailId,
-    //   OfficialEmailId,
-    // });
 
     // Close the modal
 

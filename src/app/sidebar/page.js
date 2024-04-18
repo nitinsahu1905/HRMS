@@ -20,46 +20,46 @@ import {
 
 export default function Sidebar({ collapse, setCollapse }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
- 
+
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
   };
- 
+
   const [isTimeDropdownOpen, setIsTimeDropdownOpen] = useState(false);
- 
+
   const toggleTimeDropdown = () => {
     setIsTimeDropdownOpen((prevState) => !prevState);
   };
- 
+
   return (
     // whole side bard box
     <div className="w-full  relative ">
       {/* <div className="absolute top-[10px] right-[10px] z-50"></div> */}
-      
+
       <aside
         className={` 
         ${collapse ? "-translate-x-full" : "sm:translate-x-0"}
          w-auto h-screen overflow-x-visible fixed top-0 left-0 z-50 transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll  scrollbar-hide `}
       >
         {collapse ? (
-        <div className="flex items-center justify-center p-0 text-[20px] absolute z-50 right-[-10px] top-[10px] ">
-          <div
-            className="w-fit text-sky-color bg-[#cdc3c3] flex items-center justify-center rounded-full cursor-pointer"
-            onClick={() => setCollapse(false)}
-          >
-            <IoIosArrowDroprightCircle />
+          <div className="flex items-center justify-center p-0 text-[20px] absolute z-50 right-[-10px] top-[10px] ">
+            <div
+              className="w-fit text-sky-color bg-[#cdc3c3] flex items-center justify-center rounded-full cursor-pointer"
+              onClick={() => setCollapse(false)}
+            >
+              <IoIosArrowDroprightCircle />
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="flex items-center justify-center p-0 text-[20px] absolute z-50 right-[-10px] top-[10px]   ">
-          <div
-            className="w-fit text-sky-color bg-[#cdc3c3] m-0 flex items-center justify-center rounded-full cursor-pointer"
-            onClick={() => setCollapse(true)}
-          >
-            <IoIosArrowDropleftCircle />
+        ) : (
+          <div className="flex items-center justify-center p-0 text-[20px] absolute z-50 right-[-10px] top-[10px]   ">
+            <div
+              className="w-fit text-sky-color bg-[#cdc3c3] m-0 flex items-center justify-center rounded-full cursor-pointer"
+              onClick={() => setCollapse(true)}
+            >
+              <IoIosArrowDropleftCircle />
+            </div>
           </div>
-        </div>
-      )}
+        )}
         <ul className="space-y-2 font-medium flex flex-col gap-1">
           {/* dashboard section */}
           <li>
@@ -75,7 +75,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* inbox section */}
           <li>
             <Link href="/inbox">
@@ -89,7 +89,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* time % attend section dropdown */}
           <li>
             <div
@@ -121,7 +121,7 @@ export default function Sidebar({ collapse, setCollapse }) {
                 </div>
               )}
             </div>
- 
+
             <ul
               id="timedropdown-example"
               className={`py-2 space-y-2 ${isTimeDropdownOpen ? "" : "hidden"}`}
@@ -135,7 +135,7 @@ export default function Sidebar({ collapse, setCollapse }) {
                   </div>
                 </Link>
               </li>
- 
+
               {/* attendance section */}
               <li>
                 <Link href="/attendance">
@@ -144,7 +144,7 @@ export default function Sidebar({ collapse, setCollapse }) {
                   </div>
                 </Link>
               </li>
- 
+
               {/* leaves section */}
               <li>
                 <Link href="/leaves">
@@ -155,10 +155,10 @@ export default function Sidebar({ collapse, setCollapse }) {
               </li>
             </ul>
           </li>
- 
+
           {/* my team section */}
           <li>
-            <Link href="#">
+            <Link href="/my-team">
               <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <RiTeamFill className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
 
@@ -170,7 +170,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* manage employees section */}
           <li>
             <Link href="/employee-management">
@@ -185,7 +185,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* efficiency section */}
           <li>
             <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
@@ -197,7 +197,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               )}
             </div>
           </li>
- 
+
           {/* myorganization dropdown menu */}
           <li>
             <div
@@ -228,7 +228,7 @@ export default function Sidebar({ collapse, setCollapse }) {
                 </div>
               )}
             </div>
- 
+
             {/* organization chart section */}
             <ul
               id="dropdown-example"
@@ -241,7 +241,7 @@ export default function Sidebar({ collapse, setCollapse }) {
                   </div>
                 </Link>
               </li>
- 
+
               {/* organation feedback section */}
               <li>
                 <Link href="/organization-feedback">
@@ -250,7 +250,7 @@ export default function Sidebar({ collapse, setCollapse }) {
                   </div>
                 </Link>
               </li>
- 
+
               {/* organization-policies section */}
               <li>
                 <Link href="/organization-policies">
@@ -261,7 +261,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </li>
             </ul>
           </li>
- 
+
           {/* finance section */}
           <li>
             <Link href="/my-finance">
@@ -276,7 +276,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* profile section */}
           <li>
             <Link href="/payroll">
@@ -290,7 +290,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* myprofile section */}
           <li>
             <Link href="/my-profile/personal">
@@ -309,4 +309,3 @@ export default function Sidebar({ collapse, setCollapse }) {
     </div>
   );
 }
- 
