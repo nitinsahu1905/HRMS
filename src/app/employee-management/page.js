@@ -42,6 +42,7 @@ export default function EmployeeManagement() {
       }
     }
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Handle dropdown change for employee list filter
@@ -57,6 +58,7 @@ export default function EmployeeManagement() {
     };
 
     filterData(selectedListValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedListValue, fetchedData]);
 
   // Handle dropdown change for filtering table headings
@@ -64,6 +66,7 @@ export default function EmployeeManagement() {
     setFilterTableHeading(
       selectedFilterValue.length > 0 ? selectedFilterValue : defaultTableHeading
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFilterValue]);
 
   // Handle dropdown change for sorting employee data
@@ -78,8 +81,8 @@ export default function EmployeeManagement() {
         setFilteredEmployeeData(sortedData);
       }
     };
-
     sortData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSortValue]);
 
   // handle search input change
