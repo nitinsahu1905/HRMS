@@ -19,7 +19,8 @@ module.exports = {
         "grey-color": "#808080",
       },
       fontFamily: {
-        poppins: ["Poppins", "sans-serif"],
+        // poppins: ["Poppins", "sans-serif"],
+        poppins: ["var(--font-poppins)"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
