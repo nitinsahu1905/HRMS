@@ -13,7 +13,8 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 export default function RootLayout({ children }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [sidebarCollapse, setSidebarCollapse] = useState(false);
   return (
     <html lang="en">
       <head>
@@ -29,9 +30,16 @@ export default function RootLayout({ children }) {
           <Login set={setIsLoggedIn} />
         ) : (
           <div className="flex flex-row gap-0 relative w-full ">
-            <div className=" w-[262px] relative overflow-hidden">
-              <Sidebar />
-            </div>
+            {!sidebarCollapse ? (
+              <div className=" w-[262px] relative ">
+                <Sidebar collapse={sidebarCollapse} setCollapse={setSidebarCollapse} />
+              </div>
+            ) : (
+              <div className=" w-[62px] relative ">
+                <Sidebar collapse={sidebarCollapse} setCollapse={setSidebarCollapse} />
+              </div>
+            )}
+            
             <div className="flex-[1_0] w-[calc(100%-262px)] relative ">
               {children}{" "}
             </div>

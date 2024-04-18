@@ -23,43 +23,46 @@ export default function Sidebar({ collapse, setCollapse }) {
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
+    setCollapse(false)
   };
 
   const [isTimeDropdownOpen, setIsTimeDropdownOpen] = useState(false);
 
   const toggleTimeDropdown = () => {
     setIsTimeDropdownOpen((prevState) => !prevState);
+    setCollapse(false)
   };
 
   return (
     // whole side bard box
     <div className="w-full  relative ">
       {/* <div className="absolute top-[10px] right-[10px] z-50"></div> */}
-      
+      <div className="flex items-center justify-center p-0 text-[20px] absolute z-50 right-[-10px] top-[10px] ">
+          {collapse ? (
+            <div
+              className="w-fit text-sky-color bg-[#cdc3c3]  flex items-center justify-center rounded-full cursor-pointer"
+              onClick={() => setCollapse(false)}
+            >
+              <IoIosArrowDroprightCircle />
+            </div>
+          ) : (
+            <div
+              className="w-fit text-sky-color bg-[#cdc3c3] m-0 flex items-center justify-center rounded-full cursor-pointer"
+              onClick={() => {setCollapse(true);
+                setIsDropdownOpen(false);
+                setIsTimeDropdownOpen(false)
+              }}
+            >
+              <IoIosArrowDropleftCircle />
+            </div>
+          )}
+        </div>
       <aside
         className={` 
-        ${collapse ? "-translate-x-full" : "sm:translate-x-0"}
-         w-auto h-screen overflow-x-visible fixed top-0 left-0 z-50 transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll  scrollbar-hide `}
+        
+         w-auto h-screen overflow-x-visible fixed top-0 left-0 z-40  px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll  scrollbar-hide `}
       >
-        {collapse ? (
-        <div className="flex items-center justify-center p-0 text-[20px] absolute z-50 right-[-10px] top-[10px] ">
-          <div
-            className="w-fit text-sky-color bg-[#cdc3c3] flex items-center justify-center rounded-full cursor-pointer"
-            onClick={() => setCollapse(false)}
-          >
-            <IoIosArrowDroprightCircle />
-          </div>
-        </div>
-      ) : (
-        <div className="flex items-center justify-center p-0 text-[20px] absolute z-50 right-[-10px] top-[10px]   ">
-          <div
-            className="w-fit text-sky-color bg-[#cdc3c3] m-0 flex items-center justify-center rounded-full cursor-pointer"
-            onClick={() => setCollapse(true)}
-          >
-            <IoIosArrowDropleftCircle />
-          </div>
-        </div>
-      )}
+        
         <ul className="space-y-2 font-medium flex flex-col gap-1">
           {/* dashboard section */}
           <li>
