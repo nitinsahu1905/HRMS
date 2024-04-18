@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { FaPowerOff, FaLinkedin } from "react-icons/fa";
@@ -98,7 +99,14 @@ export default function ProfileLayout({ children }) {
     <div className="flex flex-col h-full">
       {/* box for the bg image */}
       <div className="relative">
-        <img src="https://metadologie-operations-dev-ed.my.site.com/empcommunity/s/sfsites/c/img/community/cpt/cpt-profile-banner.png" />
+        {/* <img src="https://metadologie-operations-dev-ed.my.site.com/empcommunity/s/sfsites/c/img/community/cpt/cpt-profile-banner.png" /> */}
+        <Image
+          src="https://metadologie-operations-dev-ed.my.site.com/empcommunity/s/sfsites/c/img/community/cpt/cpt-profile-banner.png"
+          alt="profile image"
+          width={1920}
+          height={400}
+          className="relative"
+        />
       </div>
  
       {/* box for the content */}
@@ -111,7 +119,15 @@ export default function ProfileLayout({ children }) {
             onMouseEnter={() => setEditImage(true)}
             onMouseLeave={() => setEditImage(false)}
           >
-            <img className="rounded-full " src={updatedImage} />
+            {/* <img className="rounded-full " src={updatedImage} /> */}
+            <Image
+              src={updatedImage}
+              alt="profile image"
+              width={128}
+              height={128}
+              className="rounded-full"
+            />
+            
  
             {/* Edit Icon for image */}
             {}

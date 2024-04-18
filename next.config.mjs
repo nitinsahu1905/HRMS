@@ -21,6 +21,10 @@ const nextConfig = {
       "t4.ftcdn.net",
       "designimages.appypie.com",
       "encrypted-tbn0.gstatic.com",
+      "metadologie-operations-dev-ed.my.site.com",
+      "img.freepik.com",
+      "randomuser.me",
+      "imgs.search.brave.com",
     ],
   },
 };
