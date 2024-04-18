@@ -4,8 +4,9 @@ import { TeamData } from "../Constants/TeamData";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
+import Image from "next/image";
 
-const page = () => {
+const MyTeam = () => {
   const router = useRouter();
 
   const [team, setTeam] = useState(TeamData)
@@ -36,10 +37,17 @@ const page = () => {
                 <BsThreeDotsVertical />
               </span>
 
-              <img
+              {/* <img
                 className="w-[80px] h-[80px] p-1 bg-primary-blue/35 rounded-full "
                 src={emp.image}
                 alt={emp.name}
+              /> */}
+              <Image
+                className="w-[80px] h-[80px] p-1 bg-primary-blue/35 rounded-full "
+                src={emp.image}
+                alt={emp.name}
+                width={80}
+                height={80}
               />
               <div className="flex flex-col gap-y-1 items-center ">
                 <h2 className="font-bold text-sm text-center ">{emp.name}</h2>
@@ -53,4 +61,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default MyTeam;

@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import Card from "../Components/Card";
-import Button from "../Components/Button";
+import Button from "../Components/button";
 import Link from "next/link";
 import { saveAs } from "file-saver";
 import { PoliciesData } from "../Constants/PoliciesData";
@@ -172,7 +172,7 @@ const OrganizationPolicies = () => {
       {/* All Cards */}
       <div className="flex flex-col gap-[10px] ">
         {PoliciesData.map((policy, index) => (
-          <div className="flex flex-row justify-between items-center  px-[10px] py-[5px]  rounded-[10px] text-dark-blue font-medium hover:text-primary-blue transition-all ">
+          <div key={index} className="flex flex-row justify-between items-center  px-[10px] py-[5px]  rounded-[10px] text-dark-blue font-medium hover:text-primary-blue transition-all ">
             <div>{policy.name}</div>
             <div className="flex flex-row gap-[10px]  ">
               <button onClick={()=>handlePreview(policy.path)} className="bg-dark-blue px-[30px] py-[5px] text-white rounded-[10px] font-medium ">Preview</button>

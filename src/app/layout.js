@@ -14,8 +14,16 @@ const poppins = Poppins({
 
 export default function RootLayout({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(
-    Boolean(sessionStorage.getItem("admin"))
+    // Boolean(sessionStorage.getItem("admin"))
+    false
   );
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (sessionStorage.getItem("admin")) {
+        setIsLoggedIn(true);
+      }
+    }
+  }, []);
 
   const [sidebarCollapse, setSidebarCollapse] = useState(false);
   return (
