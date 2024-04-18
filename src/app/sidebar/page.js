@@ -158,7 +158,7 @@ export default function Sidebar({ collapse, setCollapse }) {
  
           {/* my team section */}
           <li>
-            <Link href="/my-team">
+            <Link href="#">
               <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <RiTeamFill className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
 
