@@ -35,7 +35,7 @@ export default function EmployeeManagement() {
 
   // handler function for showing addEmp. page
   const handleAddEmp = () => {
-    setAddEmp((prev) => !prev);
+    setAddEmp(!addEmp);
   };
 
   // fetch data from the firebase
@@ -108,7 +108,6 @@ export default function EmployeeManagement() {
     setFilteredEmployeeData(filteredByName);
   };
 
-  if (addEmp) return <AddEmployee />;
   return (
     <div>
       <div className="flex flex-col gap-3 pr-4">
@@ -146,6 +145,9 @@ export default function EmployeeManagement() {
             </Link>
           </div>
         </div>
+
+        {/* addEmp page */}
+        {addEmp ? <AddEmployee onClose={setAddEmp} /> : null}
 
         {/* Filter and Search Section */}
         <div className="flex justify-between items-center bg-white rounded-[10px] space-x-4 p-4">
