@@ -7,12 +7,12 @@ import FetchData from "./fetchData";
 import Table from "../Components/Table";
 import Link from "next/link";
 import AddEmployee from "../Components/AddEmployee";
+import DropdownInput from "../Components/dropDownInput";
 
 export default function EmployeeManagement() {
   // initial constants
   const EmployeeData = ["All Employees", "Active Employees", "Past Employees"];
   const filterByData = ["Gender", "Age", "BloodGroup", "City"];
-  const sortByData = ["name"];
   const defaultTableHeading = [
     "Designation",
     "Age",
@@ -31,19 +31,22 @@ export default function EmployeeManagement() {
   const [selectedListValue, setSelectedListValue] = useState("All Employees");
   const [selectedFilterValue, setSelectedFilterValue] = useState([]);
   const [selectedSortValue, setSelectedSortValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [addEmp, setAddEmp] = useState(false);
 
   // handler function for showing addEmp. page
   const handleAddEmp = () => {
-    setAddEmp(!addEmp);
+    setAddEmp((prev) => !prev);
   };
 
+  //-------------------All use effects of this components----------
   // fetch data from the firebase
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await FetchData();
         setFetchedData(data);
+        setFilteredEmployeeData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -52,47 +55,89 @@ export default function EmployeeManagement() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Handle dropdown change for employee list filter
   useEffect(() => {
-    const filterData = (listValue) => {
-      let filteredData = fetchedData;
-      if (listValue === "Active Employees") {
-        filteredData = fetchedData.filter((data) => data.status === "Active");
-      } else if (listValue === "Past Employees") {
-        filteredData = fetchedData.filter((data) => data.status === "Past");
-      }
-      setFilteredEmployeeData(filteredData);
-    };
-
-    filterData(selectedListValue);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedListValue, fetchedData]);
-
-  // Handle dropdown change for filtering table headings
-  useEffect(() => {
-    setFilterTableHeading(
-      selectedFilterValue.length > 0 ? selectedFilterValue : defaultTableHeading
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFilterValue]);
-
-  // Handle dropdown change for sorting employee data
-  useEffect(() => {
-    const sortData = () => {
-      if (selectedFilterValue) {
-        const sortedData = [...filteredEmployeeData].sort((a, b) => {
-          const nameA = a.fullname.toLowerCase();
-          const nameB = b.fullname.toLowerCase();
-          return nameA.localeCompare(nameB);
-        });
-        setFilteredEmployeeData(sortedData);
-      }
-    };
-    sortData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedSortValue]);
-
+    listFilter(), handleFilterDropdownChange();
+  }, [selectedListValue, selectedFilterValue]);
   // handle search input change
+
+  useEffect(() => {
+    handleFiltering();
+  }, [inputValue]);
+
+  //-------------------------------------------------------------------------
+
+  //function for updating the selectedListValue By dropdown
+  const handleListDropdownChange = (selectedOption) => {
+    setSelectedListValue(selectedOption);
+  };
+
+  //function for updating the selectedFilterValue By dropdown for customize columns
+  const handleFilterDropdownChange = (selectedOption) => {
+    setSelectedFilterValue(selectedOption);
+    if (selectedFilterValue) {
+      // Update filterTableHeading based on selected options
+      if (selectedFilterValue.length == 0) {
+        setFilterTableHeading(defaultTableHeading);
+        return; // Set to default headings if no options selected
+      }
+      setFilterTableHeading(selectedFilterValue);
+      return;
+    }
+  };
+
+  //function for updating the selectedSortValue By dropdown for Filtering
+  const handleSortDropdownChange = (selectedOption) => {
+    setSelectedSortValue(selectedOption);
+  };
+
+  //function for updating the value of input field of filter by dropdownInput
+  const handleInputChange = (e) => {
+    setInputValue(e);
+  };
+
+  //this function calls when selectedListValue selected or updated
+  const listFilter = () => {
+    console.log(selectedListValue, "list filter");
+    if (selectedListValue === "Active Employees") {
+      const filterListData = fetchedData.filter(
+        (data) => data.status === "Active"
+      );
+      setFilteredEmployeeData(filterListData);
+    }
+    if (selectedListValue === "Past Employees") {
+      const filterListData = fetchedData.filter(
+        (data) => data.status === "Past"
+      );
+      setFilteredEmployeeData(filterListData);
+    }
+    if (selectedListValue === "All Employees") {
+      setFilteredEmployeeData(fetchedData);
+    }
+  };
+
+  //function for dropdown where inputvalue is enter for filtering and calls when inputvalue is updates
+  const handleFiltering = () => {
+    if (inputValue == "") {
+      setFilteredEmployeeData(fetchedData);
+    }
+
+    if (selectedSortValue && inputValue) {
+      const prop = selectedSortValue.toLowerCase();
+
+      const filteredData = fetchedData.filter((employee) => {
+        if (selectedSortValue === "Age") {
+          return employee[prop] == inputValue;
+        }
+        if (employee[prop]) {
+          return employee[prop]
+            .toLowerCase()
+            .includes(inputValue.toLowerCase());
+        }
+      });
+      setFilteredEmployeeData(filteredData);
+    }
+  };
+
   const handleSearchInputChange = (event) => {
     setSearchEmployeeName(event.target.value);
   };
@@ -102,6 +147,7 @@ export default function EmployeeManagement() {
     if (!fetchedData) {
       return;
     }
+  
     const filteredByName = fetchedData.filter((data) =>
       data.fullname.toLowerCase().includes(searchEmployeeName.toLowerCase())
     );
@@ -172,19 +218,20 @@ export default function EmployeeManagement() {
           <DropdownBox
             mainText="Employee List"
             Data={EmployeeData}
-            onSelect={setSelectedListValue}
+            onSelect={handleListDropdownChange}
+          />
+
+          <DropdownInput
+            mainText=" Filter By"
+            Data={defaultTableHeading}
+            onSelect={handleSortDropdownChange}
+            onEnter={handleInputChange}
           />
 
           <DropdownCheckBox
-            mainText="Filter By"
+            mainText="Customize Columns"
             Data={filterByData}
-            onSelect={setSelectedFilterValue}
-          />
-
-          <DropdownBox
-            mainText="Sort By"
-            Data={sortByData}
-            onSelect={setSelectedSortValue}
+            onSelect={handleFilterDropdownChange}
           />
         </div>
       </div>
