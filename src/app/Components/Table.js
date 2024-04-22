@@ -39,12 +39,12 @@ const Table = ({ employeeData, headings }) => {
               <td>{data.id}</td>
               <td>{data.fullname}</td>
               {headings.map((heading) => (
-                <td>{data[heading.toLowerCase()]}</td>
+                <td key={heading}>{data[heading.toLowerCase()]}</td>
               ))}
               <td>
                 <button
-                  onClick={() => handleDelete(data.id)}
-                  className="bg-button-blue-color px-2 py-1 text-sm text-white rounded-sm"
+                  onClick={() => handleDelete(data.docId)}
+                  className="bg-button-blue-color px-2 py-1 text-sm text-white rounded-md"
                 >
                   Delete
                 </button>

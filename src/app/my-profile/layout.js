@@ -125,7 +125,7 @@ export default function ProfileLayout({ children }) {
     // }
     // fetchData();
     // // console.log('fbData',gotData);
-   
+         // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
  

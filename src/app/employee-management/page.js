@@ -46,7 +46,10 @@ export default function EmployeeManagement() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await FetchData();
+        const {data} = await FetchData();
+        console.log("data", data);
+
+
         setFetchedData(data);
         setFilteredEmployeeData(data);
       } catch (error) {
@@ -60,10 +63,12 @@ export default function EmployeeManagement() {
   // handle search input change
   useEffect(() => {
     listFilter(), handleFilterDropdownChange();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedListValue, selectedFilterValue]);
 
   useEffect(() => {
     handleFiltering();
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [inputValue]);
 
   //-------------------------------------------------------------------------
