@@ -51,7 +51,7 @@ export default function ProfileLayout({ children }) {
  
   // State for the Image edit
   const [editImage, setEditImage] = useState(false);
-  const [updatedImage, setUpdatedImage] = useState("/profileImg.jpeg");
+  const [updatedImage, setUpdatedImage] = useState("/img1.jpeg");
   const user = useUser();
   const {userData} = user;
   // const {docuId} = user;
