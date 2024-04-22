@@ -17,6 +17,7 @@ const nextConfig = {
     return config;
   },
   images: {
+    unoptimized: true,
     domains: [
       "t4.ftcdn.net",
       "designimages.appypie.com",
