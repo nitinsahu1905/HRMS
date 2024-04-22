@@ -55,10 +55,10 @@ export default function EmployeeManagement() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // handle search input change
   useEffect(() => {
     listFilter(), handleFilterDropdownChange();
   }, [selectedListValue, selectedFilterValue]);
-  // handle search input change
 
   useEffect(() => {
     handleFiltering();
@@ -97,7 +97,6 @@ export default function EmployeeManagement() {
 
   //this function calls when selectedListValue selected or updated
   const listFilter = () => {
-    console.log(selectedListValue, "list filter");
     if (selectedListValue === "Active Employees") {
       const filterListData = fetchedData.filter(
         (data) => data.status === "Active"
