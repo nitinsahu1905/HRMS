@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const DropdownCheckBox = ({ mainText, Data, onSelect }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -26,14 +27,14 @@ const DropdownCheckBox = ({ mainText, Data, onSelect }) => {
 
   return (
     <div>
-      <div className="flex flex-row justify-between px-2 py-1 items-center  rounded-lg border-2 border-grey-color w-full">
+      <div className="flex flex-row justify-between p-1 pt-2 rounded-lg border-2 border-grey-color w-full">
         <div className="text-grey-color">{mainText}</div>
         <div>
-          <button type="button" className="pl-8 py-1 " onClick={toggleDropdown}>
+          <button type="button" className="pl-8 " onClick={toggleDropdown}>
             {isDropdownOpen ? (
-              <IoIosArrowUp className="text-[#cdc3c3] " />
+              <IoIosArrowUp className="text-[#cdc3c3] h-4 w-4" />
             ) : (
-              <IoIosArrowDown className="text-[#cdc3c3]  group-hover:text-[#525768]" />
+              <RiArrowDropDownLine className="text-[#cdc3c3] h-7 w-7 group-hover:text-[#525768]" />
             )}
           </button>
         </div>

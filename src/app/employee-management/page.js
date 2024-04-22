@@ -2,10 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import DropdownBox from "../Components/dropdownBox";
-import FetchData from "./fetchData";
-// import DropdownCheckBox from "../Components/dropDownCheckbox";
 import DropdownCheckBox from "../Components/dropdownCheckbox";
-
+import FetchData from "./fetchData";
 import Table from "../Components/Table";
 import Link from "next/link";
 import AddEmployee from "../Components/AddEmployee";

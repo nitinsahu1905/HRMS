@@ -1,7 +1,7 @@
 export const CelebrationData =[
     {
         id:1,
-        name:"Priya Jain",
+        name:"Divyanshi Palliwal",
         occasion : "Birthday",
         date:"Today",
         img:'https://t4.ftcdn.net/jpg/01/98/68/53/360_F_198685380_UiiR2lCHgg7raR054Dv9v5cuOYdLCEdX.jpg'
