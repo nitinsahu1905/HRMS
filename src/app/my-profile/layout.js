@@ -101,24 +101,27 @@ export default function ProfileLayout({ children }) {
   return (
     <div className="flex flex-col h-full">
       {/* box for the bg image */}
-      <div className="relative">
+      <div className="relative ">
         {/* <img src="https://metadologie-operations-dev-ed.my.site.com/empcommunity/s/sfsites/c/img/community/cpt/cpt-profile-banner.png" /> */}
         <Image
           src="https://metadologie-operations-dev-ed.my.site.com/empcommunity/s/sfsites/c/img/community/cpt/cpt-profile-banner.png"
           alt="profile image"
           width={1920}
           height={400}
-          className="relative"
+          className="relative  "
         />
       </div>
  
       {/* box for the content */}
       <div className="">
         {/* box for the navigaiton & image */}
-        <div className="bg-secondary-blue flex justify-evenly items-center h-12 relative ">
+        <div className="bg-secondary-blue flex justify-between items-center lg:h-12 md:h-10 h-8 relative lg:px-12 md:px-9 px-3 ">
           {/* profile image */}
+          <div className="relative flex items-center justify-center lg:h-32 lg:w-32 md:h-24 md:w-24 h-16 w-16">
+
+          {/* Inner profile photo div */}
           <div
-            className="rounded-full object-cover absolute top-[-40px] left-[60px]  bg-white p-1 h-32 w-32 "
+            className="rounded-full object-cover absolute     bg-white p-1 lg:h-32 lg:w-32 md:h-24 md:w-24 h-16 w-16 "
             onMouseEnter={() => setEditImage(true)}
             onMouseLeave={() => setEditImage(false)}
           >
@@ -149,6 +152,7 @@ export default function ProfileLayout({ children }) {
               </div>
             ) : null}
           </div>
+          </div>
  
           {/* navigation tabs */}
           <div className="flex h-full ">
@@ -159,7 +163,7 @@ export default function ProfileLayout({ children }) {
                 routes === "/my-profile/personal"
                 ? "bg-white text-primary-blue"
                 : "text-white"
-              } text-[14px] cursor-pointer flex items-center justify-center p-3`}
+              } md:text-[14px] text-[12px] cursor-pointer flex items-center justify-center px-3 h-full `}
             >
               <Link href="/my-profile/personal">PERSONAL</Link>
             </span>
@@ -170,7 +174,7 @@ export default function ProfileLayout({ children }) {
                 routes === "/my-profile/work"
                   ? "bg-white text-primary-blue"
                   : "text-white"
-              } text-[14px] cursor-pointer flex items-center justify-center p-3 `}
+              } md:text-[14px] text-[12px] cursor-pointer flex items-center justify-center px-3 h-full `}
             >
               <Link href="/my-profile/work">WORK</Link>
             </span>
@@ -199,11 +203,11 @@ export default function ProfileLayout({ children }) {
         </div>
         
         {/* Edit button here */}
-        <div className="w-full flex items-center justify-end pr-10 mt-2">
+        <div className="w-full flex items-center justify-end lg:pr-10 md:pr-9 pr-5 mt-2">
         <button onClick={()=>{setEditProfile(true);
           
           }          
-          } className="flex items-center justify-center cursor-pointer text-white bg-button-blue-color px-[10px] py-[5px] rounded-[5px] ">
+          } className="flex items-center justify-center cursor-pointer text-white bg-button-blue-color md:px-[20px] px-[15px] md:py-[5px] py-[3px] rounded-[5px] ">
             
              Edit
           
@@ -211,8 +215,8 @@ export default function ProfileLayout({ children }) {
         </div>
 
         {/* passing childer component here */}
-        <div className="flex flex-row w-full mt-0">
-          <div className="w-1/4 flex flex-col gap-3 p-5 ">
+        <div className="flex md:flex-row flex-col w-full mt-0">
+          <div className="lg:w-1/4 md:w-1/3 w-full flex flex-col gap-3 p-5 ">
             <div className="flex flex-col px-3 ">
             {/* Name */}
             {editing ? (
@@ -235,9 +239,10 @@ export default function ProfileLayout({ children }) {
               </div>
              )}
              
-              {/* <div className=" text-[16px] font-normal ">CEO at Metadologie</div> */}
             </div>
-            <div className="shadow-md rounded-[10px] ">
+
+            {/* Left Short Profile Section contains General Information */}
+            <div className="shadow-md rounded-[10px] overflow-hidden ">
               <Card>
                 <div className="flex flex-col gap-[10px] text-[14px]  ">
                   {/* Designation */}
@@ -284,7 +289,7 @@ export default function ProfileLayout({ children }) {
               </Card>
             </div>
           </div>
-          <div className="w-3/4">{children}</div>
+          <div className="lg:w-3/4 md:w-2/3 w-full overflow-x-hidden ">{children}</div>
         </div>
       </div>
     </div>

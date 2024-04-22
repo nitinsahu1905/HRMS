@@ -19,47 +19,59 @@ import {
 } from "react-icons/io";
 
 export default function Sidebar({ collapse, setCollapse }) {
+  const [overflowDropdownOnCollapse, setOverflowDropdownOnCollapse] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
- 
+
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
+    setOverflowDropdownOnCollapse((prev) => !prev);
+        // setCollapse(false);
   };
- 
+
   const [isTimeDropdownOpen, setIsTimeDropdownOpen] = useState(false);
- 
+
   const toggleTimeDropdown = () => {
     setIsTimeDropdownOpen((prevState) => !prevState);
+    setOverflowDropdownOnCollapse((prev) => !prev);
+    // setCollapse(false);
   };
- 
+
   return (
-    // whole side bard box
-    <div className="w-full  relative ">
+    // whole sidebar box
+    <div className="relative ">
       {/* <div className="absolute top-[10px] right-[10px] z-50"></div> */}
-      
+
+        {/* Icon for Sidebar Collapsing */}
+        <div className={`flex items-center justify-center p-0 text-[20px] fixed z-50 ${collapse? "left-[52px]" : "left-[252px]" } top-[10px] `}>
+          {collapse ? (
+            <div
+              className="w-fit text-sky-color bg-[#cdc3c3]  flex items-center justify-center rounded-full cursor-pointer"
+              onClick={() => setCollapse(false)}
+            >
+              <IoIosArrowDroprightCircle />
+            </div>
+          ) : (
+            <div
+              className="w-fit text-sky-color bg-[#cdc3c3] m-0 flex items-center justify-center rounded-full cursor-pointer"
+              onClick={() => {
+                setCollapse(true);
+                setIsDropdownOpen(false);
+                setIsTimeDropdownOpen(false);
+              }}
+            >
+              <IoIosArrowDropleftCircle />
+            </div>
+          )}
+        </div>
       <aside
-        className={` 
-        ${collapse ? "-translate-x-full" : "sm:translate-x-0"}
-         w-auto h-screen overflow-x-visible fixed top-0 left-0 z-50 transition-transform -translate-x-full sm:translate-x-0 px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700 overflow-y-scroll  scrollbar-hide `}
+        className={` ${collapse ? "w-[62px] " : "w-[262px] "}
+                     ${overflowDropdownOnCollapse? "overflow-y-visible" : "overflow-y-scroll"}
+          h-screen overflow-x-visible fixed top-0 left-0 z-40   px-3 py-4  bg-[#121f47] dark:bg-[#121f47]-700   scrollbar-hide `}
       >
-        {collapse ? (
-        <div className="flex items-center justify-center p-0 text-[20px] absolute z-50 right-[-10px] top-[10px] ">
-          <div
-            className="w-fit text-sky-color bg-[#cdc3c3] flex items-center justify-center rounded-full cursor-pointer"
-            onClick={() => setCollapse(false)}
-          >
-            <IoIosArrowDroprightCircle />
-          </div>
-        </div>
-      ) : (
-        <div className="flex items-center justify-center p-0 text-[20px] absolute z-50 right-[-10px] top-[10px]   ">
-          <div
-            className="w-fit text-sky-color bg-[#cdc3c3] m-0 flex items-center justify-center rounded-full cursor-pointer"
-            onClick={() => setCollapse(true)}
-          >
-            <IoIosArrowDropleftCircle />
-          </div>
-        </div>
-      )}
+        <div className="relative" >
+
+        
+
         <ul className="space-y-2 font-medium flex flex-col gap-1">
           {/* dashboard section */}
           <li>
@@ -75,7 +87,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* inbox section */}
           <li>
             <Link href="/inbox">
@@ -89,9 +101,9 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* time % attend section dropdown */}
-          <li>
+          <li className="relative">
             <div
               onClick={toggleTimeDropdown}
               className="flex items-center cursor-pointer p-2 rounded-lg dark:text-white hover:bg-gray-100  group"
@@ -121,44 +133,44 @@ export default function Sidebar({ collapse, setCollapse }) {
                 </div>
               )}
             </div>
- 
+
             <ul
               id="timedropdown-example"
-              className={`py-2 space-y-2 ${isTimeDropdownOpen ? "" : "hidden"}`}
+              className={`py-2 space-y-2 ${isTimeDropdownOpen ? `${collapse? "absolute bg-dark-blue/75 left-[52px] rounded-[5px] px-2 ": " "}` : "hidden"}`}
             >
               {/* timesheet section */}
               <li>
                 <Link href="/timesheet">
                   {" "}
-                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
+                  <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Timesheet
                   </div>
                 </Link>
               </li>
- 
+
               {/* attendance section */}
               <li>
                 <Link href="/attendance">
-                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
+                  <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Attendance
                   </div>
                 </Link>
               </li>
- 
+
               {/* leaves section */}
               <li>
                 <Link href="/leaves">
-                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
+                <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Leaves
                   </div>
                 </Link>
               </li>
             </ul>
           </li>
- 
+
           {/* my team section */}
           <li>
-            <Link href="#">
+            <Link href="/my-team">
               <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <RiTeamFill className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
 
@@ -170,7 +182,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* manage employees section */}
           <li>
             <Link href="/employee-management">
@@ -185,7 +197,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* efficiency section */}
           <li>
             <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
@@ -197,7 +209,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               )}
             </div>
           </li>
- 
+
           {/* myorganization dropdown menu */}
           <li>
             <div
@@ -228,40 +240,40 @@ export default function Sidebar({ collapse, setCollapse }) {
                 </div>
               )}
             </div>
- 
+
             {/* organization chart section */}
             <ul
               id="dropdown-example"
-              className={`py-2 space-y-2 ${isDropdownOpen ? "" : "hidden"}`}
+              className={`py-2 space-y-2 ${isDropdownOpen ? `${collapse? "absolute bg-dark-blue/75 left-[52px] rounded-[5px] px-2 ": " "}`  : "hidden"}`}
             >
               <li>
                 <Link href="/organization-chart">
-                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
+                <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Organization Chart
                   </div>
                 </Link>
               </li>
- 
+
               {/* organation feedback section */}
               <li>
                 <Link href="/organization-feedback">
-                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
+                <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Organization Feedback
                   </div>
                 </Link>
               </li>
- 
+
               {/* organization-policies section */}
               <li>
                 <Link href="/organization-policies">
-                  <div className="flex items-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg pl-11 group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]">
+                <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Organization Policies
                   </div>
                 </Link>
               </li>
             </ul>
           </li>
- 
+
           {/* finance section */}
           <li>
             <Link href="/my-finance">
@@ -276,7 +288,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* profile section */}
           <li>
             <Link href="/payroll">
@@ -290,7 +302,7 @@ export default function Sidebar({ collapse, setCollapse }) {
               </div>
             </Link>
           </li>
- 
+
           {/* myprofile section */}
           <li>
             <Link href="/my-profile/personal">
@@ -305,8 +317,8 @@ export default function Sidebar({ collapse, setCollapse }) {
             </Link>
           </li>
         </ul>
+        </div>
       </aside>
     </div>
   );
 }
- 

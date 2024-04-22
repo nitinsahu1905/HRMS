@@ -1,5 +1,5 @@
 "use client"
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Chart from 'chart.js'; // Importing Chart.js auto bundle
 
 const ChartComponent = () => {
@@ -77,12 +77,45 @@ const ChartComponent = () => {
     };
   }, []); // Empty dependency array to run the effect only once on mount
 
+
+  const [screenWidth, setScreenWidth] = useState(null);
+  const [heightG, setHeightG] = useState(screenWidth/4)
+
+  useEffect(() => {
+    // Ensure window object is available
+    if (typeof window !== 'undefined') {
+      const handleResize = () => {
+        setScreenWidth(window.innerWidth);
+      };
+
+      // Add event listener to listen for window resize
+      window.addEventListener('resize', handleResize);
+
+      // Set initial screen width
+      setScreenWidth(window.innerWidth);
+
+      // Clean up event listener on component unmount
+      return () => window.removeEventListener('resize', handleResize);
+    }
+    console.log(screenWidth)
+  }, []);
+
+
   return (
-    <div className="h-auto">
+    <div className="h-auto ">
       <div className="w-auto">
-        <div className="bg-white p-4">
-          <canvas id="myChart"></canvas>
-        </div>
+        
+        <div className="bg-white lg:p-4 p-2 lg:h-auto lg:w-auto h-[300px] ">
+          {/* {screenWidth>600?
+          <canvas id="myChart" style={{height:"auto"}} ></canvas>
+          :
+          <canvas id="myChart" height={284} ></canvas>
+          } */}
+          
+          {/* <canvas id="myChart" style={`${screenWidth<500? {height: "284px"}  : {height:"auto"}}`} ></canvas> */}
+          <canvas id="myChart" style={screenWidth < 500 ? { height: "284px" } : { height: "auto" }}></canvas>
+
+        </div> 
       </div>
     </div>
   );

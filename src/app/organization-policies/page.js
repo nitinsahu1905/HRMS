@@ -8,6 +8,7 @@ import { PoliciesData } from "../Constants/PoliciesData";
 
 import ExitPolicy from "../../../public/Exit_Policy.pdf";
 import Modal from "../Components/Modal";
+import AddPolicyModal from "../Components/AddPolicyModal";
 
 const OrganizationPolicies = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -90,14 +91,14 @@ const OrganizationPolicies = () => {
         </h1> 
          <p className="text-primary-blue">Dashboard / Organization Policies</p> 
       </div> */}
-      <Card>
-        <div className="w-full flex flex-row justify-between items-center ">
-          <div className="text-primary-blue text-[20px] font-medium ">
+      <Card >
+        <div className="w-full flex lg:flex-row md:flex-row flex-col md:gap-0 gap-2 justify-between lg:items-center md:items-center items-start ">
+          <div className="text-primary-blue md:text-[20px] text-[16px] font-medium ">
             Organizational Policies
           </div>
           <div className="flex gap-[10px]  ">
             
-              <button onClick={()=>downloadAll()} className="custom-btn font-semibold ">Download All</button>
+              <button onClick={()=>downloadAll()} className="custom-btn font-semibold md:px-[20px] px-[10px] ">Download All</button>
            
             {/* <input
               type="file"
@@ -118,14 +119,14 @@ const OrganizationPolicies = () => {
             <button
               onClick={openModal}
               aria-label="file upload"
-              className="text-primary-blue rounded-[10px] border-2 border-primary-blue px-[20px] py-[10px] font-semibold "
+              className="text-primary-blue rounded-[10px] border-2 border-primary-blue md:px-[20px] px-[10px] py-[10px] font-semibold "
             >
               + Add New Policy
             </button>
             
             
             {isModalOpen?
-            <Modal isOpen={isModalOpen} onClose={closeModal} >
+            <AddPolicyModal isOpen={isModalOpen} onClose={closeModal} >
                 
                 <div className=" lg:w-[500px] xl:w-[500px] md:w-[300px] sm:w-[150px] flex flex-col justify-center " >
                     <h2 className="text-[24px] font-bold mb-5">Add New Policy</h2>
@@ -158,7 +159,7 @@ const OrganizationPolicies = () => {
                     </div>
                 </div>
                 
-            </Modal>
+            </AddPolicyModal>
             :
             null
             
@@ -172,9 +173,9 @@ const OrganizationPolicies = () => {
       {/* All Cards */}
       <div className="flex flex-col gap-[10px] ">
         {PoliciesData.map((policy, index) => (
-          <div key={index} className="flex flex-row justify-between items-center  px-[10px] py-[5px]  rounded-[10px] text-dark-blue font-medium hover:text-primary-blue transition-all ">
+          <div key={index} className="flex md:flex-row flex-col justify-between md:items-center items-start md:gap-0 gap-[10px] md:text-[16px] text-[18px]  px-[10px] py-[5px]  rounded-[10px] text-dark-blue font-medium hover:text-primary-blue transition-all ">
             <div>{policy.name}</div>
-            <div className="flex flex-row gap-[10px]  ">
+            <div className="flex flex-row md:items-center items-stretch md:justify-center justify-between gap-[10px]  ">
               <button onClick={()=>handlePreview(policy.path)} className="bg-dark-blue px-[30px] py-[5px] text-white rounded-[10px] font-medium ">Preview</button>
               <button onClick={()=>handleDownload(policy.path, policy.name)} className="border-2 border-dark-blue px-[20px] py-[5px] text-dark-blue font-medium rounded-[10px] ">Download</button>
             </div>
@@ -185,7 +186,7 @@ const OrganizationPolicies = () => {
       { isFileModalOpen?
       <Modal isOpen={isFileModalOpen} onClose={closeModal} >
         {/* <embed src={currentFilePath} type="application/pdf"  width="100%" height="500px" /> */}
-        <iframe src={`${currentFilePath}#toolbar=0&navpanes=0&view=FitH`} width={800} tyle={{ border: 'none', overflow: 'hidden', width:'100%' }}  height={650} ></iframe>
+        <iframe src={`${currentFilePath}#toolbar=0&navpanes=0&view=FitH`}  style={{ border: 'none', overflow: 'hidden',  }} className="lg:w-[800px] md:w-[650px] sm:w-[350px]  "  height={650} ></iframe>
       </Modal>
       :
       null

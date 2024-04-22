@@ -62,16 +62,16 @@ export default function Dashboard(){
             </Card>
         </div> */}
 
-      <div className="flex flex-row gap-[10px]">
-        <div className="w-3/5 bg-white rounded-lg h-auto flex flex-col">
-          <div className="top-2 left-1 mt-3 text-dark-blue font-medium text-2xl px-3">
+<div className="flex flex-col lg:flex-row gap-4 lg:gap-[10px]">
+        <div className="w-full flex flex-col  lg:w-3/5 bg-white rounded-lg h-auto">
+          <div className="top-2 left-1 mt-3 text-dark-blue font-medium text-2xl px-3   ">
             Timesheet Status
           </div>
-          <div>
+          <div className="pb-1">
             <ChartComponent />
           </div>
         </div>
-        <div className="w-2/5 bg-white rounded-lg h-auto  flex flex-col pb-2">
+        <div className="lg:w-2/5  bg-white rounded-lg h-auto  flex flex-col pb-2">
           <div className="top-2 left-1 mt-3 text-dark-blue font-medium text-2xl px-3">
             Celebrations
           </div>
@@ -95,7 +95,7 @@ export default function Dashboard(){
                 <div className="pl-2">
                     <table className="w-full border-collapse mt-4">
                         <tbody>
-                            <tr className="text-center p-10">
+                            <tr className="w-full text-center p-10">
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>hours</th>
@@ -103,7 +103,7 @@ export default function Dashboard(){
                             </tr>
                             {ResourceForecastData.map((data, index) => (
                             <React.Fragment key={index}>
-                                <tr className="text-center p-10">
+                                <tr className="w-full text-center p-10">
                                     <td>{data.id}</td>
                                     <td>{data.name}</td>
                                     <td>{calculateTotalHours(data.forecast)}</td>
@@ -116,7 +116,7 @@ export default function Dashboard(){
                                 </tr>
                                 {showFieldStates[index] && (
                                     <tr>
-                                        <td colSpan="5" className="">
+                                        <td colSpan="5" className="w-full">
                                             <ResourceForecast className="" isOpen={showFieldStates[index]} forecast={data.forecast}/>
                                         </td>
                                     </tr>
