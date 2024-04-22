@@ -41,14 +41,14 @@ const ResourceForecast = ({ isOpen, forecast }) => {
         <React.Fragment key={dayforecast.id}>
           <div className='flex flex-col w-full gap-4  p-1 shadow-lg shadow-white bg-opacity-50'>
             {/* full Row for a day */}
-            <div className='w-full flex md:flex-row flex-col '>
+            <div className='w-full flex lg:flex-row flex-col '>
               <div className='md:w-[10%] w-full flex items-center text-left'>{dayforecast.day}</div>
-              <div className='md:w-[80%] w-full flex flex-row items-center justify-center gap-1'>
+              <div className='md:w-[80%] w-full flex md:flex-row flex-col md:items-center items-start sm:flex-[1,1,100%] justify-center gap-1'>
                 {dayforecast.hours.map((hourObj, index) => (
                   <React.Fragment key={index}>
                     <div
                       title={`${hourObj[Object.keys(hourObj)[0]]} hours - ${Object.keys(hourObj)[0]}`}
-                      className='truncate cursor-pointer transition-all ease-in-out duration-500 '
+                      className='sm:w-full flex-initial truncate cursor-pointer transition-all ease-in-out duration-500 '
                       style={{
                         width: `${calculateWidth(hourObj[Object.keys(hourObj)[0]]).usedWidth}%`,
                         backgroundColor: getColorForHours(hourObj[Object.keys(hourObj)[0]]),
@@ -66,7 +66,7 @@ const ResourceForecast = ({ isOpen, forecast }) => {
                 ))}
                 {calculateWidth(dayforecast.hours).remainingWidth > 0 && (
                   <div
-                    className='flex items-center justify-center transition-all ease-in-out duration-500 '
+                    className='w-full flex items-center justify-center transition-all ease-in-out duration-500 '
                     style={{
                       width: `${calculateWidth(dayforecast.hours).remainingWidth}%`,
                       backgroundColor: '#F76868',
