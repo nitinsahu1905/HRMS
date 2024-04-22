@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FaPowerOff, FaLinkedin } from "react-icons/fa";
 import { MdModeEditOutline, MdOutlineMail } from "react-icons/md";
 import Card from "../Components/Card";
@@ -16,6 +16,9 @@ import { authTable, firestoreDB } from "@/app/utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import {useRouter} from 'next/navigation'
 import EditProfile from "../Components/EditProfile";
+import fetchProfileData from "../Components/fetchProfileData";
+import ProfileContext, { ProfileContextProvider } from "../Context/profileContext";
+import { useUser } from "../Context/UserContext";
 const adminTable = collection(firestoreDB, "admin");
 
 export default function ProfileLayout({ children }) {
@@ -24,8 +27,15 @@ export default function ProfileLayout({ children }) {
   const router = useRouter();
 
   const [editing, setEditing] = useState(false);
-  const [data, setData] = useState([{}]);
+  const [data1, setData] = useState([{}]);
   const [name, setName] = useState("Gourav Goyal");
+  const [gotData, setGotData] = useState([{}]);
+  const [docId, setDocId] = useState("");
+  // const {profile} = useContext(ProfileContext);
+  // const {profile}=useContext(ProfileContext);
+  const [fetchData, setFetchData] = useState([{}]);
+  // setFetchData(profile);
+  // setData(profile);
 
   const [editProfile, setEditProfile] = useState(false);
 
@@ -42,6 +52,13 @@ export default function ProfileLayout({ children }) {
   // State for the Image edit
   const [editImage, setEditImage] = useState(false);
   const [updatedImage, setUpdatedImage] = useState("/profileImg.jpeg");
+  const user = useUser();
+  const {userData} = user;
+  // const {docuId} = user;
+  console.log("profile",userData);
+  
+
+  // console.log(docuId);
   
  
   const hiddenFileInput = useRef(null);
@@ -83,22 +100,38 @@ export default function ProfileLayout({ children }) {
   //   const userQuery = query(collection(firestoreDB, "admin"), where("userId", "==", "PB27BveZJXhQul4D1dcqekXIlez2"));
   // },[])
   useEffect(() => {
+    setData(userData);
     
-    const userQuery = query(collection(firestoreDB, "admin"), where("userId", "==", "PB27BveZJXhQul4D1dcqekXIlez2"));
-    let data;
-    getDocs(userQuery).then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        data = doc.data();
-        setData(data);
-        console.log(doc.id, " => ", doc.data());
-      });
-    });
-    console.log(data);
+    // const userQuery = query(collection(firestoreDB, "admin"), where("userId", "==", "PB27BveZJXhQul4D1dcqekXIlez2"));
+    // let data;
+    // getDocs(userQuery).then((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     data = doc.data();
+    //     setData(data);
+    //     console.log(doc.id, " => ", doc.data());
+    //   });
+    // });
+    // console.log(data);
+    // const fetchData= async()=>{
+    //   const {data,docId} = await fetchProfileData();
+    //   console.log('fetcheddata',data);
+    //   console.log(docId);
+    //   // setData(data);
+    //   setDocId(docId);
+    //   setFetchData(data);
+    //   setGotData(data);
+    //   console.log('fetchData',fetchData);
+
+    // }
+    // fetchData();
+    // // console.log('fbData',gotData);
    
   }, [])
   
  
   return (
+    
+    
     <div className="flex flex-col h-full">
       {/* box for the bg image */}
       <div className="relative">
@@ -215,25 +248,12 @@ export default function ProfileLayout({ children }) {
           <div className="w-1/4 flex flex-col gap-3 p-5 ">
             <div className="flex flex-col px-3 ">
             {/* Name */}
-            {editing ? (
-              <div className="flex gap-2">
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="text-dark-blue text-[22px] font-semibold bg-gray-200 p-1 rounded-[5px] border-bg-primary-blue border-2 w-52 border-solid"
-              />
-              <button className="text-gray-600" onClick={updateName}><LuSave /></button>
-              </div>
- 
-             )  :(
-              <div className="flex  gap-2">
+            <div className="flex  gap-2">
               <div className="font-semibold text-[22px] text-dark-blue ">
-                {name}
+              {`${userData[0].firstName} ${userData[0].lastName}`}
               </div>
-              <button onClick={()=>{setEditing(true)}}><CiEdit /></button>
+             
               </div>
-             )}
              
               {/* <div className=" text-[16px] font-normal ">CEO at Metadologie</div> */}
             </div>
@@ -246,7 +266,7 @@ export default function ProfileLayout({ children }) {
                       <BsFillHandbagFill />
                     </div>
                     <div>
-                      <span className="text-dark-blue">CEO</span> at Metadologie
+                      <span className="text-dark-blue">{data1[0].designation}</span> at Metadologie
                     </div>
                   </div>
                   {/* School/Institute Name */}
@@ -256,7 +276,7 @@ export default function ProfileLayout({ children }) {
                     </div>
                     <div>
                       Went to
-                      <span className="text-dark-blue"> Jaipur Cambridge </span>
+                      <span className="text-dark-blue"> {userData[0].school}</span>
                     </div>
                   </div>
                   {/* Location */}
@@ -264,21 +284,21 @@ export default function ProfileLayout({ children }) {
                     <div className="flex items-center">
                       <FaLocationDot />
                     </div>
-                    <div><span className="text-dark-blue">Jaipur</span></div>
+                    <div><span className="text-dark-blue">{userData[0].city}</span></div>
                   </div>
                   {/* Email */}
                   <div className="flex flex-row items-center gap-[10px] text-grey-color ">
                     <div className="flex items-center">
                       <MdOutlineMail />
                     </div>
-                    <div><span className="text-dark-blue">admin@gmail.com</span></div>
+                    <div><span className="text-dark-blue">{userData[0].personalEmailId}</span></div>
                   </div>
                   {/* LinkedIn profile */}
                   <div className="flex flex-row items-center gap-[10px] text-grey-color w-full ">
                   <div className="flex items-start ">
                   <FaLinkedin />
                     </div>
-                    <div className="flex flex-wrap"><Link href='https://www.linkedin.com/company/metadologie/' className="text-dark-blue break-all leading-[1.1] hover:text-primary-blue ">https://www.linkedin.com/company/metadologie/</Link></div>
+                    <div className="flex flex-wrap"><Link href='https://www.linkedin.com/company/metadologie/' className="text-dark-blue break-all leading-[1.1] hover:text-primary-blue ">{data1[0].linkedin}</Link></div>
                   </div>
                 </div>
               </Card>
@@ -288,6 +308,7 @@ export default function ProfileLayout({ children }) {
         </div>
       </div>
     </div>
+    
   );
 }
  

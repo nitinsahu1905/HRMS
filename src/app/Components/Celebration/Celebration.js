@@ -16,6 +16,7 @@ const Celebration = (props) => {
               height={24}
               alt="Emp-img"
               // objectFit="cover"
+              quality={100}
               className=" object-cover w-full h-full"
             />
           </div>
