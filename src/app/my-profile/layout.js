@@ -266,7 +266,7 @@ export default function ProfileLayout({ children }) {
                       <BsFillHandbagFill />
                     </div>
                     <div>
-                      <span className="text-dark-blue">{data1[0].designation}</span> at Metadologie
+                      <span className="text-dark-blue">{data1[0].Designation}</span> at Metadologie
                     </div>
                   </div>
                   {/* School/Institute Name */}
@@ -298,7 +298,7 @@ export default function ProfileLayout({ children }) {
                   <div className="flex items-start ">
                   <FaLinkedin />
                     </div>
-                    <div className="flex flex-wrap"><Link href='https://www.linkedin.com/company/metadologie/' className="text-dark-blue break-all leading-[1.1] hover:text-primary-blue ">{data1[0].linkedin}</Link></div>
+                    <div className="flex flex-wrap"><Link href='https://www.linkedin.com/company/metadologie/' className="text-dark-blue break-all leading-[1.1] hover:text-primary-blue ">{userData[0].linkedin}</Link></div>
                   </div>
                 </div>
               </Card>
