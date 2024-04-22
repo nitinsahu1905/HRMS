@@ -64,7 +64,7 @@ const ResourceForecast = ({ isOpen, forecast }) => {
         <React.Fragment key={dayforecast.id}>
           <div className='flex flex-col w-full gap-4  p-1 shadow-lg shadow-white bg-opacity-50'>
             {/* full Row for a day */}
-            <div className='w-full flex md:flex-row flex-col '>
+            <div className='w-full flex lg:flex-row flex-col '>
               <div className='md:w-[10%] w-full flex items-center text-left'>{dayforecast.day}</div>
               <div className='md:w-[80%] w-full flex flex-row items-center justify-center gap-1 text-xs font-semibold'>
                 {dayforecast.hours.map((hourObj, index) => (

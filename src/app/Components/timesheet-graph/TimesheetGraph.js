@@ -42,6 +42,7 @@ const ChartComponent = () => {
       type: 'bar',
       data,
       options: {
+        maintainAspectRatio : false,
         scales: {
           xAxes: [{
             scaleLabel: {
@@ -105,15 +106,11 @@ const ChartComponent = () => {
     <div className="h-auto ">
       <div className="w-auto">
         
-        <div className="bg-white lg:p-4 p-2 lg:h-auto lg:w-auto h-[300px] ">
-          {/* {screenWidth>600?
-          <canvas id="myChart" style={{height:"auto"}} ></canvas>
-          :
-          <canvas id="myChart" height={284} ></canvas>
-          } */}
+        <div className="bg-white lg:p-4 p-2 lg:h-[372px] md:h-auto lg:w-auto h-[300px] ">
+          
           
           {/* <canvas id="myChart" style={`${screenWidth<500? {height: "284px"}  : {height:"auto"}}`} ></canvas> */}
-          <canvas id="myChart" style={screenWidth < 500 ? { height: "284px" } : { height: "auto" }}></canvas>
+          <canvas id="myChart"  height={ 284 } ></canvas>
 
         </div> 
       </div>
@@ -122,3 +119,5 @@ const ChartComponent = () => {
 };
 
 export default ChartComponent;
+
+// style={screenWidth > 500 ? { height: "300px"} : { height: "284px" }}
