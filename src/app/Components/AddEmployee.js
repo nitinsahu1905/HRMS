@@ -126,11 +126,12 @@ const AddEmployee = ({ onClose }) => {
       department,
       personalEmailId: trimmedPersonalEmailId,
       officialEmailId: trimmedOfficialEmailId,
+      isregister: "false",
     };
 
     try {
       // Add employee data to Firestore
-      const docRef = doc(collection(firestoreDB, "employees"));
+      const docRef = doc(collection(firestoreDB, "nonRegEmp"));
       await setDoc(docRef, formData);
       toast.success("Employee added successfully!");
 
