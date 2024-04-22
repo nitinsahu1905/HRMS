@@ -7,7 +7,7 @@ import FetchData from "./fetchData";
 import Table from "../Components/Table";
 import Link from "next/link";
 import AddEmployee from "../Components/AddEmployee";
-import DropdownInput from "../Components/dropdownInput";
+import DropdownInput from "../Components/dropDownInput";
 
 export default function EmployeeManagement() {
   // initial constants
@@ -31,19 +31,23 @@ export default function EmployeeManagement() {
   const [selectedListValue, setSelectedListValue] = useState("All Employees");
   const [selectedFilterValue, setSelectedFilterValue] = useState([]);
   const [selectedSortValue, setSelectedSortValue] = useState("");
-  const [inputValue,setInputValue]=useState("");
+  const [inputValue, setInputValue] = useState("");
   const [addEmp, setAddEmp] = useState(false);
 
   // handler function for showing addEmp. page
   const handleAddEmp = () => {
     setAddEmp((prev) => !prev);
   };
-//-------------------All use effects of this components----------
+
+  //-------------------All use effects of this components----------
   // fetch data from the firebase
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await FetchData();
+        const {data} = await FetchData();
+        console.log("data", data);
+
+
         setFetchedData(data);
         setFilteredEmployeeData(data);
       } catch (error) {
@@ -54,94 +58,89 @@ export default function EmployeeManagement() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    listFilter(),handleFilterDropdownChange();
-  }, [selectedListValue,selectedFilterValue]);
   // handle search input change
+  useEffect(() => {
+    listFilter(), handleFilterDropdownChange();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedListValue, selectedFilterValue]);
 
-   
-useEffect(()=>{
-  handleFiltering()
-},[inputValue])
+  useEffect(() => {
+    handleFiltering();
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+  }, [inputValue]);
 
-//-------------------------------------------------------------------------
+  //-------------------------------------------------------------------------
 
-//function for updating the selectedListValue By dropdown
+  //function for updating the selectedListValue By dropdown
   const handleListDropdownChange = (selectedOption) => {
     setSelectedListValue(selectedOption);
-     }
+  };
 
-
-//function for updating the selectedFilterValue By dropdown for customize columns
+  //function for updating the selectedFilterValue By dropdown for customize columns
   const handleFilterDropdownChange = (selectedOption) => {
-      setSelectedFilterValue(selectedOption);
-      if (selectedFilterValue) {
-        // Update filterTableHeading based on selected options
-        if (selectedFilterValue.length == 0) {
-          setFilterTableHeading(defaultTableHeading);
-          return; // Set to default headings if no options selected
-        }
-        setFilterTableHeading(selectedFilterValue);
-        return;
+    setSelectedFilterValue(selectedOption);
+    if (selectedFilterValue) {
+      // Update filterTableHeading based on selected options
+      if (selectedFilterValue.length == 0) {
+        setFilterTableHeading(defaultTableHeading);
+        return; // Set to default headings if no options selected
       }
-    };
+      setFilterTableHeading(selectedFilterValue);
+      return;
+    }
+  };
 
-    //function for updating the selectedSortValue By dropdown for Filtering
-    const handleSortDropdownChange = (selectedOption) => {
-      setSelectedSortValue(selectedOption);
-    };
+  //function for updating the selectedSortValue By dropdown for Filtering
+  const handleSortDropdownChange = (selectedOption) => {
+    setSelectedSortValue(selectedOption);
+  };
 
-    //function for updating the value of input field of filter by dropdownInput
-    const handleInputChange = (e) => {
-      setInputValue(e);
-  
-    };
+  //function for updating the value of input field of filter by dropdownInput
+  const handleInputChange = (e) => {
+    setInputValue(e);
+  };
 
-//this function calls when selectedListValue selected or updated
-    const listFilter = () =>{
-      console.log(selectedListValue,"list filter")
-      if (selectedListValue === "Active Employees") {
-        const filterListData = fetchedData.filter(
-          (data) => data.status === "Active"
-        );
-        setFilteredEmployeeData(filterListData);
-      }
-      if (selectedListValue === "Past Employees") {
-        const filterListData = fetchedData.filter(
-          (data) => data.status === "Past"
-        );
-        setFilteredEmployeeData(filterListData);
-      }
-      if (selectedListValue === "All Employees") {
-        setFilteredEmployeeData(fetchedData);
-      }
-    };
+  //this function calls when selectedListValue selected or updated
+  const listFilter = () => {
+    if (selectedListValue === "Active Employees") {
+      const filterListData = fetchedData.filter(
+        (data) => data.status === "Active"
+      );
+      setFilteredEmployeeData(filterListData);
+    }
+    if (selectedListValue === "Past Employees") {
+      const filterListData = fetchedData.filter(
+        (data) => data.status === "Past"
+      );
+      setFilteredEmployeeData(filterListData);
+    }
+    if (selectedListValue === "All Employees") {
+      setFilteredEmployeeData(fetchedData);
+    }
+  };
 
-
-   //function for dropdown where inputvalue is enter for filtering and calls when inputvalue is updates
-const handleFiltering = () => {
-  if(inputValue=="")
-  {
-    setFilteredEmployeeData(fetchedData)
-  }
-    
-      if (selectedSortValue && inputValue) {
-        const prop=selectedSortValue.toLowerCase();
-        
-  
-        const filteredData = fetchedData.filter((employee) => {
-          if (selectedSortValue === "Age") {
-            return employee[prop] == inputValue;
-          }
-          if(employee[prop]){
-          return employee[prop].toLowerCase().includes(inputValue.toLowerCase());}
-        });
-        setFilteredEmployeeData(filteredData)
-         }
-        
+  //function for dropdown where inputvalue is enter for filtering and calls when inputvalue is updates
+  const handleFiltering = () => {
+    if (inputValue == "") {
+      setFilteredEmployeeData(fetchedData);
     }
 
+    if (selectedSortValue && inputValue) {
+      const prop = selectedSortValue.toLowerCase();
 
+      const filteredData = fetchedData.filter((employee) => {
+        if (selectedSortValue === "Age") {
+          return employee[prop] == inputValue;
+        }
+        if (employee[prop]) {
+          return employee[prop]
+            .toLowerCase()
+            .includes(inputValue.toLowerCase());
+        }
+      });
+      setFilteredEmployeeData(filteredData);
+    }
+  };
 
   const handleSearchInputChange = (event) => {
     setSearchEmployeeName(event.target.value);
@@ -152,14 +151,13 @@ const handleFiltering = () => {
     if (!fetchedData) {
       return;
     }
+  
     const filteredByName = fetchedData.filter((data) =>
       data.fullname.toLowerCase().includes(searchEmployeeName.toLowerCase())
     );
     setFilteredEmployeeData(filteredByName);
   };
 
-  
-  if (addEmp) return <AddEmployee />;
   return (
     <div>
       <div className="flex flex-col gap-3 pr-4">
@@ -198,6 +196,9 @@ const handleFiltering = () => {
           </div>
         </div>
 
+        {/* addEmp page */}
+        {addEmp ? <AddEmployee onClose={setAddEmp} /> : null}
+
         {/* Filter and Search Section */}
         <div className="flex justify-between items-center bg-white rounded-[10px] space-x-4 p-4">
           <div className="flex flex-row gap-2 items-center">
@@ -219,27 +220,23 @@ const handleFiltering = () => {
           </div>
 
           <DropdownBox
-              mainText="Employee List"
-              Data={EmployeeData}
-              onSelect={handleListDropdownChange}
-            />
+            mainText="Employee List"
+            Data={EmployeeData}
+            onSelect={handleListDropdownChange}
+          />
 
+          <DropdownInput
+            mainText=" Filter By"
+            Data={defaultTableHeading}
+            onSelect={handleSortDropdownChange}
+            onEnter={handleInputChange}
+          />
 
-
-            <DropdownInput
-              mainText=" Filter By"
-              Data={defaultTableHeading}
-              onSelect={handleSortDropdownChange}
-              onEnter={handleInputChange}
-            />
-       
-            <DropdownCheckBox
-              mainText="Customize Columns"
-              Data={filterByData}
-              onSelect={handleFilterDropdownChange}
-            />
-        
-
+          <DropdownCheckBox
+            mainText="Customize Columns"
+            Data={filterByData}
+            onSelect={handleFilterDropdownChange}
+          />
         </div>
       </div>
 

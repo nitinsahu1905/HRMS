@@ -5,18 +5,20 @@ import Modal from "../Components/Modal";
 // import Card from "./Card";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { firestoreDB } from "../utils/firebase";
+import { collection, doc, setDoc } from "firebase/firestore";
 
-const AddEmployee = () => {
+const AddEmployee = ({ onClose }) => {
   // State variables for managing form inputs and modal visibility
-  const [isModalOpen, setIsModalOpen] = useState(true); // State variable to control modal visibility
-  const [FirstName, setFirstName] = useState(""); // State variable for First Name input
-  const [MiddleName, setMiddleName] = useState(""); // State variable for Middle Name input
-  const [LastName, setLastName] = useState(""); // State variable for Last Name input
-  const [ReportingManager, setReportingManager] = useState(""); // State variable for Reporting Manager input
-  const [Designation, setDesignation] = useState(""); // State variable for Designation input
-  const [Department, setDepartment] = useState(""); // State variable for Department input
-  const [PersonalEmailId, setPersonalEmailId] = useState(""); // State variable for Personal Email Id input
-  const [OfficialEmailId, setOfficialEmailId] = useState(""); // State variable for Official Email Id input
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [reportingManager, setReportingManager] = useState("");
+  const [designation, setDesignation] = useState("");
+  const [department, setDepartment] = useState("");
+  const [personalEmailId, setPersonalEmailId] = useState("");
+  const [officialEmailId, setOfficialEmailId] = useState("");
 
   // Function to open the modal
   const openModal = () => {
@@ -26,84 +28,164 @@ const AddEmployee = () => {
   // Function to close the modal
   const closeModal = () => {
     setIsModalOpen(false);
+    onClose(false);
   };
 
-  const handleAddEmployee = () => {
-    // Function to handle adding an employee
+  // function to handle adding an employee into firebase
+  const handleAddEmployee = async () => {
+    // Regex for validation (allowing only alphabetic characters)
+    const nameRegex = /^[a-zA-Z]{3,}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const nameRegex = /^[a-zA-Z]+$/;
+    const fullRegex = /^[a-zA-Z]{3,}(?: [a-zA-Z]{3,})*$/;
 
+    // Trim whitespace from input fields
+    const trimmedFirstName = firstName.trim();
+    const trimmedMiddleName = middleName ? middleName.trim() : "";
+    const trimmedLastName = lastName.trim();
+    const trimmedReportingManager = reportingManager.trim();
+    const trimmedOfficialEmailId = officialEmailId.trim();
+    const trimmedPersonalEmailId = personalEmailId.trim();
+    const trimmedDesignation = designation.trim();
+    const trimmedDepartment = department.trim();
+
+    // Validate required fields
     if (
-      !FirstName ||
-      !LastName ||
-      !Designation ||
-      !PersonalEmailId ||
-      !OfficialEmailId
+      !trimmedFirstName ||
+      !trimmedLastName ||
+      !designation ||
+      !trimmedPersonalEmailId ||
+      !trimmedOfficialEmailId
     ) {
       toast.error("Please fill in all required fields.");
       return;
     }
-    if (!nameRegex.test(FirstName)) {
-      toast.error("Please enter a valid first name.");
+
+    // Validate first name
+    if (!nameRegex.test(trimmedFirstName)) {
+      toast.error(
+        "Please enter a valid first name (only alphabetic characters)."
+      );
       return;
     }
 
-    if (MiddleName && !nameRegex.test(MiddleName)) {
-      toast.error("Please enter a valid middle name.");
+    // Validate middle name (if provided)
+    if (trimmedMiddleName && !nameRegex.test(trimmedMiddleName)) {
+      toast.error(
+        "Please enter a valid middle name (only alphabetic characters)."
+      );
       return;
     }
 
-    if (!nameRegex.test(LastName)) {
-      toast.error("Please enter a valid last name.");
+    // Validate last name
+    if (!nameRegex.test(trimmedLastName)) {
+      toast.error(
+        "Please enter a valid last name (only alphabetic characters)."
+      );
       return;
     }
-    if (!nameRegex.test(ReportingManager)) {
-      toast.error("Please enter a valid Reporting Manager Name");
+
+    // Validate reporting manager name
+    if (!fullRegex.test(reportingManager)) {
+      toast.error(
+        "Please enter a valid Reporting Manager Name (only alphabetic characters)."
+      );
       return;
     }
-    if (!emailRegex.test(OfficialEmailId)) {
+
+    // Validate official email address
+    if (!emailRegex.test(trimmedOfficialEmailId)) {
       toast.error("Please enter a valid official email address.");
       return;
     }
-    if (!emailRegex.test(PersonalEmailId)) {
+
+    // Validate personal email address
+    if (!emailRegex.test(trimmedPersonalEmailId)) {
       toast.error("Please enter a valid personal email address.");
       return;
     }
 
-    // Close the modal
+    // Validate designation
+    if (!fullRegex.test(trimmedDesignation)) {
+      toast.error("Please enter a valid designation.");
+      return;
+    }
 
-    closeModal();
-    toast.success("Employee added successfully.");
+    // validation for department
+    if (!fullRegex.test(trimmedDepartment)) {
+      toast.error("Please enter a valid department.");
+      return;
+    }
+
+    // prepare employee data
+    const formData = {
+      firstName: trimmedFirstName,
+      middleName: trimmedMiddleName,
+      lastName: trimmedLastName,
+      reportingManager: trimmedReportingManager,
+      designation,
+      department,
+      personalEmailId: trimmedPersonalEmailId,
+      officialEmailId: trimmedOfficialEmailId,
+      isregister: "false",
+    };
+
+    try {
+      // Add employee data to Firestore
+      const docRef = doc(collection(firestoreDB, "nonRegEmp"));
+      await setDoc(docRef, formData);
+      toast.success("Employee added successfully!");
+
+      // doing entries vacant
+      setFirstName("");
+      setMiddleName("");
+      setLastName("");
+      setDesignation("");
+      setDepartment("");
+      setOfficialEmailId("");
+      setPersonalEmailId("");
+      setReportingManager("");
+
+      // it will help to show thw toast message for success
+      setTimeout(() => {
+        closeModal();
+      }, 1500);
+    } catch (error) {
+      console.error("Error adding employee:", error);
+      toast.error("Failed to add employee. Please try again later.");
+    }
   };
 
   return (
     <>
       {/* Check if the modal is open, if yes, render the Modal component */}
       {isModalOpen ? (
-        <Modal isOpen={isModalOpen} closeModal={closeModal}>
-          <div className="flex flex-col">
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <div className="flex flex-col mt-8">
             <div className=" flex flex-col justify-center gap-[10px] ">
+              {/* includes heading */}
               <div className="flex flex-col  items-center justify-center gap-[5px] ">
-                <h1 className="text-xl font-bold items-center">Add Employee</h1>
-                <div className="h-1 bg-dark-blue rounded-lg w-[120px] "></div>
+                <h1 className="text-xl font-bold ">Add Employee</h1>
+                <div className="h-1 bg-dark-blue rounded-lg w-[110px] "></div>
               </div>
+
               <div className="flex flex-row justify-between">
                 <div className="flex flex-col p-6 ">
+                  {/* section of fname */}
                   <div className="flex flex-col gap-1">
                     <label for="fname" className="mb-1 text-[16px] ">
                       First Name
                     </label>
-
                     <input
                       type="text"
                       placeholder="Enter First Name"
-                      className="w-64 h-8 px-4 rounded-md border  border-gray-400 mb-5"
-                      value={FirstName}
+                      className="w-64 h-8 px-4 rounded-lg border border-gray-400 mb-5"
+                      value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       maxLength={50}
                     ></input>
                   </div>
 
+                  {/* middle name */}
                   <div className="flex flex-col gap-1">
                     <label for="fname" className="mb-1  text-[16px] ">
                       Middle Name
@@ -112,15 +194,18 @@ const AddEmployee = () => {
                     <input
                       type="text"
                       placeholder="Enter Middle Name"
-                      className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-5"
+                      className="w-64 h-8 px-4 rounded-lg border border-gray-400 mb-5"
                       name="middlename"
-                      value={MiddleName}
+                      value={middleName}
                       onChange={(e) => setMiddleName(e.target.value)}
                       maxLength={50}
                     ></input>
                   </div>
+
                   {/* Toast container for displaying validation errors */}
                   <ToastContainer />
+
+                  {/* lastname */}
                   <div className="flex flex-col gap-1">
                     <label for="fname" className="mb-1  text-[16px] ">
                       Last Name
@@ -129,13 +214,15 @@ const AddEmployee = () => {
                     <input
                       type="text"
                       placeholder="Enter Last Name"
-                      className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-5"
+                      className="w-64 h-8 px-4 rounded-lg border border-gray-400 mb-5 "
                       name="lastname"
-                      value={LastName}
+                      value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       maxLength={50}
                     ></input>
                   </div>
+
+                  {/* designation */}
                   <div className="flex flex-col gap-1">
                     <label for="Designation" className="mb-1  text-[16px] ">
                       Designation
@@ -144,15 +231,17 @@ const AddEmployee = () => {
                     <input
                       type="text"
                       placeholder="Enter Designation"
-                      className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-5"
+                      className="w-64 h-8 px-4 rounded-lg border border-gray-400 mb-5"
                       name="designation"
-                      value={Designation}
+                      value={designation}
                       onChange={(e) => setDesignation(e.target.value)}
                       maxLength={30}
                     ></input>
                   </div>
                 </div>
+
                 <div className="flex flex-col p-6">
+                  {/* official mail id */}
                   <div className="flex flex-col gap-1">
                     <label for="OfficialEmailId" className="mb-1  text-[16px] ">
                       Official Email Id
@@ -161,13 +250,15 @@ const AddEmployee = () => {
                     <input
                       type="text"
                       placeholder="Enter Official Email Id"
-                      className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-5"
+                      className="w-64 h-8 px-4 rounded-lg border border-gray-400 mb-5"
                       name="OfficialEmailId"
-                      value={OfficialEmailId}
+                      value={officialEmailId}
                       onChange={(e) => setOfficialEmailId(e.target.value)}
                       maxLength={30}
                     ></input>
                   </div>
+
+                  {/* personal mail id */}
                   <div className="flex flex-col gap-1">
                     <label for="PersonalEmailid" className="mb-1  text-[16px] ">
                       Personal Email Id
@@ -176,13 +267,15 @@ const AddEmployee = () => {
                     <input
                       type="text"
                       placeholder="Enter Personal Email Id"
-                      className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-5"
+                      className="w-64 h-8 px-4 rounded-lg border border-gray-400 mb-5"
                       name="PersonalEmailId"
-                      value={PersonalEmailId}
+                      value={personalEmailId}
                       onChange={(e) => setPersonalEmailId(e.target.value)}
                       maxLength={30}
                     ></input>
                   </div>
+
+                  {/* department */}
                   <div className="flex flex-col gap-1">
                     <label for="Department" className="mb-1  text-[16px] ">
                       Department
@@ -191,13 +284,15 @@ const AddEmployee = () => {
                     <input
                       type="text"
                       placeholder="Enter Department"
-                      className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-5"
+                      className="w-64 h-8 px-4 rounded-lg border border-gray-400 mb-5"
                       name="Department"
-                      value={Department}
+                      value={department}
                       onChange={(e) => setDepartment(e.target.value)}
                       maxLength={30}
                     ></input>
                   </div>
+
+                  {/* reporting manager */}
                   <div className="flex flex-col gap-1">
                     <label
                       for="ReportingManager"
@@ -209,9 +304,9 @@ const AddEmployee = () => {
                     <input
                       type="text"
                       placeholder="Enter Reporting Manager"
-                      className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-5"
+                      className="w-64 h-8 px-4 rounded-lg border border-gray-400 mb-5"
                       name="Repoting Manager"
-                      value={ReportingManager}
+                      value={reportingManager}
                       onChange={(e) => setReportingManager(e.target.value)}
                       maxLength={50}
                     ></input>
@@ -219,10 +314,11 @@ const AddEmployee = () => {
                 </div>
               </div>
 
+              {/* add-employee button */}
               <div>
                 <button
                   type="submit"
-                  className="h-8 bg-[#0684C7] text-white rounded-md ml-[240px] mt-[-10px] text-sm p-1.5"
+                  className="h-8 bg-[#0684C7] text-white rounded-lg  ml-[240px] mt-[-10px] text-sm px-3 p-1.5"
                   onClick={handleAddEmployee}
                 >
                   Add Employee

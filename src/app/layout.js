@@ -4,6 +4,8 @@ import "./globals.css";
 import Sidebar from "./sidebar/page";
 import { useEffect, useState } from "react";
 import Login from "./login/page";
+import { ProfileContextProvider } from "./Context/profileContext";
+import { UserProvider } from "./Context/UserContext";
 
 const poppins = Poppins({
   weight: "400",
@@ -28,7 +30,9 @@ export default function RootLayout({ children }) {
   const [sidebarCollapse, setSidebarCollapse] = useState(false);
   return (
     <html lang="en">
+    <UserProvider>
       <body className="font-poppins">
+            {/* <ProfileContextProvider> */}
         {!isLoggedIn ? (
           <Login set={setIsLoggedIn} />
         ) : (
@@ -55,7 +59,9 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         )}
+        {/* </ProfileContextProvider> */}
       </body>
+      </UserProvider>
     </html>
   );
 }

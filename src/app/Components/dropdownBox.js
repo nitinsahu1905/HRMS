@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useState } from "react";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const DropdownBox = ({ mainText, Data, onSelect }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

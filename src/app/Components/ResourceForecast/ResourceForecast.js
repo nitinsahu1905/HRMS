@@ -14,47 +14,73 @@ const ResourceForecast = ({ isOpen, forecast }) => {
   const getColorForHours = (hours) => {
     switch (hours) {
       case "1":
-        return '#0683c6';
+        return '#DAF2FF';
       case "2":
-        return '#7FC2E7';
+        return '#ADE2FF';
       case "3":
-        return '#0683c6';
+        return '#DAF2FF';
       case "4":
-        return '#7FC2E7';
+        return '#ADE2FF';
       case "5":
-        return '#0683c6';
+        return '#DAF2FF';
       case "6":
-        return '#7FC2E7';
+        return '#ADE2FF';
       case "7":
-        return '#0683c6';
+        return '#DAF2FF';
       case "8":
-        return '#7FC2E7';
+        return '#ADE2FF';
       default:
-        return '#FF0000';
+        return '#A4D2EB';
+    }
+  };
+
+  const getTextColorForHours = (hours) => {
+    switch (hours) {
+      case "1":
+        return '#025F92';
+      case "2":
+        return '#0181C7';
+      case "3":
+        return '#025F92';
+      case "4":
+        return '#0181C7';
+      case "5":
+        return '#025F92';
+      case "6":
+        return '#0181C7';
+      case "7":
+        return '#025F92';
+      case "8":
+        return '#0181C7';
+      default:
+        return '#121f47';
     }
   };
 
   return (
-    <div className={`${isOpen ? 'block' : 'hidden'} w-full bg-white p-2`}>
+    <div className={`${isOpen ? 'block' : 'hidden'} w-full bg-white p-2 transition-all ease-in-out duration-500 `}>
       {/* outer div */}
       {forecast.map((dayforecast) => (
         <React.Fragment key={dayforecast.id}>
-          <div className='flex flex-col gap-4  p-1 shadow-lg shadow-white bg-opacity-50'>
+          <div className='flex flex-col w-full gap-4  p-1 shadow-lg shadow-white bg-opacity-50'>
             {/* full Row for a day */}
-            <div className='w-full flex flex-row '>
-              <div className='w-[10%] flex items-center text-left'>{dayforecast.day}</div>
-              <div className='w-[80%] flex flex-row items-center justify-center gap-1'>
+            <div className='w-full flex md:flex-row flex-col '>
+              <div className='md:w-[10%] w-full flex items-center text-left'>{dayforecast.day}</div>
+              <div className='md:w-[80%] w-full flex flex-row items-center justify-center gap-1 text-xs font-semibold'>
                 {dayforecast.hours.map((hourObj, index) => (
                   <React.Fragment key={index}>
                     <div
                       title={`${hourObj[Object.keys(hourObj)[0]]} hours - ${Object.keys(hourObj)[0]}`}
-                      className='truncate cursor-pointer'
+                      className='truncate py-[8px] cursor-pointer transition-all ease-in-out duration-500 '
                       style={{
                         width: `${calculateWidth(hourObj[Object.keys(hourObj)[0]]).usedWidth}%`,
                         backgroundColor: getColorForHours(hourObj[Object.keys(hourObj)[0]]),
                         marginBottom: 6,
-                        color: "#000000",
-                        paddingLeft: 8
+                        color: getTextColorForHours(hourObj[Object.keys(hourObj)[0]]),
+                        paddingLeft: 8,
+                        transition: "0px 0.5s ease",
+                        // animation: "chartjs-render-animation 1s",
+                        animation: "move 1s linear infinite",
                       }}
                     >
                       {hourObj[Object.keys(hourObj)[0]]} hours - {Object.keys(hourObj)[0]}
@@ -63,18 +89,19 @@ const ResourceForecast = ({ isOpen, forecast }) => {
                 ))}
                 {calculateWidth(dayforecast.hours).remainingWidth > 0 && (
                   <div
-                    className='flex items-center justify-center'
+                    className='flex items-center text-left pl-2 py-[8px] transition-all ease-in-out duration-500 '
                     style={{
                       width: `${calculateWidth(dayforecast.hours).remainingWidth}%`,
-                      backgroundColor: '#F76868',
-                      marginBottom: 6
+                      backgroundColor: '#FCABAB',
+                      color:'#A90303',
+                      marginBottom: 6,
                     }}
                   >
                    Free
                   </div>
                 )}
               </div>
-              <div className='w-[10%] flex items-center justify-center text-green-400 px-2 py-1 mx-2'>
+              <div className='md:w-[10%] w-full flex items-center md:justify-center text-green-400 md:px-2 px-0 py-1 mx-2'>
                 {((dayforecast.hours.reduce((acc, cur) => acc + parseInt(cur[Object.keys(cur)[0]], 10), 0) / 8) * 100).toFixed(0)}%
               </div>
             </div>

@@ -68,3 +68,17 @@ iframe img {
   max-width: 100%;
   max-height: 100%;
 }
+
+
+/* In your CSS file or in a style block */
+.chart-canvas {
+  height: 284px; /* Default height */
+  width: 100%; /* Default width */
+}
+
+@media (min-width: 1024px) {
+  .chart-canvas {
+    height: auto; /* Reset height on large screens */
+    width: auto; /* Reset width on large screens */
+  }
+}

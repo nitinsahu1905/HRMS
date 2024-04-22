@@ -5,9 +5,12 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
 import Image from "next/image";
+import { useUser } from "../Context/UserContext";
 
 const MyTeam = () => {
   const router = useRouter();
+  // const user = useUser();
+  // console.log("myTeam",user)
 
   const [team, setTeam] = useState(TeamData)
   const deleteHandler = (id) => {

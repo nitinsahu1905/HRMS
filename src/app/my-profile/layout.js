@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FaPowerOff, FaLinkedin } from "react-icons/fa";
 import { MdModeEditOutline, MdOutlineMail } from "react-icons/md";
 import Card from "../Components/Card";
@@ -16,6 +16,9 @@ import { authTable, firestoreDB } from "@/app/utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import {useRouter} from 'next/navigation'
 import EditProfile from "../Components/EditProfile";
+import fetchProfileData from "../Components/fetchProfileData";
+import ProfileContext, { ProfileContextProvider } from "../Context/profileContext";
+import { useUser } from "../Context/UserContext";
 const adminTable = collection(firestoreDB, "admin");
 
 export default function ProfileLayout({ children }) {
@@ -24,8 +27,15 @@ export default function ProfileLayout({ children }) {
   const router = useRouter();
 
   const [editing, setEditing] = useState(false);
-  const [data, setData] = useState([{}]);
+  const [data1, setData] = useState([{}]);
   const [name, setName] = useState("Gourav Goyal");
+  const [gotData, setGotData] = useState([{}]);
+  const [docId, setDocId] = useState("");
+  // const {profile} = useContext(ProfileContext);
+  // const {profile}=useContext(ProfileContext);
+  const [fetchData, setFetchData] = useState([{}]);
+  // setFetchData(profile);
+  // setData(profile);
 
   const [editProfile, setEditProfile] = useState(false);
 
@@ -42,6 +52,13 @@ export default function ProfileLayout({ children }) {
   // State for the Image edit
   const [editImage, setEditImage] = useState(false);
   const [updatedImage, setUpdatedImage] = useState("/profileImg.jpeg");
+  const user = useUser();
+  const {userData} = user;
+  // const {docuId} = user;
+  console.log("profile",userData);
+  
+
+  // console.log(docuId);
   
  
   const hiddenFileInput = useRef(null);
@@ -83,42 +100,61 @@ export default function ProfileLayout({ children }) {
   //   const userQuery = query(collection(firestoreDB, "admin"), where("userId", "==", "PB27BveZJXhQul4D1dcqekXIlez2"));
   // },[])
   useEffect(() => {
+    setData(userData);
     
-    const userQuery = query(collection(firestoreDB, "admin"), where("userId", "==", "PB27BveZJXhQul4D1dcqekXIlez2"));
-    let data;
-    getDocs(userQuery).then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        data = doc.data();
-        setData(data);
-        console.log(doc.id, " => ", doc.data());
-      });
-    });
-    console.log(data);
-   
+    // const userQuery = query(collection(firestoreDB, "admin"), where("userId", "==", "PB27BveZJXhQul4D1dcqekXIlez2"));
+    // let data;
+    // getDocs(userQuery).then((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     data = doc.data();
+    //     setData(data);
+    //     console.log(doc.id, " => ", doc.data());
+    //   });
+    // });
+    // console.log(data);
+    // const fetchData= async()=>{
+    //   const {data,docId} = await fetchProfileData();
+    //   console.log('fetcheddata',data);
+    //   console.log(docId);
+    //   // setData(data);
+    //   setDocId(docId);
+    //   setFetchData(data);
+    //   setGotData(data);
+    //   console.log('fetchData',fetchData);
+
+    // }
+    // fetchData();
+    // // console.log('fbData',gotData);
+         // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
  
   return (
+    
+    
     <div className="flex flex-col h-full">
       {/* box for the bg image */}
-      <div className="relative">
+      <div className="relative ">
         {/* <img src="https://metadologie-operations-dev-ed.my.site.com/empcommunity/s/sfsites/c/img/community/cpt/cpt-profile-banner.png" /> */}
         <Image
           src="https://metadologie-operations-dev-ed.my.site.com/empcommunity/s/sfsites/c/img/community/cpt/cpt-profile-banner.png"
           alt="profile image"
           width={1920}
           height={400}
-          className="relative"
+          className="relative  "
         />
       </div>
  
       {/* box for the content */}
       <div className="">
         {/* box for the navigaiton & image */}
-        <div className="bg-secondary-blue flex justify-evenly items-center h-12 relative ">
+        <div className="bg-secondary-blue flex justify-between items-center lg:h-12 md:h-10 h-8 relative lg:px-12 md:px-9 px-3 ">
           {/* profile image */}
+          <div className="relative flex items-center justify-center lg:h-32 lg:w-32 md:h-24 md:w-24 h-16 w-16">
+
+          {/* Inner profile photo div */}
           <div
-            className="rounded-full object-cover absolute top-[-40px] left-[60px]  bg-white p-1 h-32 w-32 "
+            className="rounded-full object-cover absolute     bg-white p-1 lg:h-32 lg:w-32 md:h-24 md:w-24 h-16 w-16 "
             onMouseEnter={() => setEditImage(true)}
             onMouseLeave={() => setEditImage(false)}
           >
@@ -149,6 +185,7 @@ export default function ProfileLayout({ children }) {
               </div>
             ) : null}
           </div>
+          </div>
  
           {/* navigation tabs */}
           <div className="flex h-full ">
@@ -159,7 +196,7 @@ export default function ProfileLayout({ children }) {
                 routes === "/my-profile/personal"
                 ? "bg-white text-primary-blue"
                 : "text-white"
-              } text-[14px] cursor-pointer flex items-center justify-center p-3`}
+              } md:text-[14px] text-[12px] cursor-pointer flex items-center justify-center px-3 h-full `}
             >
               <Link href="/my-profile/personal">PERSONAL</Link>
             </span>
@@ -170,7 +207,7 @@ export default function ProfileLayout({ children }) {
                 routes === "/my-profile/work"
                   ? "bg-white text-primary-blue"
                   : "text-white"
-              } text-[14px] cursor-pointer flex items-center justify-center p-3 `}
+              } md:text-[14px] text-[12px] cursor-pointer flex items-center justify-center px-3 h-full `}
             >
               <Link href="/my-profile/work">WORK</Link>
             </span>
@@ -199,11 +236,11 @@ export default function ProfileLayout({ children }) {
         </div>
         
         {/* Edit button here */}
-        <div className="w-full flex items-center justify-end pr-10 mt-2">
+        <div className="w-full flex items-center justify-end lg:pr-10 md:pr-9 pr-5 mt-2">
         <button onClick={()=>{setEditProfile(true);
           
           }          
-          } className="flex items-center justify-center cursor-pointer text-white bg-button-blue-color px-[10px] py-[5px] rounded-[5px] ">
+          } className="flex items-center justify-center cursor-pointer text-white bg-button-blue-color md:px-[20px] px-[15px] md:py-[5px] py-[3px] rounded-[5px] ">
             
              Edit
           
@@ -211,33 +248,21 @@ export default function ProfileLayout({ children }) {
         </div>
 
         {/* passing childer component here */}
-        <div className="flex flex-row w-full mt-0">
-          <div className="w-1/4 flex flex-col gap-3 p-5 ">
+        <div className="flex md:flex-row flex-col w-full mt-0">
+          <div className="lg:w-1/4 md:w-1/3 w-full flex flex-col gap-3 p-5 ">
             <div className="flex flex-col px-3 ">
             {/* Name */}
-            {editing ? (
-              <div className="flex gap-2">
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="text-dark-blue text-[22px] font-semibold bg-gray-200 p-1 rounded-[5px] border-bg-primary-blue border-2 w-52 border-solid"
-              />
-              <button className="text-gray-600" onClick={updateName}><LuSave /></button>
-              </div>
- 
-             )  :(
-              <div className="flex  gap-2">
+            <div className="flex  gap-2">
               <div className="font-semibold text-[22px] text-dark-blue ">
-                {name}
+              {`${userData[0].firstName} ${userData[0].lastName}`}
               </div>
-              <button onClick={()=>{setEditing(true)}}><CiEdit /></button>
-              </div>
-             )}
              
-              {/* <div className=" text-[16px] font-normal ">CEO at Metadologie</div> */}
+              </div>
+             
             </div>
-            <div className="shadow-md rounded-[10px] ">
+
+            {/* Left Short Profile Section contains General Information */}
+            <div className="shadow-md rounded-[10px] overflow-hidden ">
               <Card>
                 <div className="flex flex-col gap-[10px] text-[14px]  ">
                   {/* Designation */}
@@ -246,7 +271,7 @@ export default function ProfileLayout({ children }) {
                       <BsFillHandbagFill />
                     </div>
                     <div>
-                      <span className="text-dark-blue">CEO</span> at Metadologie
+                      <span className="text-dark-blue">{data1[0].designation}</span> at Metadologie
                     </div>
                   </div>
                   {/* School/Institute Name */}
@@ -256,7 +281,7 @@ export default function ProfileLayout({ children }) {
                     </div>
                     <div>
                       Went to
-                      <span className="text-dark-blue"> Jaipur Cambridge </span>
+                      <span className="text-dark-blue"> {userData[0].school}</span>
                     </div>
                   </div>
                   {/* Location */}
@@ -264,30 +289,31 @@ export default function ProfileLayout({ children }) {
                     <div className="flex items-center">
                       <FaLocationDot />
                     </div>
-                    <div><span className="text-dark-blue">Jaipur</span></div>
+                    <div><span className="text-dark-blue">{userData[0].city}</span></div>
                   </div>
                   {/* Email */}
                   <div className="flex flex-row items-center gap-[10px] text-grey-color ">
                     <div className="flex items-center">
                       <MdOutlineMail />
                     </div>
-                    <div><span className="text-dark-blue">admin@gmail.com</span></div>
+                    <div><span className="text-dark-blue">{userData[0].personalEmailId}</span></div>
                   </div>
                   {/* LinkedIn profile */}
                   <div className="flex flex-row items-center gap-[10px] text-grey-color w-full ">
                   <div className="flex items-start ">
                   <FaLinkedin />
                     </div>
-                    <div className="flex flex-wrap"><Link href='https://www.linkedin.com/company/metadologie/' className="text-dark-blue break-all leading-[1.1] hover:text-primary-blue ">https://www.linkedin.com/company/metadologie/</Link></div>
+                    <div className="flex flex-wrap"><Link href='https://www.linkedin.com/company/metadologie/' className="text-dark-blue break-all leading-[1.1] hover:text-primary-blue ">{data1[0].linkedin}</Link></div>
                   </div>
                 </div>
               </Card>
             </div>
           </div>
-          <div className="w-3/4">{children}</div>
+          <div className="lg:w-3/4 md:w-2/3 w-full overflow-x-hidden ">{children}</div>
         </div>
       </div>
     </div>
+    
   );
 }
  
