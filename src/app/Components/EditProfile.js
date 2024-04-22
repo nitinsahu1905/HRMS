@@ -111,7 +111,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
       // const userRef2 = doc(firestoreDB,"users").where("userId", "==", "PB27BveZJXhQul4D1dcqekXIlez2")
       const updateData = {
         firstName: FirstName ? FirstName : fetchedData[0].firstName,
-        middleName: MiddleName ? MiddleName : fetchedData[0].middleName,
+        // middleName: MiddleName ? MiddleName : fetchedData[0].middleName,
         lastName: LastName ? LastName : fetchedData[0].lastName,
         DOB: DOB ? DOB : fetchedData[0].DOB,
         mobile: mobile ? mobile : fetchedData[0].mobile,
@@ -145,7 +145,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
     
     closeModal();
     window.location.reload();
-    alert("Profile Updated successfully.");
+    // alert("Profile Updated successfully.");
     toast.success("Profile Updated successfully.");
   };
     useEffect(() => {
@@ -528,7 +528,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                         type="text"
                         placeholder="Enter Designation"
                         className="w-64 h-8 px-4 rounded-md border  border-gray-400 mb-[5px]"
-                        value={(Designation) ? Designation :fetchedData[0].designation}
+                        value={(Designation) ? Designation :fetchedData[0].Designation}
 
                         onChange={(e) => setDesignation(e.target.value)}
                         maxLength={30}
