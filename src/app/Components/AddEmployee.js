@@ -160,7 +160,7 @@ const AddEmployee = ({ onClose }) => {
       {/* Check if the modal is open, if yes, render the Modal component */}
       {isModalOpen ? (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <div className="flex flex-col mt-8">
+          <div className="flex flex-col md:mt-8 mt-4 ">
             <div className=" flex flex-col justify-center gap-[10px] ">
               {/* includes heading */}
               <div className="flex flex-col  items-center justify-center gap-[5px] ">
@@ -168,8 +168,8 @@ const AddEmployee = ({ onClose }) => {
                 <div className="h-1 bg-dark-blue rounded-lg w-[110px] "></div>
               </div>
 
-              <div className="flex flex-row justify-between">
-                <div className="flex flex-col p-6 ">
+              <div className="flex md:flex-row flex-col md:justify-between  ">
+                <div className="flex flex-col md:p-6 md:pb-6 pb-0  ">
                   {/* section of fname */}
                   <div className="flex flex-col gap-1">
                     <label for="fname" className="mb-1 text-[16px] ">
@@ -240,7 +240,7 @@ const AddEmployee = ({ onClose }) => {
                   </div>
                 </div>
 
-                <div className="flex flex-col p-6">
+                <div className="flex flex-col md:p-6 md:pt-6 pt-5  ">
                   {/* official mail id */}
                   <div className="flex flex-col gap-1">
                     <label for="OfficialEmailId" className="mb-1  text-[16px] ">
@@ -315,10 +315,10 @@ const AddEmployee = ({ onClose }) => {
               </div>
 
               {/* add-employee button */}
-              <div>
+              <div className="flex justify-center items-center  " >
                 <button
                   type="submit"
-                  className="h-8 bg-[#0684C7] text-white rounded-lg  ml-[240px] mt-[-10px] text-sm px-3 p-1.5"
+                  className="h-8 bg-[#0684C7] text-white rounded-lg   mt-[-10px] text-sm px-3 p-1.5"
                   onClick={handleAddEmployee}
                 >
                   Add Employee
