@@ -12,12 +12,14 @@ import { MdManageAccounts } from "react-icons/md";
 import { GrDocumentTime } from "react-icons/gr";
 import { IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
+
 import Link from "next/link";
 import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
+import Image from "next/image";
 
 export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobileSidebarCollapse }) {
   const [overflowDropdownOnCollapse, setOverflowDropdownOnCollapse] = useState(false)
@@ -81,7 +83,14 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
       >
         <div className="relative" >
 
-        
+        <div className="flex items-center p-[4px]  rounded-lg bg-white h-auto">
+                <Image src="/Metalogo.png" className="flex-shrink-0 text-[#cdc3c3]  group-hover:text-[#121f47] w-7 h-8 bg-white"  width={30} height={30}/>
+                {collapse ? null : (
+                  <span className="ms-2 text-[#cdc3c3] group-hover:text-[#121f47] ">
+                    <Image src="/MetadologieText.png" width={20} height={24}  className="w-30 h-6"/>
+                  </span>
+                )}
+              </div>
 
         <ul className="space-y-2 font-medium flex flex-col gap-1">
           {/* dashboard section */}
