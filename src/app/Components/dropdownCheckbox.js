@@ -64,5 +64,3 @@ const DropdownCheckBox = ({ mainText, Data, onSelect }) => {
 };
 
 export default DropdownCheckBox;
-
-
