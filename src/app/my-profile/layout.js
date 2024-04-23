@@ -19,6 +19,8 @@ import EditProfile from "../Components/EditProfile";
 import fetchProfileData from "../Components/fetchProfileData";
 import ProfileContext, { ProfileContextProvider } from "../Context/profileContext";
 import { useUser } from "../Context/UserContext";
+import { MdEdit } from "react-icons/md";
+
 const adminTable = collection(firestoreDB, "admin");
 
 export default function ProfileLayout({ children }) {
@@ -134,14 +136,15 @@ export default function ProfileLayout({ children }) {
     
     <div className="flex flex-col h-full">
       {/* box for the bg image */}
-      <div className="relative ">
+      <div className="relative md:h-[175px] h-[120px] w-auto ">
         {/* <img src="https://metadologie-operations-dev-ed.my.site.com/empcommunity/s/sfsites/c/img/community/cpt/cpt-profile-banner.png" /> */}
         <Image
           src="https://metadologie-operations-dev-ed.my.site.com/empcommunity/s/sfsites/c/img/community/cpt/cpt-profile-banner.png"
           alt="profile image"
           width={1920}
           height={400}
-          className="relative  "
+          // objectFit="fill"
+          className="relative object-fill "
         />
       </div>
  
@@ -236,7 +239,7 @@ export default function ProfileLayout({ children }) {
         </div>
         
         {/* Edit button here */}
-        <div className="w-full flex items-center justify-end lg:pr-10 md:pr-9 pr-5 mt-2">
+        <div className="w-full md:flex hidden  items-center justify-end lg:pr-10 md:pr-9 pr-5 mt-2">
         <button onClick={()=>{setEditProfile(true);
           
           }          
@@ -252,11 +255,19 @@ export default function ProfileLayout({ children }) {
           <div className="lg:w-1/4 md:w-1/3 w-full flex flex-col gap-3 p-5 ">
             <div className="flex flex-col px-3 ">
             {/* Name */}
-            <div className="flex  gap-2">
+            <div className="flex items-center md:justify-center justify-between gap-2">
+              
               <div className="font-semibold text-[22px] text-dark-blue ">
               {`${userData[0].firstName} ${userData[0].lastName}`}
               </div>
-             
+
+              <div className="md:hidden block  border border-gray-400 hover:cursor-pointer px-[5px] py-[1px] rounded-[2px]  text-dark-blue ">
+                <button onClick={()=>{setEditProfile(true)    }}    >
+                <MdEdit  />
+
+                </button>
+              </div>
+
               </div>
              
             </div>

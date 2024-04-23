@@ -24,33 +24,33 @@ export default  function Personal() {
       {/* box for the right side */}
       <div className="w-full gap-28">
         {/* first row for the data */}
-        <div className="w-full text-sm flex items-center gap-32 p-8 py-6 h-14 border-b border-dashed border-gray-400">
+        <div className="w-full text-sm flex items-center lg:gap-32 md:gap-20 gap-10 p-8 py-5  border-b border-dashed border-gray-400">
           <span className="w-14">DOB:</span>
-          <span>{userData[0].DOB}</span>
+          <span className="text-left">{userData[0].DOB}</span>
         </div>
 
         {/* second row for the data */}
-        <div className="text-sm flex items-center gap-32 p-8 h-11 border-b border-dashed border-gray-400">
+        <div className="text-sm flex items-center lg:gap-32 md:gap-20 gap-10 p-8 py-5 border-b border-dashed border-gray-400">
           <span className="w-14">EMAIL:</span>
-          <span>{userData[0].personalEmailId}</span>
+          <span className="text-left">{userData[0].personalEmailId}</span>
         </div>
 
         {/* 3rd row for the data */}
-        <div className="text-sm flex items-center gap-32 p-8 h-11 border-b border-dashed border-gray-400">
+        <div className="text-sm flex items-center lg:gap-32 md:gap-20 gap-10 p-8 py-5 border-b border-dashed border-gray-400">
           <span className="w-14">GENDER:</span>
-          <span>{userData[0].gender}</span>
+          <span className="text-left">{userData[0].gender}</span>
         </div>
 
         {/* 4th row for the data */}
-        <div className="text-sm flex items-center gap-32 p-8 h-11 border-b border-dashed border-gray-400">
+        <div className="text-sm flex items-center lg:gap-32 md:gap-20 gap-10 p-8 py-5 border-b border-dashed border-gray-400">
           <span className="w-14">PHONE:</span>
-          <span className="">{userData[0].mobile}</span>
+          <span className="text-left">{userData[0].mobile}</span>
         </div>
 
         {/* 5th row for the data */}
-        <div className="text-sm flex items-center gap-32 p-8 h-11 border-b border-dashed border-gray-400">
+        <div className="text-sm flex items-center lg:gap-32 md:gap-20 gap-10 p-8 py-5 border-b border-dashed border-gray-400">
           <span className="w-14">ADDRESS:</span>
-          <span className="">{userData[0].address}</span>
+          <span className="text-left">{userData[0].address}</span>
         </div>
       </div>
     </div>
