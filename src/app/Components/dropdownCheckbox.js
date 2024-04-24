@@ -40,7 +40,7 @@ const DropdownCheckBox = ({ mainText, Data, onSelect }) => {
         </div>
       </div>
       <ul
-        className={`py-2 absolute bg-white space-y-2 ${
+        className={`p-[10px] absolute bg-white space-y-2 w-[82%] ${
           isDropdownOpen ? "" : "hidden"
         }`}
       >

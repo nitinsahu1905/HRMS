@@ -31,7 +31,7 @@ const DropdownBox = ({ mainText, Data, onSelect }) => {
       </div>
       <ul
         id="dropdown-example"
-        className={`py-2 absolute  bg-white space-y-2 ${
+        className={`py-2 absolute  bg-white space-y-2 md:w-auto w-[82%]  ${
           isDropdownOpen ? "" : "hidden"
         }`}
       >

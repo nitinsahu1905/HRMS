@@ -166,7 +166,7 @@ export default function EmployeeManagement() {
           {/* heading */}
           <div className="">
             {/* title */}
-            <h1 className="text-dark-blue font-bold lg:text-dark-blue lg:text-[24px] lg:font-bold">
+            <h1 className="text-dark-blue font-bold lg:text-[24px]">
               Manage Employees
             </h1>
 
