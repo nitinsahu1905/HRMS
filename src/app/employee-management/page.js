@@ -8,6 +8,8 @@ import Table from "../Components/Table";
 import Link from "next/link";
 import AddEmployee from "../Components/AddEmployee";
 import DropdownInput from "@/app/Components/dropdownInput";
+import { IoSearch } from "react-icons/io5";
+import Card from "../Components/Card";
 
 export default function EmployeeManagement() {
   // initial constants
@@ -158,24 +160,24 @@ export default function EmployeeManagement() {
   };
 
   return (
-    <div>
-      <div className="flex flex-col gap-3 pr-4">
-        <div className="lg:flex lg:flex-row lg:justify-between lg:items-center lg:p-4 lg:rounded-[10px]">
+    <div className="flex flex-col gap-[10px] p-[20px]">
+      <div className="flex flex-col gap-3 ">
+        <div className="lg:flex lg:flex-row lg:justify-between items-center md:gap-0 gap-[10px] rounded-[10px]">
           {/* heading */}
-          <div className="p-3 lg:p-3">
+          <div className="">
             {/* title */}
             <h1 className="text-dark-blue font-bold lg:text-dark-blue lg:text-[24px] lg:font-bold">
               Manage Employees
             </h1>
 
             {/* sub-title */}
-            <p className="text-primary-blue lg:text-primary-blue">
+            <p className="text-primary-blue">
               <Link href="./dashboard">Dashboard</Link> / Manage Employees
             </p>
           </div>
 
           {/* employees management section */}
-          <div className="flex justify-center gap-2 lg:flex lg:flex-row lg:gap-2">
+          <div className="flex md:justify-center justify-start gap-2 lg:flex lg:flex-row lg:gap-2">
             {/* add epmployee button */}
             <button
               onClick={() => {
@@ -199,19 +201,28 @@ export default function EmployeeManagement() {
         {addEmp ? <AddEmployee onClose={setAddEmp} /> : null}
 
         {/* Filter and Search Section */}
-        <div className="space-y-1.5 sm:space-y-0 bg-white p-4 lg:flex lg:justify-between lg:items-center lg:bg-white lg:rounded-[10px] lg:space-x-4 lg:p-4">
+        <div className="space-y-1.5 sm:space-y-0 bg-white p-4 lg:flex lg:justify-between lg:items-center lg:bg-white rounded-[10px] lg:space-x-4 lg:p-4">
           <div className="flex gap-10  lg:flex lg:flex-row lg:gap-2 lg:items-center">
+          <div className="relative flex-grow lg:flex-grow-0">
             <input
               type="text"
               placeholder="Enter Employee Name"
               maxLength={25}
-              className="bg-[#f7f7f7] rounded-lg px-4 py-2 border-2 border-primary-blue  lg:bg-[#f7f7f7] lg:rounded-[10px] lg:px-[16px] lg:py-[8px] lg:border-2 lg:border-primary-blue lg:outline-none"
+              className=" md:w-auto w-full bg-[#f7f7f7] rounded-lg px-4 py-2 border-2 border-primary-blue  md:rounded-[10px] lg:px-[16px] lg:py-[8px] lg:border-2 lg:border-primary-blue focus:outline-none"
               onChange={handleSearchInputChange}
             />
-
-            {/* search button for the employeees */}
+            {/* Search button for employees in mobile */}
             <button
-              className="cursor-pointer bg-button-blue-color rounded-lg text-white px-4 py-1 lg:bg-button-blue-color lg:rounded-[10px] lg:text-white lg:px-[16px] lg:py-[8px] lg:h-full"
+              className="absolute inset-y-0 right-0 flex items-center justify-center bg-button-blue-color rounded-r-lg text-white px-4 py-2 lg:hidden cursor-pointer"
+              onClick={searchHandler}
+            >
+              <IoSearch />
+            </button>
+            </div>
+
+            {/* search button for the employeees in larger screens */}
+            <button
+              className="hidden md:block cursor-pointer bg-button-blue-color rounded-lg text-white px-4 py-1 lg:bg-button-blue-color lg:rounded-[10px] lg:text-white lg:px-[16px] lg:py-[8px] lg:h-full"
               onClick={searchHandler}
             >
               Search
@@ -240,13 +251,17 @@ export default function EmployeeManagement() {
       </div>
 
       {/* employee Table Section */}
-      <div className="bg-white p-2 m-2 overflow-x-auto">
+     
+
+      
+      <div className="bg-white p-2  overflow-x-auto rounded-[10px] ">
         <Table
           className="min-w-full"
           employeeData={filteredEmployeeData}
           headings={filterTableHeading}
         />
       </div>
+     
     </div>
   );
 }

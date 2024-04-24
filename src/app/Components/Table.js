@@ -21,7 +21,7 @@ const Table = ({ employeeData, headings }) => {
 
   return (
     <div>
-      <table className="w-full border-collapse mt-4">
+      <table className="w-full border-collapse">
         <tbody>
           {/* heading section */}
           <tr className="text-center p-10 bg-[#f4f7fc] text-[#464F60]">

@@ -49,7 +49,7 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
       {/* <div className="absolute top-[10px] right-[10px] z-50"></div> */}
 
         {/* Icon for Sidebar Collapsing */}
-        <div className={`flex items-center justify-center p-0 text-[20px] fixed z-50 ${collapse? "left-[52px]" : "left-[252px]" } top-[10px] md:block hidden `}>
+        <div className={`flex items-center justify-center p-0 text-[20px] fixed z-50 ${collapse? "left-[52px]" : "left-[252px]" } top-[25px] md:block hidden `}>
           {collapse ? (
             <div
               className="w-fit text-sky-color bg-[#cdc3c3]  flex items-center justify-center rounded-full cursor-pointer"
@@ -83,11 +83,11 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
       >
         <div className="relative" >
 
-        <div className="flex items-center p-[4px]  rounded-lg bg-white h-auto">
-                <Image src="/Metalogo.png" className="flex-shrink-0 text-[#cdc3c3]  group-hover:text-[#121f47] w-7 h-8 bg-white"  width={30} height={30}/>
+        <div className="flex items-center p-[4px] mb-[10px] rounded-lg bg-[#f3f4f6] h-auto">
+                <Image src="/Metadologie_Logo.png" className="flex-shrink-0 bg-none text-[#cdc3c3]  group-hover:text-[#121f47] w-7 h-8 bg-[#f3f4f6]"  width={30} height={30} alt="Metadologie Logo" />
                 {collapse ? null : (
-                  <span className="ms-2 text-[#cdc3c3] group-hover:text-[#121f47] ">
-                    <Image src="/MetadologieText.png" width={20} height={24}  className="w-30 h-6"/>
+                  <span className="ms-2 w-auto h-auto text-[#cdc3c3] group-hover:text-[#121f47] ">
+                    <Image src="/Metadologie_text.png" width={20} height={24}  className="w-32 h-6" alt="Metadologie Logo Text" />
                   </span>
                 )}
               </div>
@@ -162,7 +162,7 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
               <li>
                 <Link href="/timesheet">
                   {" "}
-                  <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
+                  <div className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Timesheet
                   </div>
                 </Link>
@@ -171,7 +171,7 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
               {/* attendance section */}
               <li>
                 <Link href="/attendance">
-                  <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
+                  <div className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Attendance
                   </div>
                 </Link>
@@ -180,7 +180,7 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
               {/* leaves section */}
               <li>
                 <Link href="/leaves">
-                <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
+                <div className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Leaves
                   </div>
                 </Link>
@@ -268,7 +268,7 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
             >
               <li>
                 <Link  onClick={()=>clickLink()} href="/organization-chart">
-                <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
+                <div className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Organization Chart
                   </div>
                 </Link>
@@ -277,7 +277,7 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
               {/* organation feedback section */}
               <li>
                 <Link onClick={()=>clickLink()} href="/organization-feedback">
-                <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
+                <div className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Organization Feedback
                   </div>
                 </Link>
@@ -286,7 +286,7 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
               {/* organization-policies section */}
               <li>
                 <Link onClick={()=>clickLink()} href="/organization-policies">
-                <div className={`flex items-center justify-center w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
+                <div className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Organization Policies
                   </div>
                 </Link>

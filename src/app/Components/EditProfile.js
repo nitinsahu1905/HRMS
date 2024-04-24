@@ -195,19 +195,19 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
       {editprofileModal ? (
         <Modal isOpen={editprofileModal} onClose={closeModal}>
           <div className="flex flex-col mx-auto  ">
-            <div className=" flex flex-col justify-center gap-[10px] ">
+            <div className=" flex flex-col justify-center md:gap-[10px] gap-[20px] ">
               <div className="flex flex-col  items-center justify-center gap-[5px] ">
                 <h1 className="text-xl font-bold items-center">Edit Profile</h1>
                 <div className="h-1 bg-dark-blue rounded-lg w-[100px] "></div>
               </div>
-              <div className="flex flex-col gap-[20px]">
+              <div className="flex flex-col md:gap-[20px] gap-[40px] ">
 
                 {/* Inputs for Personal Details */}
                 <div className="flex flex-col gap-[5px] ">
                   <div className="text-primary-blue mb-1 font-medium ">Personal Details</div>
 
                   {/* Row 1 for First and Middle Name */}
-                  <div className="flex flex-row gap-[10px]   ">
+                  <div className="flex md:flex-row flex-col gap-[10px]   ">
                     <div className="flex flex-col gap-1">
                       <label for="fname" className="mb-1 text-[16px] ">
                       First Name
@@ -217,7 +217,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter First Name"
-                        className="w-64 h-8 px-4 rounded-md border  border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border  border-gray-400 mb-[5px]"
                         value={(FirstName) ? FirstName :fetchedData[0].firstName}
                         onChange={(e)=>setFirstName(e.target.value)}
                         maxLength={50}
@@ -232,7 +232,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter Middle Name"
-                        className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
                         name="middlename"
                         value={(MiddleName) ? MiddleName :fetchedData[0].middleName}
                         onChange={(e) => setMiddleName(e.target.value)}
@@ -242,7 +242,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                   </div>
 
                   {/* Row2 for Last name and dob */}
-                  <div className="flex flex-row gap-[10px]   ">
+                  <div className="flex md:flex-row flex-col gap-[10px]   ">
                     <div className="flex flex-col gap-1">
                       <label for="lname" className="mb-1  text-[16px] ">
                         Last Name
@@ -251,7 +251,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter Last Name"
-                        className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
                         name="lastname"
                         value={(LastName) ? LastName :fetchedData[0].lastName}
                         onChange={(e) => setLastName(e.target.value)}
@@ -267,7 +267,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="date"
                         placeholder="Enter DOB"
-                        className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
                         name="dob"
                         value={(DOB) ? DOB :fetchedData[0].DOB}
                         
@@ -278,7 +278,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                   </div>
 
                   {/* Row3 for Personal email and mobile */}
-                  <div className="flex flex-row gap-[10px]   ">
+                  <div className="flex md:flex-row flex-col gap-[10px]   ">
                     <div className="flex flex-col gap-1">
                       <label
                         for="PersonalEmailid"
@@ -290,7 +290,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter Personal Email Id"
-                        className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
                         name="PersonalEmailId"
                         value={(PersonalEmailId) ? PersonalEmailId :fetchedData[0].personalEmailId}
                         onChange={(e) => setPersonalEmailId(e.target.value)}
@@ -306,7 +306,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter Mobile Number"
-                        className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
                         name="mobile"
                         value={(mobile) ? mobile :fetchedData[0].mobile}
                         onChange={(e) => {
@@ -334,7 +334,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                   </div>
 
                   {/* Row4 for Address */}
-                  <div className="flex flex-row gap-[10px] w-full   ">
+                  <div className="flex md:flex-row flex-col gap-[10px] w-full   ">
                     <div className="flex flex-col gap-1 w-full ">
                       <label for="Address" className="mb-1  text-[16px] ">
                         Address
@@ -353,7 +353,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                   </div>
 
                   {/* Row5 for City and State */}
-                  <div className="flex flex-row gap-[10px]   ">
+                  <div className="flex md:flex-row flex-col gap-[10px]   ">
                     <div className="flex flex-col gap-1">
                       <label for="city" className="mb-1 text-[16px] ">
                         City
@@ -362,7 +362,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter City"
-                        className="w-64 h-8 px-4 rounded-md border  border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border  border-gray-400 mb-[5px]"
                         value={(city) ? city :fetchedData[0].city}
                         onChange={(e) => setCity(e.target.value)}
                         maxLength={50}
@@ -377,7 +377,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter State"
-                        className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
                         name="state"
                         value={(stateName) ? stateName :fetchedData[0].state}
                         onChange={(e) => setStateName(e.target.value)}
@@ -387,7 +387,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                   </div>
 
                   {/* Row6 for Pincode and Nationality */}
-                  <div className="flex flex-row gap-[10px]   ">
+                  <div className="flex md:flex-row flex-col gap-[10px]   ">
                     <div className="flex flex-col gap-1">
                       <label for="pincode" className="mb-1 text-[16px] ">
                         Pincode
@@ -396,7 +396,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter Pincode"
-                        className="w-64 h-8 px-4 rounded-md border  border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border  border-gray-400 mb-[5px]"
                         value={(PinCode) ? PinCode :fetchedData[0].Pincode}
                         onChange={(e) => setPinCode(e.target.value)}
                         maxLength={6}
@@ -411,7 +411,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter Nationality"
-                        className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
                         name="nationality"
                         value={(Nationality) ? Nationality :fetchedData[0].Nationality}
                         onChange={(e) => setNationality(e.target.value)}
@@ -427,7 +427,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                   <div className="text-primary-blue mb-1  font-medium">Work Details</div>
 
                   {/* Row 1 for Reporting manger and employee code */}
-                  <div className="flex flex-row gap-[10px]   ">
+                  <div className="flex md:flex-row flex-col gap-[10px]   ">
                     <div className="flex flex-col gap-1">
                       <label for="reporting Manger" className="mb-1 text-[16px] ">
                         Reporting Manager
@@ -436,7 +436,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter Reporting Manger"
-                        className="w-64 h-8 px-4 rounded-md border  border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border  border-gray-400 mb-[5px]"
                         value={ReportingManager}
                         onChange={(e) => setReportingManager(e.target.value)}
                         maxLength={30}
@@ -452,7 +452,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter Employee Code"
-                        className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
                         name="employee code"
                         value={(EmployeeCode) ? EmployeeCode :fetchedData[0].EmployeeCode}
                         onChange={(e) => setEmployeeCode(e.target.value)}
@@ -462,7 +462,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                   </div>
 
                   {/* Row2 for Work email and earned leaves */}
-                  <div className="flex flex-row gap-[10px]   ">
+                  <div className="flex md:flex-row flex-col gap-[10px]   ">
                     <div className="flex flex-col gap-1">
                       <label
                         for="OfficialEmailid"
@@ -474,7 +474,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter Work Email Id"
-                        className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
                         name="OfficialEmailId"
                         value={OfficialEmailId}
                         onChange={(e) => setOfficialEmailId(e.target.value)}
@@ -490,7 +490,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter Mobile Number"
-                        className="w-64 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border border-gray-400 mb-[5px]"
                         name="EarnedLeaves"
                         value={EarnedLeaves}
                         onChange={(e) => {
@@ -518,7 +518,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                   </div>
 
                   {/* Row3 for Designation and department */}
-                  <div className="flex flex-row gap-[10px]   ">
+                  <div className="flex md:flex-row flex-col gap-[10px]   ">
                     <div className="flex flex-col gap-1">
                       <label for="designation" className="mb-1 text-[16px] ">
                         Designation
@@ -527,7 +527,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                       <input
                         type="text"
                         placeholder="Enter Designation"
-                        className="w-64 h-8 px-4 rounded-md border  border-gray-400 mb-[5px]"
+                        className="md:w-64 w-72 h-8 px-4 rounded-md border  border-gray-400 mb-[5px]"
                         value={(Designation) ? Designation :fetchedData[0].Designation}
 
                         onChange={(e) => setDesignation(e.target.value)}
@@ -541,7 +541,7 @@ const EditProfile = ({ editprofileModal, setEditprofileModal }) => {
                   </div>
                   
                   {/* Row4 for linkedin */}
-                  <div className="flex flex-row gap-[10px] w-full   ">
+                  <div className="flex md:flex-row flex-col gap-[10px] w-full   ">
                     <div className="flex flex-col gap-1 w-full ">
                       <label for="linkedin" className="mb-1  text-[16px] ">
                         Linkedin

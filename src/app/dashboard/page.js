@@ -90,7 +90,7 @@ export default function Dashboard(){
       </div>
 
         {/* <div className="flex flex-row gap-[10px]"> */}
-            <div className="w-full bg-white rounded-lg h-auto flex flex-col">
+            <div className="w-full bg-white rounded-lg h-auto flex flex-col gap-4">
                 <div className="top-2 left-1 mt-3 text-dark-blue font-medium text-2xl px-3">Resource Forecast</div>
                 <div className="pl-2">
                     <table className="w-full border-collapse mt-4">

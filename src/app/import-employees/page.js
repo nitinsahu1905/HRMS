@@ -61,7 +61,7 @@ const ImportEmployee = () => {
                 ) : (
                    
                     <div className=' flex flex-col rounded-[20px] shadow-lg shadow-grey-color bg-opacity-50 bg-[#f7f7f7]'>
-                        <div className='flex flex-row p-12 justify-center gap-6'>
+                        <div className='flex md:flex-row flex-col p-12 justify-center items-center md:gap-6 gap-4 '>
                             <div><MdCloudUpload className=' text-black rounded-[50%] border-black bg-white text-4xl' /></div>
                             <div className='flex flex-col gap-2'>
                                 <div className='text-dark-blue font-medium text-2xl'>Upload files</div>
@@ -69,8 +69,8 @@ const ImportEmployee = () => {
                             </div>
                         </div>
                         <div className='h-0 border-[3px] border-[#CBD0DC] w-full'></div>
-                        <div className='flex justify-centerm-auto w-full pr-6 py-10'>
-                            <div className=' flex flex-col justify-center items-center mx-auto gap-2 border-dashed border-grey-color border-4 rounded-[20px] px-40 py-6'>
+                        <div className='flex justify-center m-auto w-auto  py-10'>
+                            <div className=' flex flex-col justify-center items-center mx-full   gap-2 border-dashed border-grey-color border-4 rounded-[20px] lg:px-40 md:px-24 px-6 md:py-6 py-6 '>
                                 <div><MdCloudUpload className='text-black bg-white text-6xl' /></div>
                                 <div><span className='text-black font-normal text-xs'>{selectedFile ? selectedFile.name : 'Choose a file here'}</span></div>
                                 {selectedFile ? (

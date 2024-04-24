@@ -66,14 +66,32 @@ const ResourceForecast = ({ isOpen, forecast }) => {
             {/* full Row for a day */}
             <div className='w-full flex lg:flex-row flex-col '>
               <div className='md:w-[10%] w-full flex items-center text-left'>{dayforecast.day}</div>
-              <div className='md:w-[80%] w-full flex flex-row items-center justify-center gap-1 text-xs font-semibold'>
+              <div className='md:w-[80%] w-full flex md:flex-row flex-col md:items-center items-start justify-center gap-1 text-xs font-semibold'>
                 {dayforecast.hours.map((hourObj, index) => (
                   <React.Fragment key={index}>
                     <div
                       title={`${hourObj[Object.keys(hourObj)[0]]} hours - ${Object.keys(hourObj)[0]}`}
-                      className='truncate py-[8px] cursor-pointer transition-all ease-in-out duration-500 '
+                      className={`md:block hidden  truncate py-[8px]   cursor-pointer transition-all ease-in-out duration-500 `}
                       style={{
                         width: `${calculateWidth(hourObj[Object.keys(hourObj)[0]]).usedWidth}%`,
+                        backgroundColor: getColorForHours(hourObj[Object.keys(hourObj)[0]]),
+                        marginBottom: 6,
+                        color: getTextColorForHours(hourObj[Object.keys(hourObj)[0]]),
+                        paddingLeft: 8,
+                        transition: "0px 0.5s ease",
+                        // animation: "chartjs-render-animation 1s",
+                        animation: "move 1s linear infinite",
+                      }}
+                    >
+                      {hourObj[Object.keys(hourObj)[0]]} hours - {Object.keys(hourObj)[0]}
+                    </div>
+
+                    {/* For mobile responsiveness */}
+                    <div
+                      title={`${hourObj[Object.keys(hourObj)[0]]} hours - ${Object.keys(hourObj)[0]}`}
+                      className={`md:hidden block  truncate py-[8px]   cursor-pointer transition-all ease-in-out duration-500 `}
+                      style={{
+                        width: `100%`,
                         backgroundColor: getColorForHours(hourObj[Object.keys(hourObj)[0]]),
                         marginBottom: 6,
                         color: getTextColorForHours(hourObj[Object.keys(hourObj)[0]]),
@@ -88,8 +106,9 @@ const ResourceForecast = ({ isOpen, forecast }) => {
                   </React.Fragment>
                 ))}
                 {calculateWidth(dayforecast.hours).remainingWidth > 0 && (
+                  <>
                   <div
-                    className='flex items-center text-left pl-2 py-[8px] transition-all ease-in-out duration-500 '
+                    className={`md:block hidden  items-center text-left pl-2 py-[8px] transition-all ease-in-out duration-500 `}
                     style={{
                       width: `${calculateWidth(dayforecast.hours).remainingWidth}%`,
                       backgroundColor: '#FCABAB',
@@ -99,6 +118,22 @@ const ResourceForecast = ({ isOpen, forecast }) => {
                   >
                    Free
                   </div>
+                  {/* for mobile view */}
+                  <div
+                    className={`md:hidden flex items-center text-left pl-2 py-[8px] transition-all ease-in-out duration-500 `}
+                    style={{
+                      width: `100%`,
+                      backgroundColor: '#FCABAB',
+                      color:'#A90303',
+                      marginBottom: 6,
+                    }}
+                  >
+                   Free
+                  </div>
+
+
+                  </>
+                  
                 )}
               </div>
               <div className='md:w-[10%] w-full flex items-center md:justify-center text-green-400 md:px-2 px-0 py-1 mx-2'>
