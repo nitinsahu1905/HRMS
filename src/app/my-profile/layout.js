@@ -255,7 +255,7 @@ export default function ProfileLayout({ children }) {
           <div className="lg:w-1/4 md:w-1/3 w-full flex flex-col gap-3 p-5 ">
             <div className="flex flex-col px-3 ">
             {/* Name */}
-            <div className="flex items-center md:justify-center justify-between gap-2">
+            <div className="flex items-center md:justify-start justify-between gap-2">
               
               <div className="font-semibold text-[22px] text-dark-blue ">
               {`${userData[0].firstName} ${userData[0].lastName}`}

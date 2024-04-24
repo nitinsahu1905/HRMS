@@ -162,7 +162,7 @@ export default function EmployeeManagement() {
   return (
     <div className="flex flex-col gap-[10px] p-[20px]">
       <div className="flex flex-col gap-3 ">
-        <div className="lg:flex lg:flex-row lg:justify-between items-center md:gap-0 gap-[10px] rounded-[10px]">
+        <div className="flex md:flex-row flex-col lg:justify-between md:items-center  md:gap-0 gap-[15px] rounded-[10px]">
           {/* heading */}
           <div className="">
             {/* title */}
