@@ -40,7 +40,7 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
   };
 
   const clickLink = () =>{
-        setMobileSidebarCollapse(true)
+        setMobileSidebarCollapse(true)  
   }
 
   return (

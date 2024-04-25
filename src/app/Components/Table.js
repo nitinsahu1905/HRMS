@@ -1,14 +1,15 @@
 import { doc, deleteDoc, getDoc } from "firebase/firestore";
 import { firestoreDB } from "../utils/firebase";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Table = ({ employeeData, headings }) => {
   // function to handle the delete records
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(firestoreDB, "employees", id));
-      console.log("Deleted successfully");
-      toast.success("Deleted successfully");
+      // await deleteDoc(doc(firestoreDB, "employees", id));
+      // toast.success("Deleted successfully");
+      throw new Error();
     } catch (error) {
       console.error("Error deleting document:", error);
       toast.error("Failed to delete document");
@@ -32,6 +33,9 @@ const Table = ({ employeeData, headings }) => {
             ))}
             <th></th>
           </tr>
+
+          {/* Toast container for displaying validation errors */}
+          <ToastContainer />
 
           {/* fields section */}
           {employeeData.map((data) => (
