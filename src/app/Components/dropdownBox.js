@@ -10,7 +10,8 @@ const DropdownBox = ({ mainText, Data, onSelect }) => {
   const handleSelect = (option) => {
     setSelectedOption(option);
     onSelect(option);
-    setIsDropdownOpen((prevState) => !prevState);
+    // setIsDropdownOpen((prevState) => !prevState);
+    setIsDropdownOpen(false)
   };
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);

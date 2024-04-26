@@ -162,7 +162,7 @@ export default function EmployeeManagement() {
   return (
     <div className="flex flex-col gap-[10px] p-[20px]">
       <div className="flex flex-col gap-3 ">
-        <div className="flex md:flex-row flex-col lg:justify-between md:items-center  md:gap-0 gap-[15px] rounded-[10px]">
+        <div className="flex md:flex-row flex-col lg:justify-between md:items-center  md:gap-0 gap-[15px] ">
           {/* heading */}
           <div className="">
             {/* title */}
@@ -201,23 +201,24 @@ export default function EmployeeManagement() {
         {addEmp ? <AddEmployee onClose={setAddEmp} /> : null}
 
         {/* Filter and Search Section */}
-        <div className="space-y-1.5 sm:space-y-0 bg-white p-4 lg:flex lg:justify-between lg:items-center lg:bg-white rounded-[10px] lg:space-x-4 lg:p-4">
+        <div className="space-y-1.5 sm:space-y-0 bg-white p-4 flex md:flex-row flex-col lg:justify-between lg:items-center lg:bg-white rounded-[10px] lg:space-x-4 lg:p-4">
+          {/* Search Bar Section */}
           <div className="flex gap-10  lg:flex lg:flex-row lg:gap-2 lg:items-center">
-          <div className="relative flex-grow lg:flex-grow-0">
-            <input
-              type="text"
-              placeholder="Enter Employee Name"
-              maxLength={25}
-              className=" md:w-auto w-full bg-[#f7f7f7] rounded-lg px-4 py-2 border-2 border-primary-blue  md:rounded-[10px] lg:px-[16px] lg:py-[8px] lg:border-2 lg:border-primary-blue focus:outline-none"
-              onChange={handleSearchInputChange}
-            />
-            {/* Search button for employees in mobile */}
-            <button
-              className="absolute inset-y-0 right-0 flex items-center justify-center bg-button-blue-color rounded-r-lg text-white px-4 py-2 lg:hidden cursor-pointer"
-              onClick={searchHandler}
-            >
-              <IoSearch />
-            </button>
+            <div className="relative flex-grow lg:flex-grow-0">
+              <input
+                type="text"
+                placeholder="Enter Employee Name"
+                maxLength={25}
+                className=" md:w-auto w-full bg-[#f7f7f7] rounded-lg px-4 py-2 border-2 border-primary-blue  md:rounded-[10px] lg:px-[16px] lg:py-[8px] lg:border-2 lg:border-primary-blue focus:outline-none"
+                onChange={handleSearchInputChange}
+              />
+              {/* Search button for employees in mobile */}
+              <button
+                className="absolute inset-y-0 right-0 flex items-center justify-center bg-button-blue-color rounded-r-lg text-white px-4 py-2 lg:hidden cursor-pointer"
+                onClick={searchHandler}
+              >
+                <IoSearch />
+              </button>
             </div>
 
             {/* search button for the employeees in larger screens */}
@@ -228,13 +229,15 @@ export default function EmployeeManagement() {
               Search
             </button>
           </div>
-
+          
+          {/* Dropdown for Selecting Employee type - All, Past & Active */}
           <DropdownBox
             mainText="Employee List"
             Data={EmployeeData}
             onSelect={handleListDropdownChange}
           />
 
+          {/* Filter by dropdown */}
           <DropdownInput
             mainText=" Filter By"
             Data={defaultTableHeading}
@@ -242,6 +245,7 @@ export default function EmployeeManagement() {
             onEnter={handleInputChange}
           />
 
+          {/* Selecting Customized Column Field */}
           <DropdownCheckBox
             mainText="Customize Columns"
             Data={filterByData}
@@ -251,9 +255,7 @@ export default function EmployeeManagement() {
       </div>
 
       {/* employee Table Section */}
-     
 
-      
       <div className="bg-white p-2  overflow-x-auto rounded-[10px] ">
         <Table
           className="min-w-full"
@@ -261,7 +263,6 @@ export default function EmployeeManagement() {
           headings={filterTableHeading}
         />
       </div>
-     
     </div>
   );
 }
