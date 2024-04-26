@@ -9,7 +9,6 @@ import Link from "next/link";
 import AddEmployee from "../Components/AddEmployee";
 import DropdownInput from "@/app/Components/dropdownInput";
 import { IoSearch } from "react-icons/io5";
-import Card from "../Components/Card";
 
 export default function EmployeeManagement() {
   // initial constants
