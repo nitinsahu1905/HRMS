@@ -1,11 +1,13 @@
 "use client";
 import React from "react";
-import { useState } from "react";
+import { useState ,useRef,useEffect} from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const DropdownBox = ({ mainText, Data, onSelect }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
+
+  const dropdownRef = useRef(null);
 
   const handleSelect = (option) => {
     setSelectedOption(option);
@@ -16,6 +18,20 @@ const DropdownBox = ({ mainText, Data, onSelect }) => {
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
+
   return (
     <div>
       <div className="flex flex-row justify-between px-2 py-1 items-center  rounded-lg border-2 border-grey-color w-full">
@@ -35,6 +51,7 @@ const DropdownBox = ({ mainText, Data, onSelect }) => {
         className={`py-2 absolute  bg-white space-y-2 md:w-auto w-[82%]  ${
           isDropdownOpen ? "" : "hidden"
         }`}
+        ref={dropdownRef}
       >
         {Data.map((field) => (
           <li key={field}>
