@@ -179,7 +179,7 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
 
               {/* leaves section */}
               <li>
-                <Link href="/leaves">
+                <Link href="/leaves-tracker">
                 <div className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Leaves
                   </div>
