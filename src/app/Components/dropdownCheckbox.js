@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { IoIosArrowUp } from "react-icons/io";
-import { RiArrowDropDownLine } from "react-icons/ri";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const DropdownCheckBox = ({ mainText, Data, onSelect }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -50,9 +49,9 @@ const DropdownCheckBox = ({ mainText, Data, onSelect }) => {
         
           <button type="button" className="pl-8 " onClick={toggleDropdown}>
             {isDropdownOpen ? (
-              <IoIosArrowUp className="text-[#cdc3c3] h-4 w-4" />
+              <IoIosArrowUp className="text-[#cdc3c3] " />
             ) : (
-              <RiArrowDropDownLine className="text-[#cdc3c3] h-7 w-7 group-hover:text-[#525768]" />
+              <IoIosArrowDown className="text-[#cdc3c3]  group-hover:text-[#525768]" />
             )}
           </button>
         

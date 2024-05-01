@@ -1,3 +1,4 @@
+import Punchbox from "./@punchbox/page";
 import Dashboard from "./page";
 
 export default function DashboardLayout({ children, punchbox }) {
