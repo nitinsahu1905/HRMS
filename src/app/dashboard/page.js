@@ -87,7 +87,7 @@ export default function Dashboard() {
               <tr className="w-full text-center p-10">
                 <th>Id</th>
                 <th>Name</th>
-                <th>hours</th>
+                <th>Hours</th>
                 <th>Status</th>
               </tr>
               {ResourceForecastData.map((data, index) => (
