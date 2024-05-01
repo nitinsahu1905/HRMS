@@ -83,8 +83,9 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
       >
         <div className="relative" >
 
-        <div className="flex items-center p-[4px] mb-[10px] rounded-lg bg-[#f3f4f6] h-auto">
-                <Image src="/Metadologie_Logo.png" className="flex-shrink-0 bg-none text-[#cdc3c3]  group-hover:text-[#121f47] w-7 h-8 bg-[#f3f4f6]"  width={30} height={30} alt="Metadologie Logo" />
+          {/* Logo of Company */}
+        <div className="flex items-center px-[4px] py-[6px] mb-[10px] rounded-lg bg-[#f3f4f6] h-auto">
+                <Image src="/Metadologie_Logo.png" className="flex-shrink-0 bg-none text-[#cdc3c3]  group-hover:text-[#121f47] w-[30px] h-6  bg-[#f3f4f6]"  width={30} height={30} alt="Metadologie Logo" />
                 {collapse ? null : (
                   <span className="ms-2 w-auto h-auto text-[#cdc3c3] group-hover:text-[#121f47] ">
                     <Image src="/Metadologie_text.png" width={20} height={24}  className="w-32 h-6" alt="Metadologie Logo Text" />
