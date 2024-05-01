@@ -64,6 +64,7 @@ const ChartComponent = () => {
           // }
         }
       }
+
     };
 
     // Rendering the chart
@@ -76,6 +77,7 @@ const ChartComponent = () => {
     return () => {
       myChart.destroy();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array to run the effect only once on mount
 
 
@@ -99,6 +101,7 @@ const ChartComponent = () => {
       return () => window.removeEventListener('resize', handleResize);
     }
     console.log(screenWidth)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 

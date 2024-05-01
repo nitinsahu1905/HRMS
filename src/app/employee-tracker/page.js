@@ -16,13 +16,13 @@ const page = () => {
         </div>
         <div className="flex flex-col gap-[5px]  ">
             <div className="text-dark-blue text-[24px] font-medium ">Hello!</div>
-            <div className="text-grey-color  ">Let's brighten some smiles today</div>
+            <div className="text-grey-color  ">Let&apos;s brighten some smiles today</div>
         </div>
 
       </div>
       {/* Today's Update section of Attendence */}
       <div className="flex flex-col gap-[10px] ">
-        <div className="text-dark-blue text-[20px] font-medium ">Today's Update</div>
+        <div className="text-dark-blue text-[20px] font-medium ">Today&apos;s Update</div>
         <div className="flex flex-row gap-[20px] ">
             {/* Present */}
             <div className="flex flex-col gap-[5px] w-[233px] bg-white rounded-[10px] px-[15px] py-[10px] border-r-[15px] border-[#cdf6cd] shadow-lg ">
