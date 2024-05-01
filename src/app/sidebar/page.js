@@ -96,8 +96,8 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
           {/* dashboard section */}
           <li>
             {/* {collapse?"Hii":"Go"} */}
-            <Link href="/" onClick={()=>clickLink()}>
-              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100    group">
+            <Link href="/">
+              <div onClick={()=>clickLink()} className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100    group">
                 <AiFillHome className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
                 {collapse ? null : (
                   <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
@@ -110,8 +110,8 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
 
           {/* inbox section */}
           <li>
-            <Link onClick={()=>clickLink()} href="/inbox">
-              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+            <Link href="/inbox">
+              <div onClick={()=>clickLink()} className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <CgMail className="flex-shrink-0 text-[#cdc3c3] h-6 w-6 group-hover:text-[#121f47]" />
                 {collapse ? null : (
                   <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
@@ -190,8 +190,8 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
 
           {/* my team section */}
           <li>
-            <Link onClick={()=>clickLink()} href="/my-team">
-              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+            <Link href="/my-team">
+              <div onClick={()=>clickLink()} className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <RiTeamFill className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
 
                 {collapse ? null : (
@@ -205,9 +205,9 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
 
           {/* manage employees section */}
           <li>
-            <Link onClick={()=>clickLink()} href="/employee-management">
-              {" "}
-              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+            <Link href="/employee-management">
+              
+              <div onClick={()=>clickLink()} className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <MdManageAccounts className="flex-shrink-0 text-[#cdc3c3] h-7 w-6 group-hover:text-[#121f47]" />
                 {collapse ? null : (
                   <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
@@ -220,14 +220,16 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
 
           {/* efficiency section */}
           <li>
-            <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
-              <BsGraphUpArrow className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
-              {collapse ? null : (
-                <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
-                  Efficiency
-                </span>
-              )}
-            </div>
+            <Link href='/efficiency'>
+              <div onClick={()=>clickLink()} className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+                <BsGraphUpArrow className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
+                {collapse ? null : (
+                  <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                    Efficiency
+                  </span>
+                )}
+              </div>
+            </Link>
           </li>
 
           {/* myorganization dropdown menu */}
@@ -267,8 +269,8 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
               className={`py-2 space-y-2 ${isDropdownOpen ? `${collapse? "absolute bg-dark-blue/75 left-[52px] rounded-[5px] px-2 ": " "}`  : "hidden"}`}
             >
               <li>
-                <Link  onClick={()=>clickLink()} href="/organization-chart">
-                <div className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
+                <Link href="/organization-chart">
+                <div onClick={()=>clickLink()} className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Organization Chart
                   </div>
                 </Link>
@@ -276,8 +278,8 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
 
               {/* organation feedback section */}
               <li>
-                <Link onClick={()=>clickLink()} href="/organization-feedback">
-                <div className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
+                <Link href="/organization-feedback">
+                <div onClick={()=>clickLink()} className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Organization Feedback
                   </div>
                 </Link>
@@ -285,8 +287,8 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
 
               {/* organization-policies section */}
               <li>
-                <Link onClick={()=>clickLink()} href="/organization-policies">
-                <div className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
+                <Link  href="/organization-policies">
+                <div onClick={()=>clickLink()} className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Organization Policies
                   </div>
                 </Link>
@@ -296,8 +298,8 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
 
           {/* finance section */}
           <li>
-            <Link onClick={()=>clickLink()} href="/my-finance">
-              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+            <Link href="/my-finance">
+              <div onClick={()=>clickLink()} className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <FaMoneyCheckDollar className="flex-shrink-0 text-[#cdc3c3] h-7 w-5 group-hover:text-[#121f47]" />
 
                 {collapse ? null : (
@@ -311,8 +313,8 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
 
           {/* profile section */}
           <li>
-            <Link onClick={()=>clickLink()} href="/payroll">
-              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+            <Link href="/payroll">
+              <div onClick={()=>clickLink()} className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <MdAttachMoney className="flex-shrink-0 text-[#cdc3c3] h-6 w-6 group-hover:text-[#121f47]" />
                 {collapse ? null : (
                   <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
@@ -325,8 +327,8 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
 
           {/* myprofile section */}
           <li>
-            <Link onClick={()=>clickLink()} href="/my-profile/personal">
-              <div className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+            <Link href="/my-profile/personal">
+              <div onClick={()=>clickLink()} className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
                 <FaUser className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
                 {collapse ? null : (
                   <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
