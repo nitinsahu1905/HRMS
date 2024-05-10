@@ -130,7 +130,7 @@ const MyProfile = () => {
                     {/* Department */}
                     <div className="w-[200px] px-[15px] flex flex-col justify-between gap-[5px]  border-l-2 border-primary-blue ">
                         <div className="text-[24px] font-medium text-dark-blue  ">
-                            UI
+                            Frontend
                         </div>
                         <div className=" font-normal text-grey-color ">
                             Department

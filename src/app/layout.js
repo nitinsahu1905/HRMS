@@ -75,7 +75,7 @@ export default function RootLayout({ children }) {
               ) : null}
 
               {/* section for the children pages which come through different routes */}
-              <div className="flex-[1_0] md:w-[calc(100%-262px)] w-full md:pt-0 pt-[50px] relative ">
+              <div className="flex-[1_0] lg:w-[calc(100%-262px)] md:w-[calc(100%-262px)] w-full md:pt-0 pt-[50px] relative ">
                 {children}{" "}
               </div>
             </div>
