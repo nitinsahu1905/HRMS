@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react';
-import Chart from 'chart.js'; // Importing Chart.js auto bundle
+import Chart from 'chart.js/auto'; // Importing Chart.js auto bundle
 
 const ChartComponent = () => {
   useEffect(() => {
