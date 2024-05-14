@@ -4,14 +4,19 @@ import { CelebrationData } from "../Constants/CelebrationData";
 import { NewJoiningsData } from "../Constants/NewJoiningsData";
 import Image from "next/image";
 import ArrivalReportChart from "../Components/ArrivalReportChart/ArrivalReportChart";
+import TimesheetReportChart from "../Components/TimesheetReport/TimesheetReportChart";
+import { TimesheetReportData } from "../Constants/TimesheetReportData";
 // import {img1} from '../../../public/user-img.jpeg'
 
 const EmployeeDashboard = () => {
   return (
     <>
+    <div className="flex flex-col gap-[25px] ">
+
+        {/* One Row */}
       <div className="flex md:flex-row flex-col  gap-[25px]  ">
         {/* New Joinings */}
-        <div className="w-full flex flex-col gap-[10px] lg:w-1/3 bg-white rounded-[15px] h-auto pb-[10px] ">
+        <div className="w-full flex flex-col gap-[10px] lg:w-[35%] bg-white rounded-[15px] h-auto pb-[10px] ">
           <div className=" my-[12px] text-dark-blue font-medium text-[22px] px-3   ">
             New Joining&apos;s
           </div>
@@ -59,7 +64,7 @@ const EmployeeDashboard = () => {
         </div>
 
         {/* Celebrations */}
-        <div className="lg:w-1/3  bg-white rounded-[15px] h-auto  flex flex-col gap-[10px] pb-2">
+        <div className="lg:w-[35%]  bg-white rounded-[15px] h-auto  flex flex-col gap-[10px] pb-2">
           <div className=" my-[12px] text-dark-blue font-medium text-[22px] px-3">
             Upcoming Celebration
           </div>
@@ -69,7 +74,7 @@ const EmployeeDashboard = () => {
                 {/* One Celebration */}
                 <div className="flex flex-row justify-between rounded-lg w-auto h-auto mx-2 p-2">
                   {/* Section for Image and text */}
-                  <div className="flex flex-row w-full ">
+                  <div className="flex flex-row  ">
                     {/* image section */}
                     <div className="overflow-hidden lg:h-16 lg:w-16 h-9 w-9  rounded-full border-none">
                       <Image
@@ -102,14 +107,29 @@ const EmployeeDashboard = () => {
         </div>
 
         {/* Arrival Report */}
-        <div className="lg:w-1/3  bg-white rounded-[15px] h-auto  flex flex-col pb-2">
+        <div className="lg:w-[30%]  bg-white rounded-[15px] h-auto  flex flex-col pb-2">
           <div className=" mt-3 text-dark-blue font-medium text-[22px] px-3   ">
             Arrival Report
           </div>
           <div className="flex flex-col gap-[10px] items-center ">
-            <ArrivalReportChart />
+            <ArrivalReportChart arrivalData={[9, 2, 4]} />
           </div>
         </div>
+      </div>
+
+      {/* Row 2 */}
+      <div className="flex md:flex-row flex-col  gap-[25px]  ">
+        {/* Arrival Report */}
+        <div className="lg:w-[35%]  bg-white rounded-[15px] h-auto  flex flex-col pb-2">
+          <div className=" mt-3 text-dark-blue font-medium text-[22px] px-3   ">
+            Timesheet Report
+          </div>
+          <div className="flex flex-col gap-[10px] items-center ">
+            <TimesheetReportChart ProjectwiseTimesheetData={TimesheetReportData} />
+          </div>
+        </div>
+      </div>
+
       </div>
     </>
   );

@@ -6,14 +6,14 @@ import {Chart, ArcElement, Tooltip, Legend, Title} from 'chart.js';
 import { Doughnut } from "react-chartjs-2";
 
 Chart.register(ArcElement, Tooltip, Legend, Title);
-Chart.defaults.plugins.legend.display = false;
+// Chart.defaults.plugins.legend.display = false;
 
-const ArrivalReportChart = () => {
-    const arrivalData = {
+const ArrivalReportChart = ({arrivalData}) => {
+    const data = {
         labels: ["Before 10:30","Absence", "After 10:30" ],
         datasets: [
           {
-            data: [9, 2, 4],
+            data: arrivalData,
             backgroundColor:[
                 '#0683C6',                
                 '#F97373',
@@ -33,16 +33,20 @@ const ArrivalReportChart = () => {
       const textCenter = {
         id: 'textCenter',
         beforeDatasetsDraw(chart, args, plugins){
-            const {ctx, arrivalData} = chart;
+            const {ctx, data} = chart;
 
-            console.log(arrivalData)
+            
 
             ctx.save();
             ctx.font = "bolder 32px sans-serif ";
             ctx.fillStyle = "#808080";
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText(15,chart.getDatasetMeta(0).data[0].x,chart.getDatasetMeta(0).data[0].y)
+            console.log();
+            ctx.fillText(`${data.datasets[0].data.reduce((acc,cur)=>{
+                return acc+cur;
+            },0
+            )}`,chart.getDatasetMeta(0).data[0].x,chart.getDatasetMeta(0).data[0].y)
         }
 
       };
@@ -84,25 +88,25 @@ const ArrivalReportChart = () => {
     <>
       {/* <canvas id="myChart" ></canvas> */}
       <div className="w-[200px] h-[200px] ">
-      <Doughnut data={arrivalData} options={options} plugins={[textCenter]} />
+      <Doughnut data={data} options={options} plugins={[textCenter]} />
 
       </div>
       <div className="flex flex-wrap gap-y-[20px] px-[35px] w-full ">
         {/* One Label */}
         <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#BFE9FF] ">
-            <div className="text-[24px] font-medium text-dark-blue  ">4</div>
+            <div className="text-[24px] font-medium text-dark-blue  ">{arrivalData[2]}</div>
             <div className="text-[14px] font-medium text-grey-color  ">After 10:30</div>
         </div>
         
         {/* Label Two */}
         <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#F97373] ">
-            <div className="text-[24px] font-medium text-dark-blue  ">2</div>
+            <div className="text-[24px] font-medium text-dark-blue  ">{arrivalData[1]}</div>
             <div className="text-[14px] font-medium text-grey-color  ">Absence</div>
         </div>
         
         {/* Label Third */}
         <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#0683C6] ">
-            <div className="text-[24px] font-medium text-dark-blue  ">9</div>
+            <div className="text-[24px] font-medium text-dark-blue  ">{arrivalData[0]}</div>
             <div className="text-[14px] font-medium text-grey-color  ">Before 10:30</div>
         </div>
         

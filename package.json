@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "chart.js": "^4.4.2",
+    "chart.piecelabel.js": "^0.15.0",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "file-loader": "^6.2.0",
     "file-saver": "^2.0.5",
     "firebase": "^10.11.0",
