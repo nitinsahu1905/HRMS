@@ -10,7 +10,7 @@ import { FaUser } from "react-icons/fa6";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { MdManageAccounts } from "react-icons/md";
 import { GrDocumentTime } from "react-icons/gr";
-import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowUp ,IoIosArrowDown} from "react-icons/io";
 import { useState } from "react";
 
 import Link from "next/link";
@@ -146,9 +146,9 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
                     data-collapse-toggle="timedropdown-example"
                   >
                     {isTimeDropdownOpen ? (
-                      <IoIosArrowUp className="flex-shrink-0 text-[#cdc3c3] h-4 w-4 group-hover:text-[#525768] " />
+                      <IoIosArrowUp className="flex-shrink-0 text-[#cdc3c3]  group-hover:text-[#525768] " />
                     ) : (
-                      <RiArrowDropDownLine className="flex-shrink-0 text-[#cdc3c3] h-7 w-7 group-hover:text-[#525768] " />
+                      <IoIosArrowDown className="flex-shrink-0 text-[#cdc3c3]  group-hover:text-[#525768] " />
                     )}
                   </button>
                 </div>
@@ -255,9 +255,9 @@ export default function Sidebar({ collapse, setCollapse, mobileCollapse, setMobi
                     data-collapse-toggle="dropdown-example"
                   >
                     {isDropdownOpen ? (
-                      <IoIosArrowUp className="flex-shrink-0 text-[#cdc3c3] h-4 w-4 group-hover:text-[#525768] " />
+                      <IoIosArrowUp className="flex-shrink-0 text-[#cdc3c3]  group-hover:text-[#525768] " />
                     ) : (
-                      <RiArrowDropDownLine className="flex-shrink-0 text-[#cdc3c3] h-7 w-7 group-hover:text-[#525768] " />
+                      <IoIosArrowDown className="flex-shrink-0 text-[#cdc3c3]  group-hover:text-[#525768] " />
                     )}
                   </button>
                 </div>
