@@ -38,7 +38,7 @@ const TimesheetReportChart = ({ ProjectwiseTimesheetData }) => {
 
   return (
     <>
-    <div className="flex flex-col gap-[10px] justify-center items-center ">
+    <div className="w-full flex flex-col gap-[10px] justify-center items-center ">
       {/* <canvas id="myChart" ></canvas> */}
       <div className="w-[200px] h-[200px] ">
         <Pie data={data} options={options} plugins={[ChartDataLabels]} />
@@ -49,10 +49,10 @@ const TimesheetReportChart = ({ ProjectwiseTimesheetData }) => {
           <div key={index} className={`flex flex-col  pl-[10px] w-1/3 border-l-[4px] `}
             style={{borderColor:data.datasets[0].backgroundColor[index]}}
           >
-            <div className="text-[24px] font-medium text-dark-blue  ">
+            <div className="text-[20px] font-medium text-dark-blue  ">
               {proj.hours} 
             </div>
-            <div className="text-[14px] font-medium text-grey-color  ">
+            <div className="text-[12px] font-medium text-grey-color  ">
               {proj.projectName}
             </div>
           </div>

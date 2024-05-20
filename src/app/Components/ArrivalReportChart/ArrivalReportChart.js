@@ -20,7 +20,9 @@ const ArrivalReportChart = ({arrivalData}) => {
                 '#BFE9FF'
                 
             ],
-            radius: '80%'
+            borderWidth: 2,
+            radius: 80,
+            cutout: 65,
   
           },
         ],
@@ -94,20 +96,20 @@ const ArrivalReportChart = ({arrivalData}) => {
       <div className="flex flex-wrap gap-y-[20px] px-[35px] w-full ">
         {/* One Label */}
         <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#BFE9FF] ">
-            <div className="text-[24px] font-medium text-dark-blue  ">{arrivalData[2]}</div>
-            <div className="text-[14px] font-medium text-grey-color  ">After 10:30</div>
+            <div className="text-[20px] font-medium text-dark-blue  ">{arrivalData[2]}</div>
+            <div className="text-[12px] font-medium text-grey-color  ">After 10:30</div>
         </div>
         
         {/* Label Two */}
         <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#F97373] ">
-            <div className="text-[24px] font-medium text-dark-blue  ">{arrivalData[1]}</div>
-            <div className="text-[14px] font-medium text-grey-color  ">Absence</div>
+            <div className="text-[20px] font-medium text-dark-blue  ">{arrivalData[1]}</div>
+            <div className="text-[12px] font-medium text-grey-color  ">Absence</div>
         </div>
         
         {/* Label Third */}
         <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#0683C6] ">
-            <div className="text-[24px] font-medium text-dark-blue  ">{arrivalData[0]}</div>
-            <div className="text-[14px] font-medium text-grey-color  ">Before 10:30</div>
+            <div className="text-[20px] font-medium text-dark-blue  ">{arrivalData[0]}</div>
+            <div className="text-[12px] font-medium text-grey-color  ">Before 10:30</div>
         </div>
         
       </div>
