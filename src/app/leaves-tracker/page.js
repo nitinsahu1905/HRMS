@@ -1,9 +1,73 @@
+"use client";
 import { MdOutlineMoreTime } from "react-icons/md";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
-import { leavesHistory } from "../Constants/MyLeavesData";
+import { leavesHistory, upcomingHolidays } from "../Constants/MyLeavesData";
+import { useEffect, useState } from "react";
 
 export default function LeaveTracker() {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  // Update current time every minute
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(timer);
+  }, []);
+
+  // Format current time
+  const formatTime = (date) => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    return date.toLocaleDateString(undefined, options);
+  };
+
+  // function to sort the month
+  const monthHandler = (event) => {
+    setMonth(event.target.value);
+  };
+
+  // function to get the current month
+  const getCurrentMonth = () => {
+    const monthNames = [
+      "JANUARY",
+      "FEBRUARY",
+      "MARCH",
+      "APRIL",
+      "MAY",
+      "JUNE",
+      "JULY",
+      "AUGUST",
+      "SEPTEMBER",
+      "OCTOBER",
+      "NOVEMBER",
+      "DECEMBER",
+    ];
+    const currentMonthIndex = new Date().getMonth();
+    console.log("m0onth indee", currentMonthIndex);
+    return monthNames[currentMonthIndex];
+  };
+
+  const [month, setMonth] = useState(getCurrentMonth());
+
+  // filetering the months
+  const filteredHolidays = upcomingHolidays.filter(
+    (items) => items.month === `${month}`
+  );
+
+  // extracting holidays months from the upcomingHoldays array
+  const holidayMonths = [
+    ...new Set(upcomingHolidays.map((holiday) => holiday.month)),
+  ];
+
   return (
     <div className="flex flex-col gap-[10px] p-[20px]">
       {/*heading section*/}
@@ -22,7 +86,7 @@ export default function LeaveTracker() {
         <div className="flex items-center bg-[#FEFFFE] gap-x-14 rounded-[15px] p-[15px]">
           <div className="flex flex-col">
             <span className="text-grey-color font-semibold">Current time</span>
-            <span className="font-semibold">29 April 2024, 1:00 PM</span>
+            <span className="font-semibold">{formatTime(currentTime)}</span>
           </div>
 
           {/* timer icon */}
@@ -35,7 +99,7 @@ export default function LeaveTracker() {
       {/* upper boxes includes my-leaves & consumed leaves section */}
       <div className="w-full h-[330px] flex items-center  gap-[10px]">
         {/* my leaves section */}
-        <div className="h-full w-[65%] shadow-sm rounded-[15px] bg-[#FEFEFF]">
+        <div className="h-full w-[60%] shadow-sm rounded-[15px] bg-[#FEFEFF]">
           {/* title : My leaves */}
           <div className="w-full h-[55px] flex items-center justify-between p-7">
             <span className="text-[#12225F]  font-medium ">My Leaves</span>
@@ -57,9 +121,9 @@ export default function LeaveTracker() {
                 {/* content of the leave */}
                 <div className="h-full flex flex-col ">
                   {" "}
-                  <span className="text-[13px] leading-none">{`${value.startDate} - ${
-                    value.endDate ? value.endDate : ""
-                  } `}</span>
+                  <span className="text-[13px] leading-none">{`${
+                    value.startDate
+                  } - ${value.endDate ? value.endDate : ""} `}</span>
                   <span className="text-[11px] text-[#8B95A5]">{`${value.reason} • ${value.count} Days`}</span>
                 </div>
               </div>
@@ -86,12 +150,113 @@ export default function LeaveTracker() {
         </div>
 
         {/* consumed leaves section */}
-        <div className="h-full w-[35%] shadow-sm rounded-[15px] bg-[#FEFEFF]"></div>
+        <div className="h-full w-[40%] shadow-sm rounded-[15px] bg-[#FEFEFF]">
+          {/* top-box */}
+          <div className="w-full h-[38%] flex">
+            <div className="h-full w-[70%] flex flex-col gap-2 p-4">
+              {/* title */}
+              <span className="text-[#12225F] font-medium ">
+                Consumed Leave Types
+              </span>
+
+              {/* types of leaves */}
+              <div className="grid grid-cols-2 gap-2">
+                <p className="text-[11px] text-[#8B95A5]">
+                  <span className="text-[13px] text-black font-medium leading-none p-2">
+                    PL
+                  </span>
+                  Planned leaves
+                </p>
+                <p className="text-[11px] text-[#8B95A5]">
+                  <span className="text-[13px] text-black font-medium leading-none p-2">
+                    SL
+                  </span>
+                  Sick leaves
+                </p>
+                <p className="text-[11px] text-[#8B95A5]">
+                  <span className="text-[13px] text-black font-medium leading-none p-2">
+                    CL
+                  </span>
+                  Casual leaves
+                </p>
+                <p className="text-[11px] text-[#8B95A5]">
+                  <span className="text-[13px] text-black font-medium leading-none p-2">
+                    PL
+                  </span>
+                  Paternity leaves
+                </p>
+                <p className="text-[11px] text-[#8B95A5] w-max">
+                  <span className="text-[13px] text-black font-medium leading-none p-2">
+                    BL
+                  </span>
+                  Bereavement leaves
+                </p>
+              </div>
+            </div>
+
+            <div className="h-full w-[30%] bg-blue-100"></div>
+          </div>
+
+          <div className="w-full h-[62%] bg-red-300"></div>
+        </div>
       </div>
 
-      {/* leave stats */}
-      <div className="w-full h-[472px] flex items-center  gap-[10px]">
-        <div className="w-full h-full rounded-[15px] bg-[#FEFEFF] shadow-sm"></div>
+      {/* lower boxes which includes upcoming holidays section & yearly statics */}
+      <div className="w-full h-[325px] flex items-center  gap-[10px]">
+        {/* upcoming holidays section */}
+        <div className="w-full h-full rounded-[15px] bg-[#FEFEFF] shadow-sm">
+          {/* title : Upcoming holidays */}
+          <div className="w-full h-[55px] flex items-center justify-between p-7">
+            <span className="text-[#12225F]  font-medium ">My Leaves</span>
+
+            {/* sorting the months */}
+            <select value={month} onChange={monthHandler}>
+              <option value="">{month}</option>
+              {holidayMonths.map((month, index) => (
+                <option key={index} value={month}>
+                  {month}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* list of holidays */}
+          {filteredHolidays.length > 0 ? (
+            <>
+              {filteredHolidays.map((holiday) => (
+                <div className="w-full h-[55px] flex justify-between px-[34px] pr-[74px]">
+                  {/* includes bullet points with data */}
+                  <div className="flex gap-14">
+                    {/* bullet points section */}
+                    <div className="flex flex-col gap-[1px]  items-center mt-[1px] ">
+                      <div className="h-[10px] w-[10px] bg-[#FF7B02] rounded-[50px]"></div>
+                    </div>
+
+                    {/* content of the leave */}
+                    <div className="h-full flex flex-col ">
+                      {" "}
+                      <span className="text-[13px] leading-none">
+                        {holiday.occasion}
+                      </span>
+                      <span className="text-[11px] text-[#8B95A5]">
+                        {holiday.date}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* days */}
+                  <span className="text-[11px] text-[#52B693]">{`${holiday.count} Day`}</span>
+                </div>
+              ))}
+            </>
+          ) : (
+            <p className="mt-5 w-full flex items-center justify-center">
+              No holidays this month
+            </p>
+          )}
+        </div>
+
+        {/* yearly statics section */}
         <div className="w-full h-full rounded-[15px] bg-[#FEFEFF] shadow-sm"></div>
       </div>
     </div>
