@@ -4,6 +4,8 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
 import { leavesHistory, upcomingHolidays } from "../Constants/MyLeavesData";
 import { useEffect, useState } from "react";
+import ConsumedLeavesChart from "../Components/LeaveTrackerCharts/consumed-leaves-chart";
+import YearlyStatsChart from "../Components/LeaveTrackerCharts/yearly-stats-chart";
 
 export default function LeaveTracker() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -194,7 +196,13 @@ export default function LeaveTracker() {
               </div>
             </div>
 
-            <div className="h-full w-[30%] bg-blue-100"></div>
+            <div className="h-full w-[30%] bg-blue-100">
+            {/* <div className="lg:w-[25%]  bg-white rounded-[15px] h-auto  flex flex-col pb-2"> */}
+            <div className="flex flex-col gap-[10px] items-center justify-center ">
+              <ConsumedLeavesChart usedLeaves={[9,5]} totalHolidays={52}/>
+            </div>
+          {/* </div> */}
+            </div>
           </div>
 
           <div className="w-full h-[62%] bg-red-300"></div>
@@ -204,13 +212,13 @@ export default function LeaveTracker() {
       {/* lower boxes which includes upcoming holidays section & yearly statics */}
       <div className="w-full h-[325px] flex items-center  gap-[10px]">
         {/* upcoming holidays section */}
-        <div className="w-full h-full rounded-[15px] bg-[#FEFEFF] shadow-sm">
+        <div className="w-[40%] h-full rounded-[15px] bg-[#FEFEFF] shadow-sm">
           {/* title : Upcoming holidays */}
           <div className="w-full h-[55px] flex items-center justify-between p-7">
             <span className="text-[#12225F]  font-medium ">My Leaves</span>
 
             {/* sorting the months */}
-            <select value={month} onChange={monthHandler}>
+            <select className="text-[14px] border-[2px] outline-none rounded-[6px]" value={month} onChange={monthHandler}>
               <option value="">{month}</option>
               {holidayMonths.map((month, index) => (
                 <option key={index} value={month}>
@@ -219,14 +227,13 @@ export default function LeaveTracker() {
               ))}
             </select>
           </div>
-
           {/* list of holidays */}
           {filteredHolidays.length > 0 ? (
             <>
               {filteredHolidays.map((holiday) => (
-                <div className="w-full h-[55px] flex justify-between px-[34px] pr-[74px]">
+                <div className="w-full h-[55px] flex justify-between px-[34px] pr-[54px]">
                   {/* includes bullet points with data */}
-                  <div className="flex gap-14">
+                  <div className="flex gap-8">
                     {/* bullet points section */}
                     <div className="flex flex-col gap-[1px]  items-center mt-[1px] ">
                       <div className="h-[10px] w-[10px] bg-[#FF7B02] rounded-[50px]"></div>
@@ -257,7 +264,9 @@ export default function LeaveTracker() {
         </div>
 
         {/* yearly statics section */}
-        <div className="w-full h-full rounded-[15px] bg-[#FEFEFF] shadow-sm"></div>
+        <div className="w-[60%] h-full rounded-[15px] bg-[#FEFEFF] shadow-sm">
+          <YearlyStatsChart/>
+        </div>
       </div>
     </div>
   );
