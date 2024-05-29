@@ -9,6 +9,25 @@ import YearlyStatsChart from "../Components/LeaveTrackerCharts/yearly-stats-char
 
 export default function LeaveTracker() {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [updatedConsumedLeaves, setUpdatedConsumedLeves] = useState({});
+
+  // raw data for the consumed leaves
+  const consumedLeaves = [
+    { type: "PL", count: 2 },
+    { type: "CL", count: 4 },
+    { type: "SL", count: 1 },
+    { type: "PL", count: 0 },
+    { type: "BL", count: 7 },
+  ];
+
+  // function on all counts
+  useEffect(() => {
+    const updatedConsumedLeaves = consumedLeaves.map((leave) => ({
+      ...leave,
+      width: (leave.count * 100) / 12,
+    }));
+    setUpdatedConsumedLeves(updatedConsumedLeaves);
+  }, []);
 
   // Update current time every minute
   useEffect(() => {
@@ -155,8 +174,8 @@ export default function LeaveTracker() {
         <div className="h-full w-[40%] shadow-sm rounded-[15px] bg-[#FEFEFF]">
           {/* top-box */}
           <div className="w-full h-[38%] flex">
+            {/* title */}
             <div className="h-full w-[70%] flex flex-col gap-2 p-4">
-              {/* title */}
               <span className="text-[#12225F] font-medium ">
                 Consumed Leave Types
               </span>
@@ -196,16 +215,35 @@ export default function LeaveTracker() {
               </div>
             </div>
 
-            <div className="h-full w-[30%] bg-blue-100">
-            {/* <div className="lg:w-[25%]  bg-white rounded-[15px] h-auto  flex flex-col pb-2"> */}
-            <div className="flex flex-col gap-[10px] items-center justify-center ">
-              <ConsumedLeavesChart usedLeaves={[9,5]} totalHolidays={52}/>
-            </div>
-          {/* </div> */}
+            {/* donut chart for consumed lives*/}
+            <div className="h-full w-[30%]">
+              <div className="flex flex-col gap-[10px] items-center justify-center ">
+                <ConsumedLeavesChart usedLeaves={[9, 5]} totalHolidays={52} />
+              </div>
             </div>
           </div>
 
-          <div className="w-full h-[62%] bg-red-300"></div>
+          <div className="w-full h-[62%]">
+            {/* pipes for the consumed leaves */}
+            {updatedConsumedLeaves.length > 0
+              ? updatedConsumedLeaves.map((item) => (
+                  <div className="flex items-center gap-[32px] px-6 p-2">
+                    {/* type of the leave */}
+                    <span>{item.type}</span>{" "}
+                    <div className="w-full rounded-[30px] h-[10px] bg-[#F1F2F4]">
+                      <div
+                        className="rounded-[30px] h-full bg-[#66CFFF]"
+                        style={{ width: `${item.width}%` }}
+                      ></div>
+                    </div>
+                    <span>
+                      {item.count}
+                      <span className="text-[#808080]">/12</span>
+                    </span>
+                  </div>
+                ))
+              : null}
+          </div>
         </div>
       </div>
 
@@ -218,7 +256,11 @@ export default function LeaveTracker() {
             <span className="text-[#12225F]  font-medium ">My Leaves</span>
 
             {/* sorting the months */}
-            <select className="text-[14px] border-[2px] outline-none rounded-[6px]" value={month} onChange={monthHandler}>
+            <select
+              className="text-[14px] border-[2px] outline-none rounded-[6px]"
+              value={month}
+              onChange={monthHandler}
+            >
               <option value="">{month}</option>
               {holidayMonths.map((month, index) => (
                 <option key={index} value={month}>
@@ -265,7 +307,7 @@ export default function LeaveTracker() {
 
         {/* yearly statics section */}
         <div className="w-[60%] h-full rounded-[15px] bg-[#FEFEFF] shadow-sm">
-          <YearlyStatsChart/>
+          <YearlyStatsChart />
         </div>
       </div>
     </div>
