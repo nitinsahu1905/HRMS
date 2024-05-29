@@ -3,43 +3,43 @@ export const EmployeeTrackerData = [
         name: "Lakshya Agarwal",
         designation: "Frontend Developer Intern",
         department: "Frontend",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Nitin Sahu",
         designation: "Frontend Developer Intern",
         department: "Frontend",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Farhan Sheikh",
         designation: "Frontend Developer Intern",
         department: "Frontend",
-        status: "Absent"
+        status: "Not Punch"
     },
     {
         name: "Divyanshi Palliwal",
         designation: "UI Designer",
         department: "UI",
-        status: "Present"
+        status: "Punch In"
     },
     {
-        name: "Prianshu Mishra",
+        name: "Priyanshu Mishra",
         designation: "Frontend Developer Intern",
         department: "Frontend",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Kartikey Dubey",
         designation: "Associate Developer",
         department: "Salesforce",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Pranjal Bansal",
         designation: "Associate Developer",
         department: "Salesforce",
-        status: "Absent"
+        status: "Not Punch"
     },
     {
         name: "Takshima Goyal",
@@ -51,55 +51,55 @@ export const EmployeeTrackerData = [
         name: "Rahul Yadav",
         designation: "Salesforce Developer",
         department: "Salesforce",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Akshat Lakhara",
         designation: "Trainee",
         department: "Salesforce",
-        status: "Absent"
+        status: "Not Punch"
     },
     {
         name: "Gaurav Bhardwaj",
         designation: "QA Trainee",
         department: "Testing",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Ishita Saini",
         designation: "HR Specialist",
         department: "HR",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Kavya",
         designation: "Human Resource",
         department: "HR",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Bheem Singh",
         designation: "Frontend Developer",
         department: "UI",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Laveena Jethani",
         designation: "Salesforce Developer",
         department: "Salesforce",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Aishwarya Rathore",
         designation: "Project Manager",
         department: "Management",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Nisha Mantri",
         designation: "Project Manager",
         department: "Management",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Vinod Sharma",
@@ -111,55 +111,55 @@ export const EmployeeTrackerData = [
         name: "Ayush Kasera",
         designation: "Trainee",
         department: "Salesforce",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Lokesh Goyal",
         designation: "Senior QA",
         department: "Testing",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Kapil Kumawat",
         designation: "Associate Developer",
         department: "Salesforce",
-        status: "Present"
+        status: "Punch Out"
     },
     {
         name: "Mahendra",
         designation: "Trainee",
         department: "Testing",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Sagar",
         designation: "Associate Developer",
         department: "Salesforce",
-        status: "Present"
+        status: "Punch Out"
     },
     {
         name: "Fareen",
         designation: "Associate Developer",
         department: "Salesforce",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Tarun",
         designation: "Associate Developer",
         department: "Salesforce",
-        status: "Absent"
+        status: "Not Punch"
     },
     {
         name: "Abhishek",
         designation: "Salesforce Developer",
         department: "Salesforce",
-        status: "Present"
+        status: "Punch In"
     },
     {
         name: "Kuldeep",
         designation: "Associate Developer",
         department: "Salesforce",
-        status: "Present"
+        status: "Punch In"
     }
    
     

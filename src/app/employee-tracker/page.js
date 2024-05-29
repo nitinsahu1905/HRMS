@@ -7,8 +7,11 @@ import { IoSearch, IoFilter } from "react-icons/io5";
 import { EmployeeTrackerData } from "../Constants/EmployeeTrackerData";
 import TrackerTable from "../Components/TrackerTable";
 import EmployeeTrackerDropdowns from "../Components/EmployeeTrackerDropdowns";
+import { FiAlertTriangle } from "react-icons/fi";
+import { AiFillHome, AiOutlineFieldTime } from "react-icons/ai";
 
 const EmployeeTracker = () => {
+  const [time, setTime] = useState(new Date());
   const [appearSearch, setAppearSearch] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState(EmployeeTrackerData);
@@ -18,6 +21,23 @@ const EmployeeTracker = () => {
   console.log("SearchText", searchText);
   console.log("Filtered-Data", filteredData);
 
+  const getDate = () =>{
+    const date = new Date();
+    const options = { month: "long", day: "numeric", year: "numeric" };
+    return date.toLocaleDateString("en-US", options);
+  }
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const formattedTime = time.toLocaleTimeString('en-US', { hour12: false });
+
+
+  // Function for Filter data on basis of Status on Cards before Table
   const handlePresenceFilter = (stat) => {
     setFilteredData(EmployeeTrackerData);
     const filterbyStatus = EmployeeTrackerData.filter((data) => {
@@ -28,6 +48,7 @@ const EmployeeTracker = () => {
     setFilteredData(filterbyStatus);
   };
 
+  // Search Function
   const handleSearch = (stext) => {
     setFilteredData(EmployeeTrackerData);
     if (!filteredData) {
@@ -66,51 +87,111 @@ const EmployeeTracker = () => {
           Employee Tracker
         </h1>
       </div>
-      {/* Wishes */}
+      {/* Wishes & Time Box */}
+      <div className="flex flex-row justify-between ">
+        {/* Wishes */}
       <div className="flex flex-row gap-[20px]  ">
         <div className="w-[76px] h-[74px] ">
           <Image src={gesture1} alt="Good Morning" />
           {/* <Image src={gesture1} alt="Good Morning" /> */}
         </div>
         <div className="flex flex-col gap-[5px]  ">
-          <div className="text-dark-blue text-[24px] font-medium ">Hello!</div>
+          <div className="text-dark-blue text-[24px] font-medium ">Hello Lakshya!</div>
           <div className="text-grey-color  ">
             Let&apos;s brighten some smiles today
           </div>
           {/* <div className="text-grey-color  ">Embracing the dark with radiant smiles</div> */}
         </div>
-      </div>
+      </div> 
+
+       {/* Time Box  */}
+       <div className="w-[280px] h-full p-[15px] flex flex-row justify-between rounded-[15px]  bg-white">
+        <div className="flex flex-col gap-[5px]  ">
+          <div className="text-grey-color text-[14px] ">
+            Current Time
+          </div>
+          <div className="text-dark-blue font-medium ">
+            {getDate()} &nbsp; {formattedTime}
+          </div>
+        </div>
+        <div className="flex items-center justify-center ">
+          <AiOutlineFieldTime className="w-[35px] h-[35px] " />
+        </div>
+       </div>
+        
+      </div>  
+
+
       {/* Today's Update section of Attendence */}
       <div className="flex flex-col gap-[10px] ">
         <div className="text-dark-blue text-[20px] font-medium ">
           Today&apos;s Update
         </div>
-        <div className="flex flex-row gap-[20px] ">
-          {/* Present */}
+        
+
+        {/* Status Bar */}
+        <div className="flex flex-row gap-[20px] mb-[20px] mt-[5px] ">
+          {/* Punch In */}
           <div
-            onClick={() => handlePresenceFilter("present")}
-            className="flex flex-col gap-[5px] w-[233px] bg-white rounded-[10px] px-[15px] py-[10px] border-r-[15px] border-[#cdf6cd] shadow-lg cursor-pointer "
+            onClick={() => handlePresenceFilter("Punch In")}
+            className="flex flex-col gap-[5px] items-center justify-between w-[190px] bg-white rounded-[10px] px-[15px] py-[10px] shadow-lg cursor-pointer "
           >
-            <div className="text-[#008000] text-[20px]   ">Present</div>
-            <div className="text-grey-color text-[36px]  ">35</div>
+            <div className="w-[70px] h-[50px] bg-[#CDF6CD] flex justify-center items-center rounded-[10px] ">
+              <Image 
+              src='./on-time.png'
+              width={30}
+              height={30}
+              className="w-[30px] h-[30px] "
+              />
+            </div>
+            <div className="text-[#008000] text-[18px] mt-[10px]  ">Punch In</div>
+            <div className="text-grey-color text-[32px] leading-none ">35</div>
           </div>
-          {/* Absent */}
+
+          {/* Not Punch */}
           <div
-            onClick={() => handlePresenceFilter("absent")}
-            className="flex flex-col gap-[5px] w-[233px] bg-white rounded-[10px] px-[15px] py-[10px] border-r-[15px] border-[#FCABAB] shadow-lg cursor-pointer "
+            onClick={() => handlePresenceFilter("not punch")}
+            className="flex flex-col gap-[5px] items-center justify-between w-[190px] bg-white rounded-[10px] px-[15px] py-[10px] shadow-lg cursor-pointer "
           >
-            <div className="text-[#A90303] text-[20px]   ">Absent</div>
-            <div className="text-grey-color text-[36px]  ">08</div>
+            <div className="w-[70px] h-[50px] bg-[#FCABAB] flex justify-center items-center rounded-[10px] ">
+              <FiAlertTriangle 
+              className="w-[30px] h-[30px] text-[#D40202] "
+              />
+            </div>
+            <div className="text-[#A90303] text-[18px] mt-[10px]  ">Not Punch</div>
+            <div className="text-grey-color text-[32px] leading-none  ">08</div>
           </div>
           {/* WFH */}
           <div
             onClick={() => handlePresenceFilter("wfh")}
-            className="flex flex-col gap-[5px] w-[233px] bg-white rounded-[10px] px-[15px] py-[10px] border-r-[15px] border-[#DAF2FF] shadow-lg cursor-pointer "
+            className="flex flex-col gap-[5px] w-[190px] items-center justify-between bg-white rounded-[10px] px-[15px] py-[10px]  shadow-lg cursor-pointer "
           >
-            <div className="text-[#0683C6] text-[20px]   ">Work From Home</div>
-            <div className="text-grey-color text-[36px]  ">02</div>
+            <div className="w-[70px] h-[50px] bg-[#DAF2FF] flex justify-center items-center rounded-[10px] ">
+              <AiFillHome
+              className="w-[30px] h-[30px] text-[#0683C6] "
+              />
+            </div>
+            <div className="text-[#0683C6] text-[18px] mt-[10px]  ">Work From Home</div>
+            <div className="text-grey-color text-[32px] leading-none ">02</div>
+          </div>
+          {/* Punched Out */}
+          <div
+            onClick={() => handlePresenceFilter("punch out")}
+            className="flex flex-col gap-[5px] w-[190px] items-center justify-between bg-white rounded-[10px] px-[15px] py-[10px]  shadow-lg cursor-pointer "
+          >
+            <div className="w-[70px] h-[50px] bg-[#FFDEE2] flex justify-center items-center rounded-[10px] ">
+              <Image 
+              src='./clock.png'
+              width={30}
+              height={30}
+              className="w-[30px] h-[30px] "
+              />
+            </div>
+            <div className="text-[#02D495] text-[18px] mt-[10px]  ">Punch Out</div>
+            <div className="text-grey-color text-[32px] leading-none ">02</div>
           </div>
         </div>
+
       </div>
 
       {/* Employee List Section */}

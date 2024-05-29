@@ -5,7 +5,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
  
 const StatesDropDown = ({ mainText, Data, onSelect }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("This week");
+  const [selectedOption, setSelectedOption] = useState(Data[0]);
  
   const dropdownRef = useRef(null);
  
@@ -33,7 +33,7 @@ const StatesDropDown = ({ mainText, Data, onSelect }) => {
   }, [dropdownRef]);
  
   return (
-    <div>
+    <div className="relative">
       <div className="flex flex-row justify-between px-1 py-0 items-center  rounded-lg border-[1px] border-grey-color w-full">
         <div className="text-grey-color text-xs">{selectedOption || mainText}</div>
         <div>
@@ -48,7 +48,7 @@ const StatesDropDown = ({ mainText, Data, onSelect }) => {
       </div>
       <ul
         id="dropdown-example"
-        className={`py-2 absolute  bg-[#f7f7f7] rounded-xl space-y-2 md:w-auto w-[82%]  ${
+        className={`py-2 absolute z-50 right-0  bg-[#f7f7f7] rounded-xl space-y-1 lg:w-auto md:w-auto w-[82%]  ${
           isDropdownOpen ? "" : "hidden"
         }`}
         ref={dropdownRef}
@@ -56,7 +56,7 @@ const StatesDropDown = ({ mainText, Data, onSelect }) => {
         {Data.map((field) => (
           <li key={field}>
             <div
-              className="w-full text-xs cursor-pointer p-3 text-black transition duration-75 rounded-lg  group hover:bg-[#f9f9f9] group hover:text-[#121f47]  dark:hover:bg-primary-blue"
+              className="w-auto text-xs cursor-pointer px-3 py-2 text-black transition duration-75 rounded-lg  group hover:bg-[#f9f9f9] group hover:text-[#121f47]  dark:hover:bg-primary-blue"
               onClick={() => handleSelect(field)}
             >
               {field}

@@ -212,7 +212,7 @@ const EmployeeDashboard = () => {
         {/* Second Row */}
         <div className="flex md:flex-row flex-col  gap-[25px]  ">
         <div className="w-[75%] flex flex-row gap-[25px] bg-white rounded-[15px] ">
-            {/* <MyForecasting /> */}
+            <MyForecasting />
         </div>
 
         <div className="lg:w-[25%]  bg-white rounded-[15px] h-auto  flex flex-col  ">
@@ -281,7 +281,7 @@ const EmployeeDashboard = () => {
                 Upcoming Celebration
               </div>
               <div className="flex flex-col gap-1 h-[332px] overflow-y-scroll scrollbar-hide  ">
-                {CelebrationData.map((data) => (
+                {CelebrationData.slice(0,4).map((data) => (
                   <div key={data.id} className="w-full">
                     {/* One Celebration */}
                     <div className="flex flex-row justify-between rounded-lg w-auto h-auto mx-2 p-2">

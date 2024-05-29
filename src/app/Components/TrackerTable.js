@@ -8,7 +8,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const TrackerTable = ({ employeeData, headings }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 4;
+  const recordsPerPage = 5;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const records = employeeData.slice(firstIndex,lastIndex);
