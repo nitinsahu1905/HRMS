@@ -11,6 +11,22 @@ export default function LeaveTracker() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [updatedConsumedLeaves, setUpdatedConsumedLeves] = useState({});
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4; 
+
+  // Calculate the indexes for slicing the array:
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = leavesHistory.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalItems = leavesHistory.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  // function to handle page changes:
+  const handleClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   // raw data for the consumed leaves
   const consumedLeaves = [
     { type: "PL", count: 2 },
@@ -120,51 +136,95 @@ export default function LeaveTracker() {
       {/* upper boxes includes my-leaves & consumed leaves section */}
       <div className="w-full h-[330px] flex items-center  gap-[10px]">
         {/* my leaves section */}
-        <div className="h-full w-[60%] shadow-sm rounded-[15px] bg-[#FEFEFF]">
+        <div className="h-full w-[60%] shadow-sm rounded-[15px] bg-[#FEFEFF] flex flex-col justify-between">
           {/* title : My leaves */}
           <div className="w-full h-[55px] flex items-center justify-between p-7">
-            <span className="text-[#12225F]  font-medium ">My Leaves</span>
-            <button className=" text-[12px] font-bold text-white bg-[#0683C6] py-1 px-9 rounded-lg">
+            <span className="text-[#12225F] font-medium">My Leaves</span>
+            <button className="text-[12px] font-bold text-white bg-[#0683C6] py-1 px-9 rounded-lg">
               Apply leave
             </button>
           </div>
 
           {/* list of requests */}
-          {leavesHistory.map((value) => (
-            <div className="w-full h-[55px] flex justify-between px-[34px] pr-[74px]">
-              {/* includes bullet points with data */}
+          {currentItems.map((value) => (
+            <div
+              className="w-full h-[55px] flex justify-between px-[34px] pr-[74px]"
+              key={value.startDate + value.reason}
+            >
               <div className="flex gap-14">
-                {/* bullet points section */}
-                <div className="flex flex-col gap-[1px]  items-center mt-[1px] ">
-                  <div className="h-[10px] w-[10px] bg-[#FF7B02] rounded-[50px]"></div>
-                  <div className="flex-1 w-[1px] bg-[#8B95A5]  "> </div>
+                <div className="flex flex-col gap-[1px] items-center mt-[1px]">
+                  <div
+                    className={`h-[10px] w-[10px] rounded-[50px] ${
+                      value.status === "Pending"
+                        ? "bg-orange-500"
+                        : value.status === "Approved"
+                        ? "bg-green-500"
+                        : value.status === "Rejected"
+                        ? "bg-red-500"
+                        : ""
+                    }`}
+                  ></div>
+                  <div className="flex-1 w-[1px] bg-[#8B95A5]"></div>
                 </div>
+
                 {/* content of the leave */}
-                <div className="h-full flex flex-col ">
-                  {" "}
+                <div className="h-full flex flex-col">
                   <span className="text-[13px] leading-none">{`${
                     value.startDate
-                  } - ${value.endDate ? value.endDate : ""} `}</span>
-                  <span className="text-[11px] text-[#8B95A5]">{`${value.reason} • ${value.count} Days`}</span>
+                  } ${value.endDate ? `- ${value.endDate}` : ""}`}</span>
+                  <span className="text-[11px] text-[#8B95A5]">{`${
+                    value.reason
+                  } • ${value.count} Day${value.count > 1 ? "s" : ""}`}</span>
                 </div>
               </div>
 
               {/* status */}
-              <span className="text-[11px] text-[#FF7B02]">{value.status}</span>
+              <span
+                className={`text-[11px] ${
+                  value.status === "Pending"
+                    ? "text-orange-500"
+                    : value.status === "Approved"
+                    ? "text-green-500"
+                    : value.status === "Rejected"
+                    ? "text-red-500"
+                    : ""
+                }`}
+              >
+                {value.status}
+              </span>
             </div>
           ))}
 
           {/* pagination section */}
-          <div className="w-full h-[55px]  flex items-center justify-end gap-6 pr-4">
-            <span className="h-full flex items-center w-[20px]">
+          <div className="w-full h-[55px] flex items-center justify-end gap-6 pr-4">
+            <span
+              className="h-full flex items-center w-[20px]"
+              onClick={() => handleClick(currentPage > 1 ? currentPage - 1 : totalPages)}
+            >
               <FaAngleLeft />
             </span>
-            <span className="h-full flex items-center w-[20px]">1</span>
-            <span className="h-[30px] flex items-center justify-center w-[30px] bg-[#0683C6] rounded-[50px]">
-              2
-            </span>
-            <span className="h-full flex items-center w-[20px]">3</span>
-            <span className="h-full flex items-center w-[20px]">
+
+            {Array.from({ length: totalPages }, (_, index) => (
+              <span
+                key={index + 1}
+                className={`h-[20px] w-[20px] flex items-center justify-center rounded-full ${
+                  currentPage === index + 1 ? "bg-[#0683C6] text-white" : ""
+                }`}
+                style={{ cursor: "pointer" }}
+                onClick={() => handleClick(index + 1)}
+              >
+                {index + 1}
+              </span>
+            ))}
+            
+            <span
+              className="h-full flex items-center w-[20px]"
+              onClick={() =>
+                handleClick(
+                  currentPage < totalPages ? currentPage + 1 : 1
+                )
+              }
+            >
               <FaAngleRight />
             </span>
           </div>

@@ -1,0 +1,76 @@
+/* styles.css or equivalent */
+
+.fc .fc-toolbar-title {
+    color: #121f47; /* Your desired color */
+    font-weight: normal;
+    font-size: 20px; /* Adjust size as needed */
+    
+  }
+  
+  .fc .fc-button {
+    background-color: #ffffff; /* Button background */
+    color: #121f47; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    
+  }
+  
+  /* .fc .fc-button:hover {
+    background-color: #e0e0e0; /* Hover state background */
+
+  
+  .fc .fc-col-header-cell {
+    color: #025F92; /* Days header text color */
+    font-weight: 500;
+    background-color: #DAF2FF;
+    padding: 12px;
+  }
+
+ 
+  .fc .fc-daygrid-day-number {
+    color: #000000; /* Day number color */
+    font-size: 15px;
+    font-weight: normal;
+  }
+  
+  .fc .fc-daygrid-day-frame {
+    background-color: #ffffff; /* Day cell background color */
+    /* border: 1px solid #ddd; Day cell border */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  /* .fc .fc-daygrid-day-frame:hover {
+    /* background-color: #f9f9f9; Hover state background 
+   */
+  
+  .fc-theme-standard th {
+border: none;
+
+  }
+ 
+.fc-event-main{
+    background-color: #f7f7f7;
+    width: 80%;
+}
+/* .fc-daygrid-day-top{
+    background-color: #121f47;
+} */
+
+.fc-h-event{
+    border: none;
+    display: flex;
+    text-align: center;
+    background-color: #ffffff;
+    justify-content: center;
+}
+.fc-today-button{
+  display: none;
+}
+
+table{
+    width: 100% !important;
+}
+
+.fc-daygrid-body{
+    width: 100% !important;
+}
