@@ -199,10 +199,11 @@ export default function LeaveTracker() {
           <div className="w-full h-[55px] flex items-center justify-end gap-6 pr-4">
             <span
               className="h-full flex items-center w-[20px]"
-              onClick={() => handleClick(currentPage > 1 ? currentPage - 1 : 1)}
+              onClick={() => handleClick(currentPage > 1 ? currentPage - 1 : totalPages)}
             >
               <FaAngleLeft />
             </span>
+
             {Array.from({ length: totalPages }, (_, index) => (
               <span
                 key={index + 1}
@@ -215,11 +216,12 @@ export default function LeaveTracker() {
                 {index + 1}
               </span>
             ))}
+            
             <span
               className="h-full flex items-center w-[20px]"
               onClick={() =>
                 handleClick(
-                  currentPage < totalPages ? currentPage + 1 : totalPages
+                  currentPage < totalPages ? currentPage + 1 : 1
                 )
               }
             >
