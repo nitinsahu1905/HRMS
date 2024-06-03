@@ -22,6 +22,9 @@
   h2 {
     @apply text-xl;
   }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(190deg); /* Example filter to change color */
+  }
 }
 @layer utilities {
   .custom-btn {

@@ -64,7 +64,7 @@ export default function Dashboard() {
             Celebrations
           </div>
           <div className="flex flex-col mt-2 gap-1">
-            {CelebrationData.map((data) => (
+            {CelebrationData.slice(0,4).map((data) => (
               <Celebration
                 key={data.id}
                 name={data.name}

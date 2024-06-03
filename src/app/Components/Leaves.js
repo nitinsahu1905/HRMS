@@ -50,7 +50,7 @@ const Leaves = () => {
               </div>
  
               <div className="flex flex-col lg:mx-2 mx-1 lg:gap-2 gap-1 lg:w-[calc(100%-64px)] w-[calc(100%-36px)] ">
-                <div className="text-dark-blue font-medium lg:text-xl text-sm ">
+                <div className="text-dark-blue font-medium lg:text-[16px] text-sm ">
                   {data.name}
                 </div>
                 <div className="text-dark-blue font-normal  lg:text-sm text-xs">

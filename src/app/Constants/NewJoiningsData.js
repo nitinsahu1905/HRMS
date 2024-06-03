@@ -10,14 +10,14 @@ export const NewJoiningsData =[
         id:2,
         name:"Farhan Sheikh",
         designation : "Frontend Developer",
-        email:"SheikhFarhan11@gmail.com",
+        email:"sheikhfarhan11@gmail.com",
         img:"https://designimages.appypie.com/displaypicture/displaypicture-14-person-human.jpg"
       },
       {
         id:2,
-        name:"Farhan Sheikh",
+        name:"Priyanshu Mishra",
         designation : "Frontend Developer",
-        email:"SheikhFarhan11@gmail.com",
+        email:"priyanshu.mishra@gmail.com",
         img:"https://designimages.appypie.com/displaypicture/displaypicture-14-person-human.jpg"
       },
 
