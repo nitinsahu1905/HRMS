@@ -34,9 +34,7 @@ export const ResourceForecastData = [
   {
    day:"Thursday",
    hours:[{
-     HRMS:"2"},{
-    Marketing:"2"},{
-    TicketBooking:"1"}
+     HRMS:"2"},
      ]
 },
 {

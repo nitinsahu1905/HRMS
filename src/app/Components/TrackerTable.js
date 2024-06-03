@@ -102,6 +102,7 @@ const TrackerTable = ({ employeeData, headings }) => {
               <td>{data.designation}</td>
               <td>{data.department}</td>
               <td>{data.status}</td>
+              {/* <td><div className=" w-[100px] px-[20px] py-[5px] rounded-[10px] ">{data.status}</div></td> */}
               
             </tr>
           ))}

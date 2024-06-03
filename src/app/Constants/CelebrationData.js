@@ -8,7 +8,7 @@ export const CelebrationData =[
     },
     {
         id:2,
-        name:"Farhan Sheikh",
+        name:"Mohommad Farhan Sheikh",
         occasion : "Birthday",
         date:"Tomorrow",
         img:"https://designimages.appypie.com/displaypicture/displaypicture-14-person-human.jpg"
@@ -17,14 +17,21 @@ export const CelebrationData =[
         id:3,
         name:"Ishita Saini",
         occasion : "Work Anniversary",
-        date:"05-04-2024",
+        date:"25-05-2024",
         img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaZJqgj3Dc3KTJokw9c0tcDfyHt5fKTrKevw&s"
     },
     {
         id:4,
-        name:"Aastha Singh",
+        name:"Pranjal Bansal",
         occasion : "Birthday",
-        date:"11-04-2024",
+        date:"28-05-2024",
+        img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuZTmGTCru9WdJTdatuzKGM1Pru5Pyjaquew&s"
+    },
+    {
+        id:5,
+        name:"Pranjal Bansal",
+        occasion : "Work Anniversary",
+        date:"11-06-2024",
         img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuZTmGTCru9WdJTdatuzKGM1Pru5Pyjaquew&s"
     },
 ]

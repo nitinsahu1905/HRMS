@@ -2,13 +2,13 @@
 import React from "react";
 import { useState ,useRef,useEffect} from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-
+ 
 const StatesDropDown = ({ mainText, Data, onSelect }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("This week");
-
+ 
   const dropdownRef = useRef(null);
-
+ 
   const handleSelect = (option) => {
     setSelectedOption(option);
     onSelect(option);
@@ -18,7 +18,7 @@ const StatesDropDown = ({ mainText, Data, onSelect }) => {
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
   };
-
+ 
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -26,12 +26,12 @@ const StatesDropDown = ({ mainText, Data, onSelect }) => {
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
-    
+   
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdownRef]);
-
+ 
   return (
     <div>
       <div className="flex flex-row justify-between px-1 py-0 items-center  rounded-lg border-[1px] border-grey-color w-full">
@@ -68,3 +68,4 @@ const StatesDropDown = ({ mainText, Data, onSelect }) => {
   );
 };
 export default StatesDropDown;
+ 

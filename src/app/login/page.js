@@ -30,14 +30,15 @@ export default function Login(props) {
     // checking validations for entries
     const validity = checkValidData(email, password);
     if (validity) {
-      setError(validity);
+      setError(validity);``
       return;
     }
 
     // checking for admin proof
     try {
       const data = await signInWithEmailAndPassword(authTable, email, password);
-      console.log(data.user.uid)
+      console.log("AuthTable: ",authTable)
+      console.log("data user uid: ",data.user.uid)
       const q = query(adminTable, where("userId", "==", data.user.uid));
       const querySnapshot = await getDocs(q);
       console.log(querySnapshot)
