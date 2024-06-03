@@ -44,6 +44,7 @@ export default function ProfileLayout({ children }) {
 
   const logoutHandler = () => {
     sessionStorage.removeItem("admin");
+    sessionStorage.removeItem("employee");
     window.location.reload();
     router.push("/");
 

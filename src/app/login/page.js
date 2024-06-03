@@ -38,20 +38,37 @@ export default function Login(props) {
     try {
       const data = await signInWithEmailAndPassword(authTable, email, password);
       console.log("AuthTable: ",authTable)
+      console.log("data user  ",data.user.email)
       console.log("data user uid: ",data.user.uid)
-      const q = query(adminTable, where("userId", "==", data.user.uid));
-      const querySnapshot = await getDocs(q);
-      console.log(querySnapshot)
-      if(querySnapshot.empty){
-        setError("You are not an admin");
+      if(!data.user.uid){
+        setError("You are not authorized user");
         return;
       }
+      const q = query(adminTable, where("userId", "==", data.user.uid));
+      console.log("Q: ",q)
+      const querySnapshot = await getDocs(q);
+      console.log(querySnapshot)
+
+
+      // if(querySnapshot.empty){
+
+      //   setError("You are not an admin");
+      //   return;
+      // }
+
+     
+
       // redirecting to the admin page
       // Router.push("/dashboard");
       props.set(true);
       // sessionStorage.setItem("admin", true);
       if (typeof window !== "undefined") {
-        sessionStorage.setItem("admin", true);
+        if(data.user.email == "gourav.goyal@gmail.com"){
+          sessionStorage.setItem("admin", true);
+
+        }else{
+          sessionStorage.setItem("employee",true)
+        }
       }
       // Router.push("/dashboard");
       

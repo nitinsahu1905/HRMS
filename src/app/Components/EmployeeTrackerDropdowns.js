@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { EmployeeTrackerData } from '../Constants/EmployeeTrackerData';
 
-const EmployeeTrackerDropdowns = (filteredData, setFilteredData ) => {
+const EmployeeTrackerDropdowns = ({filteredData, setFilteredDataByField} ) => {
     const [selectType, setSelectType] = useState(null);
     const [selectSubType, setSelectSubType] = useState();
     const [OneFieldData, setOneFieldData] = useState([])
@@ -10,30 +10,40 @@ const EmployeeTrackerDropdowns = (filteredData, setFilteredData ) => {
     const [uniqueValues, setUniqueValues] = useState([]);
 
     const extractUniqueValues = (key) => {
-    //   const unique = [...new Set(EmployeeTrackerData.map(item => item[key]))];
+      setSelectType(key);
 
-    const unique = EmployeeTrackerData.filter(item=>item.type === key)
-    
+      const unique = [...new Set(EmployeeTrackerData.map(item => item[key]))];
+        
       console.log("Unique values for ", key, ":", unique);
+
       setUniqueValues(unique);
-      setSelectType(key); // Auto-select the type
     };
+
+    const filterBySubType = (filterField) =>{
+      const filteredByField = EmployeeTrackerData.filter(item => item[selectType] === filterField )
+      setFilteredDataByField(filteredByField)
+    }
 
 
   return (
     <>
         <div className="absolute right-0 top-[30px] bg-white rounded-[5px] shadow-md  " >
-            <div className="px-[10px] py-[5px] border-b border-grey-color cursor-pointer " onClick={()=>extractUniqueValues("Designation")} >Designation</div>
-            <div className="px-[10px] py-[5px] border-b border-grey-color cursor-pointer " onClick={()=>extractUniqueValues("Department")}>Department</div>
-            <div className="px-[10px] py-[5px]  cursor-pointer " onClick={()=>extractUniqueValues("Status")}>Status</div>
+            <div className="px-[10px] py-[5px] border-b border-grey-color cursor-pointer " onClick={()=>extractUniqueValues("designation")} >Designation</div>
+            <div className="px-[10px] py-[5px] border-b border-grey-color cursor-pointer " onClick={()=>extractUniqueValues("department")}>Department</div>
+            <div className="px-[10px] py-[5px]  cursor-pointer " onClick={()=>extractUniqueValues("status")}>Status</div>
           </div>
             
-          {selectType && uniqueValues.length > 0 &&
+          {selectType
+          // && uniqueValues.length > 0 
+          ?
         <div className="absolute right-[120px] top-[32px] bg-white rounded-[5px] shadow-md">
+          
           {uniqueValues.map((value, index) => (
-            <div key={index} className="px-[10px] py-[5px] cursor-pointer">{value}</div>
+            <div key={index} className="px-[10px] py-[5px] cursor-pointer w-max " onClick={()=>filterBySubType(value)} >{value}</div>
           ))}
         </div>
+        :
+        null
       }
     </>
   )
