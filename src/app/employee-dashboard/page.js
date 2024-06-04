@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { CelebrationData } from "../Constants/CelebrationData";
 import { NewJoiningsData } from "../Constants/NewJoiningsData";
 import Image from "next/image";
@@ -85,11 +86,12 @@ const EmployeeDashboard = () => {
             {/* Greeting Section */}
             <div className="w-full flex flex-row bg-white rounded-[15px]">
               <div className="w-[20%] h-32">
-                <img
-                  src="./work.jpg"
+                <Image
+                  src="/work.jpg"
                   alt="work-pic"
                   className="rounded-tl-[15px] rounded-bl-[15px]"
-                ></img>
+                />{" "}
+                {/* Add alt prop */}
               </div>
 
               <div className=" flex flex-col gap-[1px] px-5 py-5">
@@ -109,10 +111,17 @@ const EmployeeDashboard = () => {
             <div className="flex flex-col gap-0">
               <div className="bg-[#BFE9FF] p-2 flex flex-row gap-4 items-center rounded-tr-[10px] rounded-tl-[10px]">
                 <div className="h-6">
-                  <img src="./Commercial.png" className="h-6 w-6"></img>
+                  <Image
+                    src="/Commercial.png"
+                    alt="Commercial"
+                    width={24}
+                    height={24}
+                    className="h-6 w-6"
+                  />{" "}
+                  {/* Add alt prop and specify width and height */}
                 </div>
                 <div className="text-[#0683C6] font-medium text-[20px]">
-                  What's Happening in Metadologie
+                  What&apos;s Happening in Metadologie
                 </div>
               </div>
               <div className="bg-white flex flex-col px-2 rounded-br-[10px] rounded-bl-[10px]">
@@ -120,7 +129,12 @@ const EmployeeDashboard = () => {
                 <div className=" py-4 flex flex-row justify-between  items-center w-full">
                   <div className="flex flex-row  items-center gap-4 w-[85%]">
                     <div className="h-6">
-                      <img src="./Handshake.jpg"></img>
+                      <Image
+                        src="/Handshake.jpg"
+                        alt="Handshake"
+                        width={24}
+                        height={24}
+                      />
                     </div>
                     <div className="flex flex-col gap-[2px]">
                       <div className="font-normal text-dark-blue text-[16px]">
@@ -141,7 +155,12 @@ const EmployeeDashboard = () => {
                 <div className=" py-4 flex flex-row justify-between items-center w-full">
                   <div className="flex flex-row gap-4  items-center w-[85%]">
                     <div className="h-6">
-                      <img src="./Confetti.png"></img>
+                      <Image
+                        src="/Confetti.png"
+                        alt="Confetti"
+                        width={24}
+                        height={24}
+                      />
                     </div>
                     <div className="flex flex-col gap-[2px] ">
                       <div className="font-normal text-dark-blue text-[16px]">
@@ -211,17 +230,16 @@ const EmployeeDashboard = () => {
 
         {/* Second Row */}
         <div className="flex md:flex-row flex-col  gap-[25px]  ">
-        <div className="w-[75%] flex flex-row gap-[25px] bg-white rounded-[15px] ">
+          <div className="w-[75%] flex flex-row gap-[25px] bg-white rounded-[15px] ">
             <MyForecasting />
-        </div>
+          </div>
 
-        <div className="lg:w-[25%]  bg-white rounded-[15px] h-auto  flex flex-col  ">
-              <div className=" mt-3 text-dark-blue font-medium text-[22px] px-3   ">
+          <div className="lg:w-[25%]  bg-white rounded-[15px] h-auto  flex flex-col  ">
+            <div className=" mt-3 text-dark-blue font-medium text-[22px] px-3   ">
               Leaves Update
             </div>
-            <MultiDatePicker/>
-        </div>
-
+            <MultiDatePicker />
+          </div>
         </div>
 
         {/* Third Row */}
@@ -281,7 +299,7 @@ const EmployeeDashboard = () => {
                 Upcoming Celebration
               </div>
               <div className="flex flex-col gap-1 h-[332px] overflow-y-scroll scrollbar-hide  ">
-                {CelebrationData.slice(0,4).map((data) => (
+                {CelebrationData.slice(0, 4).map((data) => (
                   <div key={data.id} className="w-full">
                     {/* One Celebration */}
                     <div className="flex flex-row justify-between rounded-lg w-auto h-auto mx-2 p-2">
@@ -349,7 +367,6 @@ const EmployeeDashboard = () => {
             <div className="bg-white w-[50%] rounded-[15px] px-4 flex flex-col gap-2">
               <div className="flex flex-row justify-between my-[12px] ">
                 <div className="text-dark-blue font-medium text-[22px]">
-                
                   Statistics
                 </div>
                 <StatesDropDown
@@ -382,7 +399,6 @@ const EmployeeDashboard = () => {
                       value={list.PendingTask}
                       color="#d92626"
                     />
-                    
                   </div>
                 </>
               ))}
@@ -391,8 +407,7 @@ const EmployeeDashboard = () => {
 
           {/* Leaves Today Section */}
           <div className="w-[25%] h-[435px] ">
-
-          <Leaves />
+            <Leaves />
           </div>
         </div>
       </div>

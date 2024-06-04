@@ -167,6 +167,7 @@ const MyTimesheet = () => {
 
   useEffect(() => {
     filterData(filterCriteria);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //   To print the Filter Options on basis of "Timesheet" & "Timesheet Status"
@@ -271,6 +272,7 @@ const handleSorting = (sortField) => {
   useEffect(()=>{
     handleSorting("startDate")
     console.log("Use effect")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const closeModal = () =>{

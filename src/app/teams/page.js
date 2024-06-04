@@ -8,13 +8,14 @@ const OrgChart = () => {
 
   useEffect(() => {
     if (!chartRef.current) return;
+    const chartNode = chartRef.current;
 
     const margin = { top: 50, right: 50, bottom: 50, left: 50 };
     const width = 1000 - margin.left - margin.right;
     const height = 600 - margin.top - margin.bottom;
 
     const svg = d3
-      .select(chartRef.current)
+      .select(chartNode)
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
@@ -73,7 +74,7 @@ const OrgChart = () => {
       .text((d) => d.data.name);
 
     return () => {
-      d3.select(chartRef.current).select("svg").remove();
+      d3.select(chartNode).select("svg").remove();
     };
   }, []);
 

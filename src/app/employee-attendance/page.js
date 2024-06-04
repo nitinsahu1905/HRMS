@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Calendar from "../Components/Calendar/Calendar";
 
 const EmployeeAttendance = () => {
@@ -30,7 +31,13 @@ const EmployeeAttendance = () => {
             </div>
             <div className="flex flex-row  gap-2">
               <div className="h-4 w-4">
-                <img src="./Calendar.jpg"></img>
+                <Image
+                  src="/Calendar.jpg"
+                  alt="Calendar"
+                  width={16}
+                  height={16}
+                />{" "}
+                {/* Add alt prop and specify width and height */}
               </div>
               <div className="font-medium text-grey-color text-xs">
                 Wednesday-May 22,2024
@@ -44,26 +51,29 @@ const EmployeeAttendance = () => {
                 <div className="h-2 w-2 rounded-full bg-[#121F47] "></div>
                 <div className=" text-xs text-left ">WFH</div>
               </div>
-              <div className="flex items-center pr-2 text-grey-color font-normal text-[14px]">2</div>
+              <div className="flex items-center pr-2 text-grey-color font-normal text-[14px]">
+                2
+              </div>
             </div>
 
             <div className="flex justify-between border-r-2 w-[30%]">
               <div className="flex flex-row gap-1 px-3 py-2 items-center">
                 <div className="h-2 w-2 rounded-full bg-[#FFA500] "></div>
                 <div className=" text-xs text-left ">Holiday</div>
-                
               </div>
-              <div className="flex items-center pr-2 text-grey-color font-normal text-[14px]">4</div>
-            
+              <div className="flex items-center pr-2 text-grey-color font-normal text-[14px]">
+                4
+              </div>
             </div>
-
 
             <div className="flex flex-row justify-between w-[45%]">
               <div className="flex flex-row gap-1 px-3 py-2 items-center">
                 <div className="h-2 w-2 rounded-full bg-[#FF0000] "></div>
                 <div className=" text-xs text-left "> Request</div>
               </div>
-              <div className="flex items-center pr-2 text-grey-color font-normal text-[14px]">2</div>
+              <div className="flex items-center pr-2 text-grey-color font-normal text-[14px]">
+                2
+              </div>
             </div>
           </div>
         </div>
@@ -71,10 +81,14 @@ const EmployeeAttendance = () => {
         {/* info of user */}
         <div className="flex flex-row w-[30%] p-10 gap-2">
           <div className="rounded-full h-12 w-12 bg-slate-600">
-            <img
-              src="./user-img.jpeg"
+            <Image
+              src="/user-img.jpeg"
+              alt="User Profile"
+              width={48}
+              height={48}
               className="h-full w-full object-cover rounded-full"
-            ></img>
+            />{" "}
+            {/* Add alt prop and specify width and height */}
           </div>
           <div className="flex flex-col gap-[2px]">
             <div className="font-medium text-xl">Nitin Sahu</div>
@@ -118,8 +132,13 @@ const EmployeeAttendance = () => {
         </div>
       </div>
       <div className="flex flex-col gap-1 w-full bg-white rounded-[15px] p-4">
-        <div className='text-[#121f47] font-medium text-[20px]'>Monthly Attendance</div>
-        <div className="w-full"><Calendar/></div></div>
+        <div className="text-[#121f47] font-medium text-[20px]">
+          Monthly Attendance
+        </div>
+        <div className="w-full">
+          <Calendar />
+        </div>
+      </div>
     </div>
   );
 };
