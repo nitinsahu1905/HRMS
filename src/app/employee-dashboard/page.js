@@ -3,12 +3,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { CelebrationData } from "../Constants/CelebrationData";
 import { NewJoiningsData } from "../Constants/NewJoiningsData";
-import Image from "next/image";
 import ArrivalReportChart from "../Components/ArrivalReportChart/ArrivalReportChart";
 import TimesheetReportChart from "../Components/TimesheetReport/TimesheetReportChart";
 import { TimesheetReportData } from "../Constants/TimesheetReportData";
-// import {img1} from '../../../public/user-img.jpeg'
-
 import { StatisticsEmployeeData } from "../Constants/StatisticsEmployeeData";
 import Statistics from "../Components/Statistics";
 import StatesDropDown from "../Components/StatesDropDown";
