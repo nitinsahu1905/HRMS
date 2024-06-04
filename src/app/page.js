@@ -1,15 +1,36 @@
 // import dashboard from "./dashboard/page";
-// "use client"
+"use client"
 import Link from "next/link";
 import Button from "./Components/button";
 import DashboardLayout from "./dashboard/layout";
+import { useEffect, useState } from "react";
+import EmployeeDashboard from "./employee-dashboard/page";
+import EmployeeDashboardLayout from "./employee-dashboard/layout";
 // import DashboardLayout from "./dashboard/page";
 // import DashboardLayout from "./dashboard/layout";
 
 export default function Home() {
+  const [userType, setUserType] = useState(null)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (sessionStorage.getItem("admin")) {
+        setUserType("admin");
+      }
+      if(sessionStorage.getItem("employee")){
+        setUserType("employee")
+      }
+
+    }
+  }, []);
   return (
     <>
-      <DashboardLayout />
+    {userType === "admin"?
+    <DashboardLayout />
+    :
+    <EmployeeDashboardLayout />
+    
+  
+  }
     </>
   );
 }

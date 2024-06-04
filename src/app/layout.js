@@ -2,7 +2,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./sidebar/page";
-import { useEffect, useState } from "react";
+import { useEffect, useState, cloneElement } from "react";
 import Login from "./login/page";
 import { UserProvider } from "./Context/UserContext";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -17,13 +17,17 @@ const poppins = Poppins({
 export default function RootLayout({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(
     // Boolean(sessionStorage.getItem("admin"))
-    false
+    null
   );
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (sessionStorage.getItem("admin")) {
-        setIsLoggedIn(true);
+        setIsLoggedIn("admin");
       }
+      if(sessionStorage.getItem("employee")){
+        setIsLoggedIn("employee")
+      }
+
     }
   }, []);
 
@@ -39,7 +43,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${poppins.variable}`}>
       <UserProvider>
         <body className="font-poppins">
-          {!isLoggedIn ? (
+          {isLoggedIn === null ? (
             <Login set={setIsLoggedIn} />
           ) : (
             <div className="flex md:flex-row flex-col gap-0 relative w-full ">
@@ -48,6 +52,8 @@ export default function RootLayout({ children }) {
                   <Sidebar
                     collapse={sidebarCollapse}
                     setCollapse={setSidebarCollapse}
+                    userType={isLoggedIn}
+                    setMobileSidebarCollapse={setSidebarMobileCollapse}
                   />
                 </div>
               ) : (
@@ -55,6 +61,8 @@ export default function RootLayout({ children }) {
                   <Sidebar
                     collapse={sidebarCollapse}
                     setCollapse={setSidebarCollapse}
+                    userType={isLoggedIn}
+                    setMobileSidebarCollapse={setSidebarMobileCollapse}
                   />
                 </div>
               )}
@@ -71,12 +79,16 @@ export default function RootLayout({ children }) {
                 <Sidebar
                   mobileCollapse={sidebarMobileCollapse}
                   setMobileSidebarCollapse={setSidebarMobileCollapse}
+                  userType={isLoggedIn}
                 />
               ) : null}
 
               {/* section for the children pages which come through different routes */}
               <div className="flex-[1_0] lg:w-[calc(100%-262px)] md:w-[calc(100%-262px)] w-full md:pt-0 pt-[50px] relative ">
                 {children}{" "}
+                {/* {Array.isArray(children)
+                  ? children.map((child) => cloneElement(child, { isLoggedIn }))
+                  : cloneElement(children, { isLoggedIn })} */}
               </div>
             </div>
           )}

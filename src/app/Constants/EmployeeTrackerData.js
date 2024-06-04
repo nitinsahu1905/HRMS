@@ -2,31 +2,31 @@ export const EmployeeTrackerData = [
     {
         name: "Lakshya Agarwal",
         designation: "Frontend Developer Intern",
-        department: "Frontend",
+        department: "Development",
         status: "Punch In"
     },
     {
         name: "Nitin Sahu",
         designation: "Frontend Developer Intern",
-        department: "Frontend",
+        department: "Development",
         status: "Punch In"
     },
     {
         name: "Farhan Sheikh",
         designation: "Frontend Developer Intern",
-        department: "Frontend",
+        department: "Development",
         status: "Not Punch"
     },
     {
         name: "Divyanshi Palliwal",
-        designation: "UI Designer",
-        department: "UI",
+        designation: "Frontend Developer Intern",
+        department: "Development",
         status: "Punch In"
     },
     {
         name: "Priyanshu Mishra",
         designation: "Frontend Developer Intern",
-        department: "Frontend",
+        department: "Development",
         status: "Punch In"
     },
     {

@@ -1,36 +1,50 @@
 "use client";
 import React, { useEffect } from "react";
-// import {Doughnut} from 'chart.js'
-import Chart from "chart.js/auto";
+// import Chart from "chart.js/auto";
 import {Chart, ArcElement, Tooltip, Legend, Title} from 'chart.js';
 import { Doughnut } from "react-chartjs-2";
+import { BsBorderWidth } from "react-icons/bs";
 
 Chart.register(ArcElement, Tooltip, Legend, Title);
-// Chart.defaults.plugins.legend.display = false;
+Chart.defaults.plugins.legend.display = false;
+// Chart.defaults.plugins.borderJoinStyle = "round";
 
-const ArrivalReportChart = ({arrivalData}) => {
+
+const ArrivalReportChart = () => {
+
+    const arrivalData=[10,20,5,5];
     const data = {
-        labels: ["Before 10:30","Absence", "After 10:30" ],
+        labels: ["Meeting", "Project","Learning","General" ],
         datasets: [
           {
             data: arrivalData,
             backgroundColor:[
-                '#0683C6',                
-                '#F97373',
-                '#BFE9FF'
+                '#CFEBFF',                
+                '#C6C6F6',
+                '#00ACD1',
+                '#121F47'
                 
             ],
-            borderWidth: 2,
-            radius: 80,
-            cutout: 65,
+            radius: '100%',
+            cutout: 58,
+            // borderRadius: {
+            //     innerEnd:20,
+            //     outerEnd:20,
+            // },
+            // borderWidth:0,
+            // borderJoinStyle: 'round', // General border radius for rounded corners
+            // borderSkipped: 'end',
   
           },
         ],
       };
 
-      const options = {
+      
 
+      const options = {
+         cutout: '58%',
       };
+      
 
       const textCenter = {
         id: 'textCenter',
@@ -88,31 +102,47 @@ const ArrivalReportChart = ({arrivalData}) => {
 
   return (
     <>
-      {/* <canvas id="myChart" ></canvas> */}
-      <div className="w-[200px] h-[200px] ">
-      <Doughnut data={data} options={options} plugins={[textCenter]} />
-
-      </div>
-      <div className="flex flex-wrap gap-y-[20px] px-[35px] w-full ">
-        {/* One Label */}
-        <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#BFE9FF] ">
-            <div className="text-[20px] font-medium text-dark-blue  ">{arrivalData[2]}</div>
-            <div className="text-[12px] font-medium text-grey-color  ">After 10:30</div>
+    <div className="w-full flex flex-col gap-2" >
+<div className="flex flex-row w-full ">
+    <div className="flex flex-col  gap-[30px] w-[50%]">
+         {/* One Label */}
+         <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#00ACD1] ">
+            <div className="text-[24px] font-medium text-dark-blue  ">{arrivalData[2]}</div>
+            <div className="text-[14px] font-medium text-grey-color  ">Learning</div>
         </div>
         
         {/* Label Two */}
-        <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#F97373] ">
-            <div className="text-[20px] font-medium text-dark-blue  ">{arrivalData[1]}</div>
-            <div className="text-[12px] font-medium text-grey-color  ">Absence</div>
+        <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#C6C6F6] ">
+            <div className="text-[24px] font-medium text-dark-blue  ">{arrivalData[1]}</div>
+            <div className="text-[14px] font-medium text-grey-color  ">Productive hours</div>
         </div>
         
-        {/* Label Third */}
-        <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#0683C6] ">
-            <div className="text-[20px] font-medium text-dark-blue  ">{arrivalData[0]}</div>
-            <div className="text-[12px] font-medium text-grey-color  ">Before 10:30</div>
-        </div>
-        
+    </div>
+    <div className="w-[50%]">
+    <div className="w-[180px] h-[180px]">
+      <Doughnut data={data} options={options} plugins={[textCenter]} />
+
       </div>
+    </div>
+</div>
+<div className="flex flex-row w-full">
+ {/* Label Third */}
+ <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#CFEBFF] ">
+            <div className="text-[24px] font-medium text-dark-blue  ">{arrivalData[0]}</div>
+            <div className="text-[14px] font-medium text-grey-color  ">Meeting</div>
+        </div>
+
+
+        <div className="flex flex-col  pl-[10px] w-1/2 border-l-[4px] border-[#121f47] ">
+            <div className="text-[24px] font-medium text-dark-blue  ">{arrivalData[3]}</div>
+            <div className="text-[14px] font-medium text-grey-color  ">General</div>
+        </div>
+        
+</div>
+
+
+    </div>
+    
     </>
   );
 };

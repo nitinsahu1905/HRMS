@@ -60,16 +60,6 @@ const TrackerTable = ({ employeeData, headings }) => {
       );
     }
 
-    // Add ellipsis at the beginning if not on the first page
-    // if (startPage > 2) {
-    //   pageNumbers.unshift(<li key="ellipsis_start">...</li>);
-    // }
-
-    // Add ellipsis at the end if not on the last page
-    // if (endPage < npage - 1) {
-    //   pageNumbers.push(<li key="ellipsis_end">...</li>);
-    // }
-
     return pageNumbers;
   };
 
@@ -86,7 +76,7 @@ const TrackerTable = ({ employeeData, headings }) => {
       <table className="w-full border-collapse">
         <tbody>
           {/* heading section */}
-          <tr className="text-center p-10 bg-[#f4f7fc] text-[#464F60] border-b-[1px] border-grey-color ">
+          <tr className="text-center p-10 bg-[#fff] text-[#464F60] border-b-[1px] border-[#6D614A] ">
             {headings.map((th, index) => (
               <th key={index + 1} className="font-semibold" >{th}</th>
             ))}

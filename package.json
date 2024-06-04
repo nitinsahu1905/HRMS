@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.13",
+    "@fullcalendar/daygrid": "^6.1.13",
+    "@fullcalendar/react": "^6.1.13",
     "chart.js": "^4.4.2",
     "chart.piecelabel.js": "^0.15.0",
     "chartjs-plugin-datalabels": "^2.2.0",
