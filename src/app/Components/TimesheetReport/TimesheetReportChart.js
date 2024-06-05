@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 // import {Doughnut} from 'chart.js'
 import Chart from "chart.js/auto";
-import { Chart, ArcElement, Tooltip, Legend, Title, plugins } from "chart.js";
+import {ArcElement, Tooltip, Legend, Title, plugins } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import 'chartjs-plugin-datalabels';
 import ChartDataLabels from 'chartjs-plugin-datalabels';

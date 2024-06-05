@@ -12,7 +12,7 @@ export default function LeaveTracker() {
   const [updatedConsumedLeaves, setUpdatedConsumedLeves] = useState({});
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4; 
+  const itemsPerPage = 4;
 
   // Calculate the indexes for slicing the array:
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -43,6 +43,7 @@ export default function LeaveTracker() {
       width: (leave.count * 100) / 12,
     }));
     setUpdatedConsumedLeves(updatedConsumedLeaves);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Update current time every minute
@@ -199,7 +200,9 @@ export default function LeaveTracker() {
           <div className="w-full h-[55px] flex items-center justify-end gap-6 pr-4">
             <span
               className="h-full flex items-center w-[20px]"
-              onClick={() => handleClick(currentPage > 1 ? currentPage - 1 : totalPages)}
+              onClick={() =>
+                handleClick(currentPage > 1 ? currentPage - 1 : totalPages)
+              }
             >
               <FaAngleLeft />
             </span>
@@ -216,13 +219,11 @@ export default function LeaveTracker() {
                 {index + 1}
               </span>
             ))}
-            
+
             <span
               className="h-full flex items-center w-[20px]"
               onClick={() =>
-                handleClick(
-                  currentPage < totalPages ? currentPage + 1 : 1
-                )
+                handleClick(currentPage < totalPages ? currentPage + 1 : 1)
               }
             >
               <FaAngleRight />
@@ -286,22 +287,32 @@ export default function LeaveTracker() {
           <div className="w-full h-[62%]">
             {/* pipes for the consumed leaves */}
             {updatedConsumedLeaves.length > 0
-              ? updatedConsumedLeaves.map((item) => (
-                  <div className="flex items-center gap-[32px] px-6 p-2">
-                    {/* type of the leave */}
-                    <span>{item.type}</span>{" "}
-                    <div className="w-full rounded-[30px] h-[10px] bg-[#F1F2F4]">
-                      <div
-                        className="rounded-[30px] h-full bg-[#66CFFF]"
-                        style={{ width: `${item.width}%` }}
-                      ></div>
+              ? updatedConsumedLeaves.map(
+                  (
+                    item,
+                    index // Add index as a second argument
+                  ) => (
+                    <div
+                      className="flex items-center gap-[32px] px-6 p-2"
+                      key={index}
+                    >
+                      {" "}
+                      {/* Add key prop */}
+                      {/* type of the leave */}
+                      <span>{item.type}</span>{" "}
+                      <div className="w-full rounded-[30px] h-[10px] bg-[#F1F2F4]">
+                        <div
+                          className="rounded-[30px] h-full bg-[#66CFFF]"
+                          style={{ width: `${item.width}%` }}
+                        ></div>
+                      </div>
+                      <span>
+                        {item.count}
+                        <span className="text-[#808080]">/12</span>
+                      </span>
                     </div>
-                    <span>
-                      {item.count}
-                      <span className="text-[#808080]">/12</span>
-                    </span>
-                  </div>
-                ))
+                  )
+                )
               : null}
           </div>
         </div>
@@ -332,31 +343,40 @@ export default function LeaveTracker() {
           {/* list of holidays */}
           {filteredHolidays.length > 0 ? (
             <>
-              {filteredHolidays.map((holiday) => (
-                <div className="w-full h-[55px] flex justify-between px-[34px] pr-[54px]">
-                  {/* includes bullet points with data */}
-                  <div className="flex gap-8">
-                    {/* bullet points section */}
-                    <div className="flex flex-col gap-[1px]  items-center mt-[1px] ">
-                      <div className="h-[10px] w-[10px] bg-[#FF7B02] rounded-[50px]"></div>
-                    </div>
+              {filteredHolidays.map(
+                (
+                  holiday,
+                  index // Add index as a second argument
+                ) => (
+                  <div
+                    className="w-full h-[55px] flex justify-between px-[34px] pr-[54px]"
+                    key={index}
+                  >
+                    {" "}
+                    {/* Add key prop */}
+                    {/* includes bullet points with data */}
+                    <div className="flex gap-8">
+                      {/* bullet points section */}
+                      <div className="flex flex-col gap-[1px]  items-center mt-[1px] ">
+                        <div className="h-[10px] w-[10px] bg-[#FF7B02] rounded-[50px]"></div>
+                      </div>
 
-                    {/* content of the leave */}
-                    <div className="h-full flex flex-col ">
-                      {" "}
-                      <span className="text-[13px] leading-none">
-                        {holiday.occasion}
-                      </span>
-                      <span className="text-[11px] text-[#8B95A5]">
-                        {holiday.date}
-                      </span>
+                      {/* content of the leave */}
+                      <div className="h-full flex flex-col ">
+                        {" "}
+                        <span className="text-[13px] leading-none">
+                          {holiday.occasion}
+                        </span>
+                        <span className="text-[11px] text-[#8B95A5]">
+                          {holiday.date}
+                        </span>
+                      </div>
                     </div>
+                    {/* days */}
+                    <span className="text-[11px] text-[#52B693]">{`${holiday.count} Day`}</span>
                   </div>
-
-                  {/* days */}
-                  <span className="text-[11px] text-[#52B693]">{`${holiday.count} Day`}</span>
-                </div>
-              ))}
+                )
+              )}
             </>
           ) : (
             <p className="mt-5 w-full flex items-center justify-center">
