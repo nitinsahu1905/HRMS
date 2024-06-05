@@ -45,7 +45,7 @@ const EmployeeTracker = () => {
   // Function for Filter data on basis of Status on Cards before Table
   const handlePresenceFilter = (stat) => {
     setFilteredData(EmployeeTrackerData);
-    const filterbyStatus = filteredData.filter((data) => {
+    const filterbyStatus = EmployeeTrackerData.filter((data) => {
       if (data.status.toLowerCase() === stat.toLowerCase()) {
         return data;
       }
@@ -153,7 +153,7 @@ const EmployeeTracker = () => {
               />
             </div>
             <div className="text-[#008000] text-[18px] mt-[10px]  ">Punch In</div>
-            <div className="text-grey-color text-[32px] leading-none ">35</div>
+            <div className="text-grey-color text-[32px] leading-none ">19</div>
           </div>
 
           {/* Not Punch */}
@@ -167,7 +167,7 @@ const EmployeeTracker = () => {
               />
             </div>
             <div className="text-[#A90303] text-[18px] mt-[10px]  ">Not Punch</div>
-            <div className="text-grey-color text-[32px] leading-none  ">08</div>
+            <div className="text-grey-color text-[32px] leading-none  ">04</div>
           </div>
           {/* WFH */}
           <div
