@@ -87,8 +87,9 @@ const EmployeeDashboard = () => {
                   src="/work.jpg"
                   alt="work-pic"
                   className="rounded-tl-[15px] rounded-bl-[15px]"
+                  width={200}
+                  height={200}
                 />{" "}
-                {/* Add alt prop */}
               </div>
 
               <div className=" flex flex-col gap-[1px] px-5 py-5">

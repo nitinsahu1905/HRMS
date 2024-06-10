@@ -18,7 +18,7 @@ export default function LeaveTracker() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = leavesHistory.slice(indexOfFirstItem, indexOfLastItem);
-
+  
   const totalItems = leavesHistory.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
@@ -324,7 +324,9 @@ export default function LeaveTracker() {
         <div className="w-[40%] h-full rounded-[15px] bg-[#FEFEFF] shadow-sm">
           {/* title : Upcoming holidays */}
           <div className="w-full h-[55px] flex items-center justify-between p-7">
-            <span className="text-[#12225F]  font-medium ">My Leaves</span>
+            <span className="text-[#12225F]  font-medium ">
+              Upcoming Holidays
+            </span>
 
             {/* sorting the months */}
             <select

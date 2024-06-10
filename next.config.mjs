@@ -20,6 +20,7 @@ const nextConfig = {
     unoptimized: true,
     domains: [
       "t4.ftcdn.net",
+      "plus.unsplash.com",
       "designimages.appypie.com",
       "encrypted-tbn0.gstatic.com",
       "metadologie-operations-dev-ed.my.site.com",
