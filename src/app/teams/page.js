@@ -22,15 +22,15 @@ const TeamsChart = () => {
       borderTopWidth: 20 * scale,
       borderRadius: 20 * scale,
       fontSize: 20 * scale,
-      nameFontSize: 20 * scale,
-      designationFontSize: 18 * scale,
+      nameFontSize: 25 * scale,
+      designationFontSize: 23 * scale,
     };
 
     // Retrieve data from the teams chart data constant
     const data = teamsChartData;
 
     // Define the size of each node in the tree
-    const nodeSize = { width: 350 * scale, height: 150 * scale };
+    const nodeSize = { width: 480 * scale, height: 180 * scale };
 
     // Define the size of the foreign object containing each node's content
     let foreignObjectSize = {
@@ -143,7 +143,7 @@ const TeamsChart = () => {
         // .attr("class", "foreignObject")
         .attr(
           "style",
-          `width: ${foreignObjectSize.width}; height: ${foreignObjectSize.height}; display: flex; justify-content: center; align-items: center; border-radius: 5px;`
+          `width: ${foreignObjectSize.width}; height: ${foreignObjectSize.height}; display: flex; justify-content: center; align-items: center; border-radius: 10px;`
         );
 
       const employeeDiv = foreignObject
@@ -219,8 +219,9 @@ const TeamsChart = () => {
       <h1 className="text-dark-blue font-bold lg:text-[24px]">My Team</h1>
 
       {/* heading box */}
-      <div className="w-full bg-[#E5F4FF] flex justify-center items-center gap-[28px] p-3 rounded-[12px]">
+      <div className="w-full bg-[#E5F4FF] flex flex-col justify-center items-center gap-[28px] p-3 rounded-[12px]">
         {" "}
+       <div className="w-full flex justify-center items-center gap-[28px] p-3 rounded-[12px]"> 
         {/* img section */}
         <span className="w-[60px] h-[60px] bg-red-300 rounded-full">
           <Image
@@ -241,7 +242,10 @@ const TeamsChart = () => {
         {/* role section */}
         <span className="h-max text-[12px] text-[#0D99FF] font-[600] border-2 rounded-[10px] border-[#0D99FF] flex items-center p-2">
           Project Manager
-        </span>
+        </span></div>
+
+         {/* search bar */}
+         <input className="bg-white w-full h-[45px] rounded-[30px] px-[60px] outline-none" placeholder="Search" /> 
       </div>
 
       {/* container for the teams chart */}
