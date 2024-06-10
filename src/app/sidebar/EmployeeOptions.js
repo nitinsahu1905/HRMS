@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { AiFillHome } from "react-icons/ai";
+import { AiFillHome, AiOutlineLogout } from "react-icons/ai";
 import { RiTeamFill } from "react-icons/ri";
 import { CgMail } from "react-icons/cg";
 import { BsGraphUpArrow } from "react-icons/bs";
@@ -32,6 +32,15 @@ const EmployeeOptions = ({clickLink, setOverflowDropdownOnCollapse, collapse}) =
     setIsTimeDropdownOpen((prevState) => !prevState);
     setOverflowDropdownOnCollapse((prev) => !prev);
     // setCollapse(false);
+  };
+
+  // Logout function
+  const logoutHandler = () => {
+    sessionStorage.removeItem("admin");
+    sessionStorage.removeItem("employee");
+    window.location.reload();
+    router.push("/");
+
   };
 
 
@@ -115,7 +124,7 @@ const EmployeeOptions = ({clickLink, setOverflowDropdownOnCollapse, collapse}) =
 
               {/* attendance section */}
               <li>
-                <Link href="/attendance">
+                <Link href="/employee-attendance">
                   <div className={`flex items-center  w-full p-2 text-[#cdc3c3] transition duration-75 rounded-lg ${collapse? "px-5" :"pl-11"} group hover:bg-[#f9f9f9] group hover:text-[#121f47] dark:hover:text-[#121f47] dark:hover:bg-[#fff]`}>
                     Attendance
                   </div>
@@ -162,6 +171,7 @@ const EmployeeOptions = ({clickLink, setOverflowDropdownOnCollapse, collapse}) =
               </div>
             </Link>
           </li>
+          
 
           
 
@@ -271,6 +281,22 @@ const EmployeeOptions = ({clickLink, setOverflowDropdownOnCollapse, collapse}) =
               </div>
             </Link>
           </li>
+
+          {/* Logout */}
+          <li onClick={logoutHandler}>
+            <Link href="/">
+              <div onClick={()=>clickLink()} className="flex items-center p-2 text-[#0683c6] rounded-lg dark:text-white hover:bg-gray-100  group">
+                <AiOutlineLogout className="flex-shrink-0 text-[#cdc3c3] h-5 w-5 group-hover:text-[#121f47]" />
+                {collapse ? null : (
+                  <span className="ms-3 text-[#cdc3c3] group-hover:text-[#121f47]">
+                    Logout
+                  </span>
+                )}
+              </div>
+            </Link>
+          </li>
+
+
         </ul>
     </>
   )
