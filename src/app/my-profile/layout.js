@@ -38,7 +38,6 @@ export default function ProfileLayout({ children }) {
   const [fetchData, setFetchData] = useState([{}]);
   // setFetchData(profile);
   // setData(profile);
-
   const [editProfile, setEditProfile] = useState(false);
 
 
@@ -49,9 +48,7 @@ export default function ProfileLayout({ children }) {
     router.push("/");
 
   };
-  
 
- 
   // State for the Image edit
   const [editImage, setEditImage] = useState(false);
   const [updatedImage, setUpdatedImage] = useState("/img1.jpeg");
@@ -80,6 +77,7 @@ export default function ProfileLayout({ children }) {
       }
     }
   };
+
   const updateName=async ()=>{
     setEditing(false)
     // const userQuery = query(collection(firestoreDB, "admin"), where("userId", "==", "PB27BveZJXhQul4D1dcqekXIlez2"));
@@ -133,8 +131,6 @@ export default function ProfileLayout({ children }) {
   
  
   return (
-    
-    
     <div className="flex flex-col h-full">
       {/* box for the bg image */}
       <div className="relative md:h-[175px] h-[120px] w-auto ">

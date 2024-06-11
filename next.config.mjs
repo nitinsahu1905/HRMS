@@ -19,6 +19,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
     domains: [
+      "images.pexels.com",
       "t4.ftcdn.net",
       "plus.unsplash.com",
       "designimages.appypie.com",

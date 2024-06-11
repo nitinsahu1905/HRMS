@@ -189,6 +189,7 @@ const MyProfile = () => {
                         </div>
                     </div>
                     </WhiteCardWithShadow>
+                    
                     {/* Card for Efficiency */}
                     <WhiteCardWithShadow>
                     <div className="flex flex-col justify-between w-[192px] h-[175px] p-[20px]   ">
