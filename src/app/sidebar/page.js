@@ -41,7 +41,7 @@ export default function Sidebar({
 
   return (
     // whole sidebar box
-    <div className="relative ">
+    <div className="">
       {/* <div className="absolute top-[10px] right-[10px] z-50"></div> */}
 
       {/* Icon for Sidebar Collapsing */}

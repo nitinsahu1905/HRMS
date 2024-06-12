@@ -48,7 +48,7 @@ export default function RootLayout({ children }) {
           ) : (
             <div className="flex md:flex-row flex-col gap-0 relative w-full ">
               {!sidebarCollapse ? (
-                <div className=" w-[262px] relative md:block hidden ">
+                <div className=" w-[262px]  md:block hidden absolute">
                   <Sidebar
                     collapse={sidebarCollapse}
                     setCollapse={setSidebarCollapse}
@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
                   />
                 </div>
               ) : (
-                <div className=" w-[62px] relative md:block hidden ">
+                <div className=" w-[62px] absolute md:block hidden ">
                   <Sidebar
                     collapse={sidebarCollapse}
                     setCollapse={setSidebarCollapse}
