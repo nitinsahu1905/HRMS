@@ -8,6 +8,7 @@ const TeamsChart = () => {
   // Use useEffect to trigger the D3 rendering when the component mounts
   useEffect(() => {
     renderD3Tree();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Function to render the D3 tree
@@ -221,31 +222,34 @@ const TeamsChart = () => {
       {/* heading box */}
       <div className="w-full bg-[#E5F4FF] flex flex-col justify-center items-center gap-[28px] p-3 rounded-[12px]">
         {" "}
-       <div className="w-full flex justify-center items-center gap-[28px] p-3 rounded-[12px]"> 
-        {/* img section */}
-        <span className="w-[60px] h-[60px] bg-red-300 rounded-full">
-          <Image
-            className="rounded-full"
-            src="https://imgs.search.brave.com/9W3fwsbfS8OFTL2r1Z0-csEmX_gSOuiJHmRC92R46fw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9mci53/ZWIuaW1nMi5hY3N0/YS5uZXQvY18zMDBf/MzAwL21lZGlhcy9u/bWVkaWEvMTgvMzUv/NDMvMDEvMTg4Nzcw/NDAuanBn"
-            width={50}
-            height={50}
-          />
-        </span>
-        {/* name & message section */}
-        <span className="flex flex-col">
-          {" "}
-          <span className="text-[#808080] text-[16px]">
-            Good to see you again &#128521;
+        <div className="w-full flex justify-center items-center gap-[28px] p-3 rounded-[12px]">
+          {/* img section */}
+          <span className="w-[60px] h-[60px] bg-red-300 rounded-full">
+            <Image
+              className="rounded-full"
+              src="https://imgs.search.brave.com/9W3fwsbfS8OFTL2r1Z0-csEmX_gSOuiJHmRC92R46fw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9mci53/ZWIuaW1nMi5hY3N0/YS5uZXQvY18zMDBf/MzAwL21lZGlhcy9u/bWVkaWEvMTgvMzUv/NDMvMDEvMTg4Nzcw/NDAuanBn"
+              width={50}
+              height={50}
+            />
           </span>
-          <span className="text-[20px] font-[500]">Aishwarya Rathore</span>
-        </span>
-        {/* role section */}
-        <span className="h-max text-[12px] text-[#0D99FF] font-[600] border-2 rounded-[10px] border-[#0D99FF] flex items-center p-2">
-          Project Manager
-        </span></div>
-
-         {/* search bar */}
-         <input className="bg-white w-full h-[45px] rounded-[30px] px-[60px] outline-none" placeholder="Search" /> 
+          {/* name & message section */}
+          <span className="flex flex-col">
+            {" "}
+            <span className="text-[#808080] text-[16px]">
+              Good to see you again &#128521;
+            </span>
+            <span className="text-[20px] font-[500]">Aishwarya Rathore</span>
+          </span>
+          {/* role section */}
+          <span className="h-max text-[12px] text-[#0D99FF] font-[600] border-2 rounded-[10px] border-[#0D99FF] flex items-center p-2">
+            Project Manager
+          </span>
+        </div>
+        {/* search bar */}
+        <input
+          className="bg-white w-full h-[45px] rounded-[30px] px-[60px] outline-none"
+          placeholder="Search"
+        />
       </div>
 
       {/* container for the teams chart */}

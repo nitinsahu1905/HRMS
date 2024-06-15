@@ -17,6 +17,7 @@ import Link from "next/link";
 import Modal from "../Components/ProfilePageModal";
 import { data } from "jquery";
 import EditEmployeeProfile from "../Components/EditEmployeeProfile";
+import { index } from "d3";
 
 const EmployeeProfile = () => {
   const [editEmployeeProfile, setEditEmployeeProfile] = useState(false);
@@ -199,7 +200,10 @@ const EmployeeProfile = () => {
           <span className="text-[1.15vw] font-[600]">Skill:</span>
           <div className="flex flex-wrap gap-2 justify-center items-center">
             {skills.map((skill) => (
-              <span className="border-[#808080] border-[0.0521vw] bg-[#F7F8FC] h-fit w-fit p-2 rounded-[1vw]">
+              <span
+                key={index}
+                className="border-[#808080] border-[0.0521vw] bg-[#F7F8FC] h-fit w-fit p-2 rounded-[1vw]"
+              >
                 {skill}
               </span>
             ))}
@@ -291,7 +295,7 @@ const EmployeeProfile = () => {
           {/* div for the details */}
           <div className="grid grid-cols-3 gap-x-[5vw] gap-y-[3vw] w-[90%] mx-auto">
             {aboutDetails.map((item) => (
-              <div className="flex flex-col gap-[0.5vw]">
+              <div key={index} className="flex flex-col gap-[0.5vw]">
                 <span className="text-[#787879] text-[1.04vw]">
                   {item.field} :
                 </span>
@@ -350,7 +354,7 @@ const EmployeeProfile = () => {
                 <>
                   {/* mapping the content */}
                   {data.data.map((item) => (
-                    <div className=" h-[6vw] flex items-center justify-center gap-[2vw] ">
+                    <div key={index} className=" h-[6vw] flex items-center justify-center gap-[2vw] ">
                       <span className=" h-[100%] w-[90vw] flex items-center  font-[600] text-[1.15vw]">
                         {item.name}
                       </span>
@@ -386,7 +390,7 @@ const EmployeeProfile = () => {
                 <>
                   {/* mapping the content */}
                   {data.data.map((item) => (
-                    <div className=" h-[6vw] flex items-center justify-center gap-[2vw] ">
+                    <div key={index} className=" h-[6vw] flex items-center justify-center gap-[2vw] ">
                       <span className=" h-[100%] w-[90vw] flex items-center  font-[600] text-[1.15vw]">
                         {item.job_title}
                       </span>
@@ -419,7 +423,7 @@ const EmployeeProfile = () => {
                 <>
                   {/* mapping the content */}
                   {data.data.map((item) => (
-                    <div className=" h-[6vw] flex items-center justify-center gap-[2vw] ">
+                    <div key={index} className=" h-[6vw] flex items-center justify-center gap-[2vw] ">
                       <span className=" h-[100%] w-[90vw] flex items-center  font-[600] text-[1.15vw]">
                         {item.name}
                       </span>
