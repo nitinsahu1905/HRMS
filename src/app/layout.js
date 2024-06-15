@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
     }
   }, []);
 
-  const [sidebarCollapse, setSidebarCollapse] = useState(false);
+  const [sidebarCollapse, setSidebarCollapse] = useState(true);
   const [sidebarMobileCollapse, setSidebarMobileCollapse] = useState(true);
 
   // fucntion to handle setSidebarMobileCollapse

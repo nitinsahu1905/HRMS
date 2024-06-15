@@ -37,17 +37,17 @@ const EditEmployeeProfile = ({ onClose }) => {
             <div className="flex flex-row gap-[15px]  ">
                 {/* First Name */}
                 <div className="flex flex-col gap-[10px] ">
-                  <label className="text-primary-blue  " >First Name</label>
+                  <label className="text-sky-blue  " >First Name</label>
                   <input type="text" placeholder="Enter First Name" className="text-dark-blue px-[10px] py-[10px] rounded-[10px] focus:outline-none  " required maxLength={20} />
                 </div>
                 {/* Middle Name */}
                 <div className="flex flex-col gap-[10px] ">
-                  <label className="text-primary-blue  " >Middle Name</label>
+                  <label className="text-sky-blue  " >Middle Name</label>
                   <input type="text" placeholder="Enter Middle Name" className="text-dark-blue px-[10px] py-[10px] rounded-[10px] focus:outline-none  " maxLength={20} />
                 </div>
                 {/* Last Name */}
                 <div className="flex flex-col gap-[10px] ">
-                  <label className="text-primary-blue  " >Last Name</label>
+                  <label className="text-sky-blue  " >Last Name</label>
                   <input type="text" placeholder="Enter Last Name" className="text-dark-blue px-[10px] py-[10px] rounded-[10px] focus:outline-none  " required  maxLength={20}/>
                 </div>
             </div>
@@ -55,7 +55,7 @@ const EditEmployeeProfile = ({ onClose }) => {
             <div className="flex flex-row gap-[15px] w-full ">
                 {/* Gender */}
                 <div className="flex flex-col gap-[10px] w-full ">
-                  <label className="text-primary-blue  " >Gender</label>
+                  <label className="text-sky-blue  " >Gender</label>
                   <select className="text-dark-blue px-[10px] py-[10px] rounded-[10px] focus:outline-none   " required>
                     <option selected>Male</option>
                     <option>Female</option>
@@ -64,12 +64,12 @@ const EditEmployeeProfile = ({ onClose }) => {
                 </div>
                 {/* DOB */}
                 <div className="flex flex-col gap-[10px] w-full ">
-                  <label className="text-primary-blue  " >Date of Birth</label>
+                  <label className="text-sky-blue  " >Date of Birth</label>
                   <input type="date" placeholder="Enter Date of Birth" className="text-dark-blue px-[10px] py-[10px] rounded-[10px] focus:outline-none  h-[44px] " />
                 </div>
                 {/* Blood Group */}
                 <div className="flex flex-col gap-[10px] w-full ">
-                  <label className="text-primary-blue  " >Blood Group</label>
+                  <label className="text-sky-blue  " >Blood Group</label>
                   <select className="text-dark-blue px-[10px] py-[10px] rounded-[10px] focus:outline-none   " required>
                     <option value="">Select Blood Group</option>
                     <option>A+</option>
@@ -89,12 +89,12 @@ const EditEmployeeProfile = ({ onClose }) => {
                 
                 {/* Mobile No */}
                 <div className="flex flex-col gap-[10px] w-full ">
-                  <label className="text-primary-blue  " >Mobile No.</label>
+                  <label className="text-sky-blue  " >Mobile No.</label>
                   <input type="tel" onChange={handleMobileChange} value={mobileNumber} placeholder="Enter Mobile Number" className="text-dark-blue px-[10px] py-[10px] rounded-[10px] focus:outline-none  " required  pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" maxLength={10} />
                 </div>
                 {/* Country */}
                 <div className="flex flex-col gap-[10px] w-full ">
-                  <label className="text-primary-blue  " >Country</label>
+                  <label className="text-sky-blue  " >Country</label>
                   <input type="text" placeholder="Enter Country Name" className="text-dark-blue px-[10px] py-[10px] rounded-[10px] focus:outline-none  " required maxLength={28} />
                 </div>
             </div>
@@ -103,13 +103,13 @@ const EditEmployeeProfile = ({ onClose }) => {
                 
                 {/* Reporting Manager */}
                 <div className="flex flex-col gap-[10px] w-full ">
-                  <label className="text-primary-blue  " >Reporting Manager</label>
+                  <label className="text-sky-blue  " >Reporting Manager</label>
                   <input type="text" placeholder="Enter Reporting Manager" className="text-dark-blue px-[10px] py-[10px] rounded-[10px] focus:outline-none  " maxLength={25} />
                 </div>
             </div>
             {/* Save button */}
             <div className="flex justify-center items-center mt-[10px] ">
-              <button type="submit" onClick={submitHandler} className="text-white bg-primary-blue rounded-[10px] px-[20px] py-[10px] font-medium   " >Save</button>
+              <button type="submit" onClick={submitHandler} className="text-white bg-sky-blue rounded-[10px] px-[20px] py-[10px] font-medium   " >Save</button>
             </div>
         </div>
 

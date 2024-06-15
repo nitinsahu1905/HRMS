@@ -5,19 +5,76 @@ import { BsGraphUpArrow } from "react-icons/bs";
 import { skills } from "../Constants/EmployeeProfileData";
 import { MdEdit } from "react-icons/md";
 import { PiCopySimpleThin } from "react-icons/pi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { MdEdit } from "react-icons/md";
 import { aboutDetails } from "../Constants/EmployeeProfileData";
+import { careerDetails } from "../Constants/EmployeeProfileData";
+import { achievements } from "../Constants/EmployeeProfileData";
 
 import Link from "next/link";
+import Modal from "../Components/ProfilePageModal";
+import { data } from "jquery";
+import EditEmployeeProfile from "../Components/EditEmployeeProfile";
 
 const EmployeeProfile = () => {
+  const [editEmployeeProfile, setEditEmployeeProfile] = useState(false);
   const [copied, setCopied] = useState(false);
+  // State to store the selected image URL for preview
+  const [selectedImage, setSelectedImage] = useState(null);
+  // State to show view-details modal
+  const [showModal, setShowModal] = useState(false);
+  // State to map correct data in div
+  const [type, setType] = useState("education");
+  const [mappingData, setMappingData] = useState([]);
+
+  // Function to initially render the education data in the box
+  useEffect(() => {
+    const tempData = careerDetails.filter((item) => item.type === "education");
+    setMappingData(tempData);
+  }, []);
+
+  // Function to handle type change for career box
+  const handleClick = (careerType) => {
+    setType(careerType);
+    console.log(careerType);
+    const tempData = careerDetails.filter((item) => item.type === careerType);
+    console.log("tempdata", tempData);
+    setMappingData(tempData);
+    console.log("state data", mappingData);
+  };
+
+  // Fucntion to handle the editing of careers info
+  const handleEdit = () => {
+    console.log("Editing");
+  };
+
+  // Function to close the editprofle
+  const closeModal = () => {
+    setEditEmployeeProfile(false);
+  };
+
+  const handleViewDetailsClick = (event) => {
+    event.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  // Function to handle the image input change event
+  const handleImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      // Set the selected image URL for preview
+      setSelectedImage(URL.createObjectURL(file));
+    }
+  };
+
   const email = "akshat.lakhara@metadologie.com";
-  // fucntion to handle the copying of email
+  // function to handle the copying of email
   const copyToClipboard = () => {
     navigator.clipboard
       .writeText(email)
@@ -31,26 +88,45 @@ const EmployeeProfile = () => {
         console.error("Failed to copy: ", err);
       });
   };
+
   return (
-    <div className="w-[100%] bg-[#F8F6F6] py-[1.67vw] h-auto flex flex-row gap-[1vw]">
+    <div className="w-[100%] bg-[#F8F6F6] py-[1.67vw] h-auto flex md:flex-row flex-col gap-[1vw]">
       {/* left box */}
-      <div className="rounded-[0.68vw] shadow-md ml-[5vw] h-auto w-[34%]  flex flex-col items-center px-[1vw] py-[1vw] gap-[2vw]">
+
+      <div className="rounded-[0.68vw] shadow-md ml-[5vw] h-auto md:w-[34%] w-[90%]  flex flex-col items-center px-[1vw] py-[1vw] gap-[2vw]">
         {/* box for the image */}
         <div className=" relative h-[10vw] w-[10vw] p-[0.3vw] bg-white rounded-[5vw] border-[#2F2EA6] border-[0.12vw]">
           {/* edit icon for the image */}
           <span className="absolute top-2 right-2 bg-[#2F2EA6] text-white p-[0.4vw] rounded-[100px] border-[0.12vw] border-white">
-            <MdEdit />
+            <label htmlFor="upload-button">
+              <MdEdit />
+            </label>
+            <input
+              type="file"
+              id="upload-button"
+              style={{ display: "none" }}
+              onChange={handleImageChange}
+            />
           </span>
 
-          {/* profile image */}
-          <Image
-            className="h-[100%] w-[100%] rounded-[5vw]"
-            src={
-              "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&w=800"
-            }
-            width={50}
-            height={50}
-          />
+          {/* Profile image preview */}
+          {selectedImage ? (
+            <Image
+              className="h-[100%] w-[100%] rounded-[5vw]"
+              src={selectedImage}
+              width={50}
+              height={50}
+              alt="Profile"
+            />
+          ) : (
+            <Image
+              className="h-[100%] w-[100%] rounded-[5vw]"
+              src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&w=800"
+              width={50}
+              height={50}
+              alt="Profile"
+            />
+          )}
         </div>
 
         {/* box for the name details */}
@@ -133,7 +209,6 @@ const EmployeeProfile = () => {
 
       {/* right box */}
       <div className="rounded-[0.68vw] h-vh w-[59%] shadow-md p-[1vw] flex flex-col gap-[1vw]">
-
         {/* upper box */}
         <div className="shadow-md h-[35%] rounded-[0.42vw] flex flex-col gap-[1.4vw]">
           {/* div for the heading */}
@@ -144,15 +219,38 @@ const EmployeeProfile = () => {
 
               {/* icons links */}
               <div className="flex gap-[0.6vw]">
-                <span className="bg-white rounded-[1vw]">
-                  <FaFacebook style={{ color: "#17A9FD" }} />
-                </span>
-                <span>
-                  <FaTwitter style={{ color: "#1D9BF0" }} />
-                </span>
-                <span>
-                  <FaLinkedin style={{ color: "#0E76A8" }} />
-                </span>
+                {/* Facebook icon link */}
+                <a
+                  href="https://www.facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="bg-white rounded-[1vw] p-[0.2vw] inline-block">
+                    <FaFacebook style={{ color: "#17A9FD" }} />
+                  </span>
+                </a>
+
+                {/* Twitter icon link */}
+                <a
+                  href="https://www.twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="bg-white rounded-[1vw] p-[0.2vw] inline-block">
+                    <FaTwitter style={{ color: "#1D9BF0" }} />
+                  </span>
+                </a>
+
+                {/* LinkedIn icon link */}
+                <a
+                  href="https://www.linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="bg-white rounded-[1vw] p-[0.2vw] inline-block">
+                    <FaLinkedin style={{ color: "#0E76A8" }} />
+                  </span>
+                </a>
               </div>
             </div>
 
@@ -161,20 +259,42 @@ const EmployeeProfile = () => {
               <Link
                 className="underline text-[#4E4DB3] text-[1.09vw]"
                 href={"#"}
+                onClick={handleViewDetailsClick}
               >
                 View Details
               </Link>
-              <span className="shadow-md bg-white p-[0.3vw] rounded-[0.42vw]">
+              <span
+                onClick={() => {
+                  setEditEmployeeProfile(true);
+                }}
+                className="shadow-md bg-white p-[0.3vw] rounded-[0.42vw]"
+              >
                 <MdEdit />
               </span>
             </div>
+
+            {/* modal for view details */}
+            <Modal
+              show={showModal}
+              onClose={handleCloseModal}
+              details={aboutDetails}
+            />
+
+            {/* Modal for edit profile */}
+            {editEmployeeProfile ? (
+              <>
+                <EditEmployeeProfile onClose={closeModal} />
+              </>
+            ) : null}
           </div>
 
           {/* div for the details */}
           <div className="grid grid-cols-3 gap-x-[5vw] gap-y-[3vw] w-[90%] mx-auto">
             {aboutDetails.map((item) => (
               <div className="flex flex-col gap-[0.5vw]">
-                <span className="text-[#787879] text-[1.04vw]">{item.field} :</span>
+                <span className="text-[#787879] text-[1.04vw]">
+                  {item.field} :
+                </span>
                 <span className="text-[1.15vw]">{item.value}</span>
               </div>
             ))}
@@ -182,7 +302,154 @@ const EmployeeProfile = () => {
         </div>
 
         {/* lower box */}
-        <div className="bg-yellow-300 h-[65%] rounded-[0.42vw]"></div>
+        <div className="h-[65%] rounded-[0.42vw] flex flex-col gap-[1vw] justify-around">
+          {/* headings */}
+          <div className="flex justify-around items-center border-b-[0.133vw] border-[#DCDCDB] h-[3vw]">
+            <span
+              onClick={() => handleClick("education")}
+              className={`text-[1.1vw] cursor-pointer  ${
+                type === "education"
+                  ? "border-b-[0.2vw] border-[rgb(59,111,239)]"
+                  : "null"
+              }`}
+            >
+              Education
+            </span>
+            <span
+              onClick={() => handleClick("experience")}
+              className={`text-[1.1vw] cursor-pointer ${
+                type === "experience"
+                  ? "border-b-[0.2vw] border-[rgb(59,111,239)]"
+                  : "null"
+              }`}
+            >
+              Experience
+            </span>
+            <span
+              onClick={() => handleClick("certification")}
+              className={`text-[1.1vw] cursor-pointer ${
+                type === "certification"
+                  ? "border-b-[0.2vw] border-[rgb(59,111,239)]"
+                  : "null"
+              }`}
+            >
+              Certification
+            </span>
+            <span
+              onClick={() => handleEdit()}
+              className="cursor-pointer text-[#4E4DB3] text-[0.9vw] shadow-md py-[0.3vw] px-[0.5vw]"
+            >
+              Edit
+            </span>
+          </div>
+
+          {/* conditionally the careers data */}
+          {type === "education" ? (
+            <>
+              {mappingData.map((data) => (
+                <>
+                  {/* mapping the content */}
+                  {data.data.map((item) => (
+                    <div className=" h-[6vw] flex items-center justify-center gap-[2vw] ">
+                      <span className=" h-[100%] w-[90vw] flex items-center  font-[600] text-[1.15vw]">
+                        {item.name}
+                      </span>
+                      <span className=" h-[100%] w-[100%] flex flex-col  justify-center font-[500] text-[1.15vw]">
+                        <span className="text-[#787879] text-[0.68vw]">
+                          Passing Year
+                        </span>
+                        {item.date}
+                      </span>
+                      <span className="h-[100%] w-[100%] flex flex-col  justify-center text-[1.15vw]">
+                        <span className="text-[#787879]  text-[0.68vw] w-[100%]">
+                          School
+                        </span>
+                        {item.place}
+                      </span>
+                      <a
+                        className=" h-[100%] w-[100%] flex items-center text-[1.15vw] text-[#4E4DB3]"
+                        href={item.link}
+                      >
+                        View Details
+                      </a>
+                    </div>
+                  ))}
+                </>
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
+          {type === "experience" ? (
+            <>
+              {mappingData.map((data) => (
+                <>
+                  {/* mapping the content */}
+                  {data.data.map((item) => (
+                    <div className=" h-[6vw] flex items-center justify-center gap-[2vw] ">
+                      <span className=" h-[100%] w-[90vw] flex items-center  font-[600] text-[1.15vw]">
+                        {item.job_title}
+                      </span>
+                      <span className=" h-[100%] w-[100%] flex flex-col  justify-center font-[500] text-[1.15vw]">
+                        <span className="text-[#787879] text-[0.68vw]">
+                          Company
+                        </span>
+                        {item.company}
+                      </span>
+                      <span className="h-[100%] w-[100%] flex flex-col  justify-center text-[1.15vw]">
+                        <span className="text-[#787879]  text-[0.68vw] w-[100%]">
+                          Location
+                        </span>
+                        {item.location}
+                      </span>
+                      <a
+                        className=" h-[100%] w-[100%] flex items-center text-[1.15vw]  text-[#4E4DB3]"
+                        href={item.start_date}
+                      >
+                        View Details
+                      </a>
+                    </div>
+                  ))}
+                </>
+              ))}
+            </>
+          ) : type === "certification" ? (
+            <>
+              {mappingData.map((data) => (
+                <>
+                  {/* mapping the content */}
+                  {data.data.map((item) => (
+                    <div className=" h-[6vw] flex items-center justify-center gap-[2vw] ">
+                      <span className=" h-[100%] w-[90vw] flex items-center  font-[600] text-[1.15vw]">
+                        {item.name}
+                      </span>
+                      <span className=" h-[100%] w-[100%] flex flex-col  justify-center font-[500] text-[1.15vw]">
+                        <span className="text-[#787879] text-[0.68vw]">
+                          Completion Date
+                        </span>
+                        {item.date}
+                      </span>
+                      <span className="h-[100%] w-[100%] flex flex-col  justify-center text-[1.15vw]">
+                        <span className="text-[#787879]  text-[0.68vw] w-[100%]">
+                          Institute
+                        </span>
+                        {item.place}
+                      </span>
+                      <a
+                        className=" h-[100%] w-[100%] flex items-center text-[1.15vw]  text-[#4E4DB3]"
+                        href={item.link}
+                      >
+                        {item.duration}
+                      </a>
+                    </div>
+                  ))}
+                </>
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </div>
   );

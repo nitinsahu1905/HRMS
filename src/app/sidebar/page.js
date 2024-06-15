@@ -16,9 +16,9 @@ export default function Sidebar({
   collapse,
   setCollapse,
   mobileCollapse,
-  setMobileSidebarCollapse
+  setMobileSidebarCollapse,
 }) {
-  const [isDropdownOpen,setIsDropdownOpen] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [overflowDropdownOnCollapse, setOverflowDropdownOnCollapse] =
     useState(false);
 
@@ -63,7 +63,7 @@ export default function Sidebar({
             onClick={() => {
               setCollapse(true);
               setIsDropdownOpen(false);
-              setIsTimeDropdownOpen(false);
+              // setIsTimeDropdownOpen(false);
             }}
           >
             <IoIosArrowDropleftCircle />
