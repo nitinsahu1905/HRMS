@@ -107,9 +107,14 @@ const EditEmployeeProfile = ({ onClose }) => {
                   <input type="text" placeholder="Enter Reporting Manager" className="text-dark-blue px-[10px] py-[10px] rounded-[10px] focus:outline-none  " maxLength={25} />
                 </div>
             </div>
-            {/* Save button */}
+            {/* Request & cancel button */}
+            <div className="flex items-center justify-center gap-[1vw]">
             <div className="flex justify-center items-center mt-[10px] ">
-              <button type="submit" onClick={submitHandler} className="text-white bg-sky-blue rounded-[10px] px-[20px] py-[10px] font-medium   " >Save</button>
+              <button type="submit" onClick={submitHandler} className="text-white bg-sky-blue rounded-[10px] px-[20px] py-[10px] w-[8vw] font-medium   " >Request</button>
+            </div>
+            <div className="flex justify-center items-center mt-[10px] ">
+              <button type="submit" onClick={submitHandler} className="text-sky-blue bg-white rounded-[10px] px-[20px] py-[10px] w-[8vw] font-medium   " >Cancel</button>
+            </div>
             </div>
         </div>
 
