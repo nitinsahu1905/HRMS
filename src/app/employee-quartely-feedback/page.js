@@ -31,7 +31,7 @@ const EmployeeQuartelyFeedback = () => {
               className="rounded-full object-cover w-full h-full"
             />{" "}
             {/* Add alt prop and specify width and height */}
-          </div>
+          </div>a
           <div className="flex flex-col gap-3">
             <div className="text-[#67b2da] text-xl">Divyanshi Paliwal</div>
             <div className="w-full h-[1px] bg-[#808080]"></div>

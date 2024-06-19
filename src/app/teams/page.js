@@ -215,7 +215,7 @@ const TeamsChart = () => {
   };
 
   return (
-    <div className="h-full w-full p-[20px] flex flex-col gap-2 bg-white">
+    <div className="h-full w-full p-[20px] flex flex-col gap-2 bg-white ml-[4vw]">
       {/* title of the page */}
       <h1 className="text-dark-blue font-bold lg:text-[24px]">My Team</h1>
 

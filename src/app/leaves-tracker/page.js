@@ -107,7 +107,7 @@ export default function LeaveTracker() {
   ];
 
   return (
-    <div className="flex flex-col gap-[10px] p-[20px]">
+    <div className="flex flex-col gap-[10px] p-[20px] ml-[4vw]">
       {/*heading section*/}
       <div className="flex justify-between items-center w-full">
         {/* wecome line section */}
